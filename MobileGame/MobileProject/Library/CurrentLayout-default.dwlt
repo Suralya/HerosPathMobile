@@ -16,8 +16,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 2114
     y: 128
-    width: 892
-    height: 580
+    width: 354
+    height: 673
   m_ShowMode: 0
   m_Title: 
   m_RootView: {fileID: 4}
@@ -65,8 +65,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 892
-    height: 580
+    width: 354
+    height: 673
   m_MinSize: {x: 200, y: 221}
   m_MaxSize: {x: 4000, y: 4021}
   m_ActualView: {fileID: 17}
@@ -92,8 +92,8 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 892
-    height: 580
+    width: 354
+    height: 673
   m_MinSize: {x: 200, y: 221}
   m_MaxSize: {x: 4000, y: 4021}
   vertical: 0
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 140
+  controlID: 76
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -429,14 +429,14 @@ MonoBehaviour:
     serializedVersion: 2
     x: 2114
     y: 128
-    width: 892
-    height: 559
+    width: 354
+    height: 652
   m_ViewDataDictionary: {fileID: 0}
   m_PlayModeViewName: GameView
   m_ShowGizmos: 0
   m_TargetDisplay: 0
   m_ClearColor: {r: 0, g: 0, b: 0, a: 0}
-  m_TargetSize: {x: 892, y: 538}
+  m_TargetSize: {x: 354, y: 631}
   m_TextureFilterMode: 0
   m_TextureHideFlags: 61
   m_RenderIMGUI: 1
@@ -450,10 +450,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -446
-    m_HBaseRangeMax: 446
-    m_VBaseRangeMin: -269
-    m_VBaseRangeMax: 269
+    m_HBaseRangeMin: -177
+    m_HBaseRangeMax: 177
+    m_VBaseRangeMin: -315.5
+    m_VBaseRangeMax: 315.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -471,23 +471,23 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 21
-      width: 892
-      height: 538
+      width: 354
+      height: 631
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 446, y: 269}
+    m_Translation: {x: 177, y: 315.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -446
-      y: -269
-      width: 892
-      height: 538
+      x: -177
+      y: -315.5
+      width: 354
+      height: 631
     m_MinimalGUI: 1
   m_defaultScale: 1
-  m_LastWindowPixelSize: {x: 892, y: 559}
+  m_LastWindowPixelSize: {x: 354, y: 652}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100
@@ -584,9 +584,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0, y: 0, z: 0}
+    m_Target: {x: -5.6929135, y: -3.2898812, z: -0.5584758}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0}
+    m_Value: {x: -5.6929135, y: -3.2898812, z: -0.5584758}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -632,13 +632,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+    m_Target: {x: -0.18501624, y: 0.69166285, z: -0.19053704, w: -0.6716215}
     speed: 2
-    m_Value: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
+    m_Value: {x: -0.18602268, y: 0.6913734, z: -0.19157352, w: -0.6713404}
   m_Size:
-    m_Target: 10
+    m_Target: 9.126011
     speed: 2
-    m_Value: 10
+    m_Value: 9.556032
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -728,20 +728,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/3DAssets
+    - Assets/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 80
   m_LastFolders:
-  - Assets/3DAssets
+  - Assets/Prefabs
   m_LastFoldersGridSize: 80
   m_LastProjectPath: C:\Users\Tina Plavius\Desktop\3DStartup\MobileGame\MobileProject
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 38350000
-    m_LastClickedID: 13624
-    m_ExpandedIDs: 00000000bc33000000ca9a3b
+    m_SelectedIDs: e2350000
+    m_LastClickedID: 13794
+    m_ExpandedIDs: 00000000b6330000bc33000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -769,7 +769,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 
+    m_ExpandedIDs: 00000000b6330000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

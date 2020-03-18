@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Area
+  - GameManager
+  - Hero
   layers:
   - Default
   - TransparentFX

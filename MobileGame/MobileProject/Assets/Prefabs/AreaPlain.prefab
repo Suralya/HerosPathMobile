@@ -578,7 +578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7214375339838637464}
   m_Layer: 0
-  m_Name: Area Plain
+  m_Name: AreaPlain
   m_TagString: Area
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 2114
-    y: 128
+    x: 2762
+    y: 242
     width: 354
     height: 673
   m_ShowMode: 0
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 5}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &3
@@ -120,7 +120,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &6
 MonoBehaviour:
@@ -189,7 +189,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 76
+  controlID: 150
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 77
+  controlID: 81
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 78
+  controlID: 82
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -427,8 +427,8 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 2114
-    y: 128
+    x: 2762
+    y: 242
     width: 354
     height: 652
   m_ViewDataDictionary: {fileID: 0}
@@ -524,7 +524,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 6cfbffff
+      m_ExpandedIDs: ccfaffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -586,7 +586,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: -5.6929135, y: -3.2898812, z: -0.5584758}
     speed: 2
-    m_Value: {x: -5.6929135, y: -3.2898812, z: -0.5584758}
+    m_Value: {x: -0.3090365, y: 0.030733824, z: -0.08649591}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -634,11 +634,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.18501624, y: 0.69166285, z: -0.19053704, w: -0.6716215}
     speed: 2
-    m_Value: {x: -0.18602268, y: 0.6913734, z: -0.19157352, w: -0.6713404}
+    m_Value: {x: -0.1755375, y: 0.6731016, z: -0.16922747, w: -0.6981998}
   m_Size:
     m_Target: 9.126011
     speed: 2
-    m_Value: 9.556032
+    m_Value: 2.0583003
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -728,20 +728,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Material/Textures
   m_ViewMode: 1
   m_StartGridSize: 80
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Material/Textures
   m_LastFoldersGridSize: 80
   m_LastProjectPath: C:\Users\Tina Plavius\Desktop\3DStartup\MobileGame\MobileProject
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e2350000
-    m_LastClickedID: 13794
-    m_ExpandedIDs: 00000000b6330000bc33000000ca9a3b
+    m_SelectedIDs: e2340000
+    m_LastClickedID: 13538
+    m_ExpandedIDs: 00000000cc340000e034000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -769,7 +769,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000b6330000
+    m_ExpandedIDs: 00000000cc340000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

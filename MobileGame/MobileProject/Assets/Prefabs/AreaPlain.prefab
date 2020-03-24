@@ -563,6 +563,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7214375339838637464}
+  - component: {fileID: 3320408011634211917}
   m_Layer: 0
   m_Name: AreaPlain
   m_TagString: Area
@@ -602,6 +603,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3320408011634211917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2385195927896681789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 336dcec62f1f1c040828fa3d6e508247, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2786933428538849087
 GameObject:
   m_ObjectHideFlags: 0

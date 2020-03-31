@@ -10,7 +10,7 @@ public class Hero : MonoBehaviour
     private int maxExp = 100;
     public int CurrentExp = 0;
 
-    public int Hp, Str, Def, Dex = 0;
+    public int Hp, CurrentHp, Str, Def, Dex = 0;
     public int StageCounter, MonsterCounter = 0;
     public float Spe= 0f;
 
@@ -22,6 +22,7 @@ public class Hero : MonoBehaviour
     {
 
         Hp =  Random.Range(10, 20);
+        CurrentHp = Hp;
         Str = Random.Range(1, 6);
         Def = Random.Range(1, 6);
         Dex = Random.Range(1, 6);
@@ -66,12 +67,12 @@ public class Hero : MonoBehaviour
     {
         Lvl++;
         CurrentExp = 0;
-        maxExp = maxExp + (int)(Mathf.Pow(Lvl, 1/2) * 100);
+        maxExp += (int)(Mathf.Pow(Lvl, 1/2) * 100);
         Hp = Hp + Random.Range(0, 6);
         Str = Str + Random.Range(0, 6);
         Def = Def + Random.Range(0, 6);
         Dex = Dex + Random.Range(0, 6);
-        Spe =Spe + +Random.Range(0f, 0.5f);
+        Spe =Spe  +Random.Range(0f, 0.5f);
 
     }
 

@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
         areasInUse.Enqueue(Temp);
         areasInUseArray = areasInUse.ToArray();
         Hero.StageCounter++;
+        Temp.GetComponent<Area>().ArealAction(Hero);
 
     }
 

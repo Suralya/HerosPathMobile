@@ -1410,6 +1410,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336dcec62f1f1c040828fa3d6e508247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AreaType: 4
+  HealingPotential: 0
+  MonsterbasisAtk: 0
+  Experience: 0
 --- !u!1 &7815895558572268310
 GameObject:
   m_ObjectHideFlags: 0

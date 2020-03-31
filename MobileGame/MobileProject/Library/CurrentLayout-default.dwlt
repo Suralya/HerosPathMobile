@@ -186,8 +186,8 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 678, y: 342}
-  m_MaxSize: {x: 12003, y: 8042}
+  m_MinSize: {x: 678, y: 492}
+  m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
   controlID: 142
 --- !u!114 &9
@@ -211,8 +211,8 @@ MonoBehaviour:
     y: 0
     width: 1313
     height: 947
-  m_MinSize: {x: 403, y: 342}
-  m_MaxSize: {x: 8003, y: 8042}
+  m_MinSize: {x: 403, y: 492}
+  m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
   controlID: 79
 --- !u!114 &10
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ConsoleWindow
+  m_Name: ProjectBrowser
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -312,14 +312,14 @@ MonoBehaviour:
     y: 580
     width: 1313
     height: 367
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 22}
+  m_MinSize: {x: 231, y: 271}
+  m_MaxSize: {x: 10001, y: 10021}
+  m_ActualView: {fileID: 21}
   m_Panes:
   - {fileID: 21}
   - {fileID: 22}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -522,9 +522,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: aa50f8ff
-      m_LastClickedID: 0
-      m_ExpandedIDs: aa50f8ff7c32f9ff6cfbffff
+      m_SelectedIDs: 8e340000
+      m_LastClickedID: 13454
+      m_ExpandedIDs: 6cfbffff96340000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -584,9 +584,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -0.44766784, y: 0.32712483, z: -0.53317916}
+    m_Target: {x: -0.36764646, y: 0.18623507, z: -0.116134696}
     speed: 2
-    m_Value: {x: -0.44766784, y: 0.32712483, z: -0.53317916}
+    m_Value: {x: -0.36764646, y: 0.18623507, z: -0.116134696}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -632,13 +632,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.10696887, y: 0.6987762, z: -0.1069007, w: -0.69918907}
+    m_Target: {x: -0.21825737, y: 0.6669476, z: -0.21423718, w: -0.67946416}
     speed: 2
-    m_Value: {x: -0.10696761, y: 0.69876796, z: -0.10689944, w: -0.69918084}
+    m_Value: {x: -0.21825472, y: 0.6669395, z: -0.21423458, w: -0.6794559}
   m_Size:
-    m_Target: 3.39379
+    m_Target: 3.2583
     speed: 2
-    m_Value: 3.39379
+    m_Value: 3.2583
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -728,20 +728,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets/Prefabs
   m_ViewMode: 1
   m_StartGridSize: 80
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Prefabs
   m_LastFoldersGridSize: 80
   m_LastProjectPath: C:\Users\Tina Plavius\Desktop\3DStartup\MobileGame\MobileProject
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c6370000
-    m_LastClickedID: 14278
-    m_ExpandedIDs: 000000008c37000000ca9a3b
+    m_SelectedIDs: aa370000
+    m_LastClickedID: 14250
+    m_ExpandedIDs: 000000008c3700009a370000a637000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -794,10 +794,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 0e2d0000
-    m_LastClickedInstanceID: 11534
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c62300006ab10000769d00007aa50000968e0000327b0000149d00008435000000000000
+    m_ExpandedInstanceIDs: c62300006ab10000769d00007aa50000968e0000327b0000149d00008435000000000000d0390000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

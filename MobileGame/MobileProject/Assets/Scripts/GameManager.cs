@@ -11,11 +11,10 @@ public class GameManager : MonoBehaviour
     private Queue<GameObject> areasInUse = new Queue<GameObject>();
     private GameObject[] areasInUseArray = new GameObject[3];
 
-    public Position Pos1, Pos2, Pos3, Pos4;
+    public Position Pos1, Pos2, Pos3, PosEnd;
 
 
-
-    public bool newStepEnabled = false;
+    public bool newStepEnabled = true;
 
     // Start is called before the first frame update
     void Start()
@@ -23,19 +22,19 @@ public class GameManager : MonoBehaviour
         Pos1 = new Position();
         Pos2 = new Position();
         Pos3 = new Position();
-        Pos4 = new Position();
+        PosEnd = new Position();
 
         Hero = HeroObject.GetComponent<Hero>();
         Hero.StageCounter ++;
 
         Pos1.Pos = new Vector3(0, 0, -1);
-        Pos1.Following = Pos4;
+        Pos1.Following = PosEnd;
         Pos2.Pos = new Vector3(0, 0, 0);
         Pos2.Following = Pos1;
         Pos3.Pos = new Vector3(0, 0, 1);
         Pos3.Following = Pos2;
-        Pos4.Pos = new Vector3(0, 0, -2);
-        Pos4.Following = null;
+        PosEnd.Pos = new Vector3(0, 0, -2);
+        PosEnd.Following = null;
 
 
 
@@ -56,10 +55,13 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
-            if (areasInUseArray[0].transform.position == Pos1.Pos)
+            if (areasInUseArray[0].transform.position == Pos1.Pos && areasInUseArray[1].transform.position == Pos2.Pos && newStepEnabled == true)
             {
+                newStepEnabled = false;
                 AddArea();
                 MoveAreas();
+                Hero.CurrentExp = Hero.CurrentExp + 10;
+
             }
         }
 
@@ -73,12 +75,12 @@ public class GameManager : MonoBehaviour
             if (Area != null)
             {
 
-                if (Area.GetComponent<Area>().CurrentPos.Following == Pos4)
+                if (Area.GetComponent<Area>().CurrentPos.Following == PosEnd)
                 {
                     areasInUse.Dequeue();
                     areasInUseArray = areasInUse.ToArray();
-                    Debug.Log("DestroyingFlagEntered");
-                    StartCoroutine(MoveToLastPosition(Area, Pos4.Pos));
+                   // Debug.Log("DestroyingFlagEntered");
+                    StartCoroutine(MoveToLastPosition(Area, PosEnd.Pos));
                 }
                 else
                 {
@@ -98,6 +100,7 @@ public class GameManager : MonoBehaviour
         Temp.GetComponent<Area>().CurrentPos = Pos3;
         areasInUse.Enqueue(Temp);
         areasInUseArray = areasInUse.ToArray();
+        Hero.StageCounter++;
 
     }
 
@@ -120,7 +123,8 @@ public class GameManager : MonoBehaviour
             objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, Hero.Spe * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-            Debug.Log("Object Will be Destroyed");
+        //  Debug.Log("Object Will be Destroyed");
+        newStepEnabled = true;
             Destroy(objectToMove);
     }
 

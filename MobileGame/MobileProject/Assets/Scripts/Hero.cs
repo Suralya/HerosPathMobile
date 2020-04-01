@@ -20,7 +20,7 @@ public class Hero : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        Lvl = 1;
         Hp =  Random.Range(10, 20);
         CurrentHp = Hp;
         Str = Random.Range(1, 6);
@@ -68,11 +68,11 @@ public class Hero : MonoBehaviour
         Lvl++;
         CurrentExp = 0;
         maxExp += (int)(Mathf.Pow(Lvl, 1/2) * 100);
-        Hp = Hp + Random.Range(0, 6);
-        Str = Str + Random.Range(0, 6);
-        Def = Def + Random.Range(0, 6);
-        Dex = Dex + Random.Range(0, 6);
-        Spe =Spe  +Random.Range(0f, 0.5f);
+        Hp += Random.Range(0, 6);
+        Str += Random.Range(0, 6);
+        Def += Random.Range(0, 6);
+        Dex += Random.Range(0, 6);
+        Spe += Random.Range(0f, 0.5f);
 
     }
 

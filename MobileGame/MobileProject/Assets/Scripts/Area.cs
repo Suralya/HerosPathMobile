@@ -9,7 +9,10 @@ public class Area : MonoBehaviour
 
     public ArealTypes AreaType;
 
-    public int Heal, MonsterbasisAtk, Experience =0;
+    public int Heal, Experience =0;
+
+    public int Level, Hp, Str, Def, Dex;
+    public float Spe;
 
     // Start is called before the first frame update
     void Start()
@@ -43,10 +46,32 @@ public class Area : MonoBehaviour
                 Experience = 1;
                 break;
             case ArealTypes.weakMonster:
+                // Set Monster Lvl
+                Level = Random.Range(HeroStats.Lvl - 6, HeroStats.Lvl -3);
+                if (Level < 1)
+                    Level = 1;
+                SetMonsterStats();
+
+
                 break;
             case ArealTypes.Monster:
+                // Set Monster Lvl
+                Level = Random.Range(HeroStats.Lvl - 2, HeroStats.Lvl+1);
+                if (Level < 1)
+                    Level = 1;
+                SetMonsterStats();
+
+
+
                 break;
             case ArealTypes.strongMonster:
+
+                // Set Monster Lvl
+                Level = Random.Range(HeroStats.Lvl +1, HeroStats.Lvl + 3);
+                SetMonsterStats();
+
+
+
                 break;
 
         }
@@ -54,6 +79,31 @@ public class Area : MonoBehaviour
 
     }
 
+    public void SetMonsterStats()
+    {
+        // Set Monster Stats
+        for (int i = 0; i <= Level; i++)
+        {
+            Hp += Random.Range(1, 4);
+            Str += Random.Range(1, 4);
+            Def += Random.Range(1, 4);
+            Dex += Random.Range(1, 4);
+            Spe += Random.Range(0f, 0.3f);
+        }
+        Debug.Log("Die Werte des Monsters sind:");
+        Debug.Log("HP: " + Hp);
+        Debug.Log("Strength: " + Str);
+        Debug.Log("Defense: " + Def);
+        Debug.Log("Dexterity: " + Dex);
+        Debug.Log("Speed: " + Spe);
+
+    }
+
 
 
 }
+
+
+
+
+

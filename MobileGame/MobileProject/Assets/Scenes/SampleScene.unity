@@ -598,6 +598,10 @@ MonoBehaviour:
   - {fileID: 9188509795760570516, guid: a63ad8b6d2b7ce046817247196e95e2b, type: 3}
   - {fileID: 6349176043210725641, guid: 026a3828cd4b20f4ca228d33c754b37f, type: 3}
   - {fileID: 5304123632031855167, guid: 7c2f40486824a8b45b93eeac03763a95, type: 3}
+  - {fileID: 8700846648613543583, guid: e5a1a6ba2a0b6c64790bec59acabd4fd, type: 3}
+  - {fileID: 4567493690276274488, guid: 63c6bdf8ddcb29c459b7f8dd15ce3f39, type: 3}
+  - {fileID: 4567493690276274488, guid: 63c6bdf8ddcb29c459b7f8dd15ce3f39, type: 3}
+  - {fileID: 7505475043563647586, guid: 9dcc033c19068e543ae5f3c6497a11a9, type: 3}
   - {fileID: 8386047699289812416, guid: b7facd2404d54624baf47beda5daa764, type: 3}
   newStepEnabled: 1
 --- !u!1 &1883734491 stripped

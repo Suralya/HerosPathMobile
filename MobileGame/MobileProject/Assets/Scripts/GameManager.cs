@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
                 newStepEnabled = false;
                 AddArea();
                 MoveAreas();
-                Hero.CurrentExp = Hero.CurrentExp + 10;
+               // Hero.CurrentExp = Hero.CurrentExp + 10;
 
             }
         }
@@ -101,6 +101,7 @@ public class GameManager : MonoBehaviour
         areasInUse.Enqueue(Temp);
         areasInUseArray = areasInUse.ToArray();
         Hero.StageCounter++;
+      //  Debug.Log(Temp.GetComponent<Area>().AreaType);
         Temp.GetComponent<Area>().ArealAction(Hero);
 
     }

@@ -48,7 +48,12 @@ public class GameManager : MonoBehaviour
         GameObject Temp= Instantiate(StartingArea, Pos2.Pos, Quaternion.identity);
         Temp.GetComponent<Area>().CurrentPos = Pos2;
         areasInUse.Enqueue(Temp);
-        Temp = Instantiate(Areas[Random.Range(0, Areas.Count - 1)], Pos3.Pos, Quaternion.identity);
+        Temp = Areas[Random.Range(0, Areas.Count - 1)];
+        while (Temp.GetComponent<Area>().AreaType != Area.ArealTypes.Neutral)
+        {
+            Temp = Areas[Random.Range(0, Areas.Count - 1)];
+        }
+        Temp = Instantiate(Temp, Pos3.Pos, Quaternion.identity);
         Temp.GetComponent<Area>().CurrentPos = Pos3;
         areasInUse.Enqueue(Temp);
         areasInUseArray = areasInUse.ToArray();

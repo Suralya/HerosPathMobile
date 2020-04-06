@@ -16,10 +16,9 @@ public class GameManager : MonoBehaviour
     public Position Pos1, Pos2, Pos3, PosEnd;
 
     //Variables to enable AreaChoice system
-    public GameObject ChoiceLeft;
-    public GameObject ChoiceMid;
-    public GameObject ChoiceRight;
-    public GameObject[] areasOfChoice = new GameObject[3];
+    public GameObject[] AreasOfChoice = new GameObject[3];
+    private GameObject[] areasShown = new GameObject[3];
+    public GameObject[] ChoicePositions = new GameObject[3];
 
     //Variable to time Area Spawning/ Area Choosing
     public bool newStepEnabled = true;
@@ -46,8 +45,6 @@ public class GameManager : MonoBehaviour
         PosEnd.Following = null;
 
 
-
-
         GameObject Temp= Instantiate(StartingArea, Pos2.Pos, Quaternion.identity);
         Temp.GetComponent<Area>().CurrentPos = Pos2;
         areasInUse.Enqueue(Temp);
@@ -56,23 +53,24 @@ public class GameManager : MonoBehaviour
         areasInUse.Enqueue(Temp);
         areasInUseArray = areasInUse.ToArray();
         MoveAreas();
+        ArrangeAreaChoice();
 
     }
 
 
     void Update()
     {
+        /*
         if (Input.GetKeyDown("space"))
         {
             if (areasInUseArray[0].transform.position == Pos1.Pos && areasInUseArray[1].transform.position == Pos2.Pos && newStepEnabled == true)
             {
                 newStepEnabled = false;
-                AddArea();
-                MoveAreas();
                // Hero.CurrentExp = Hero.CurrentExp + 10;
 
             }
         }
+        */
 
     }
 
@@ -102,24 +100,39 @@ public class GameManager : MonoBehaviour
     }
 
     //Random Area will be replaced with Chosen Area later
-    public void AddArea()
+    public void AddArea(GameObject Area)
     {
 
-        GameObject Temp = Instantiate(Areas[Random.Range(0, Areas.Count - 1)], Pos3.Pos, Quaternion.identity);
+        GameObject Temp = Instantiate(Area, Pos3.Pos, Quaternion.identity);
         Temp.GetComponent<Area>().CurrentPos = Pos3;
         areasInUse.Enqueue(Temp);
         areasInUseArray = areasInUse.ToArray();
         Hero.StageCounter++;
-      //  Debug.Log(Temp.GetComponent<Area>().AreaType);
+        //  Debug.Log(Temp.GetComponent<Area>().AreaType);
         Temp.GetComponent<Area>().ArealAction(Hero);
 
     }
 
     public void ArrangeAreaChoice()
     {
-
+        GameObject Temp;
+        for (int i = 0; i < 3; i++)
+        {
+            AreasOfChoice[i] = Areas[Random.Range(0, Areas.Count - 1)];
+            Temp = Instantiate(AreasOfChoice[i], ChoicePositions[i].transform.position, Quaternion.identity);
+            areasShown[i] = Temp;
+            Temp.transform.localScale = ChoicePositions[i].transform.localScale;
+        }
     }
 
+    public void ClearArrangement()
+    {
+        foreach (GameObject Showcase in areasShown)
+        {
+            Destroy(Showcase);
+        }
+
+    }
 
 
     public IEnumerator MoveToPosition(GameObject objectToMove, Vector3 end)
@@ -143,6 +156,7 @@ public class GameManager : MonoBehaviour
         }
         //  Debug.Log("Object Will be Destroyed");
         newStepEnabled = true;
+        ArrangeAreaChoice();
             Destroy(objectToMove);
     }
 

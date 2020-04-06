@@ -14,6 +14,7 @@ public class Area : MonoBehaviour
     public int Level, Hp, Str, Def, Dex;
     public float Spe;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,25 +50,28 @@ public class Area : MonoBehaviour
                 break;
             case ArealTypes.weakMonster:
                 // Set Monster Lvl
-                Level = Random.Range(HeroStats.Lvl - 6, HeroStats.Lvl -3);
+                Level = Random.Range(HeroStats.Lvl - 6, HeroStats.Lvl - 3);
                 if (Level < 1)
                     Level = 1;
+
                 SetMonsterStats();
                 Fight(HeroStats);
 
                 break;
             case ArealTypes.Monster:
                 // Set Monster Lvl
-                Level = Random.Range(HeroStats.Lvl - 2, HeroStats.Lvl+2);
+                Level = Random.Range(HeroStats.Lvl - 2, HeroStats.Lvl + 2);
                 if (Level < 1)
                     Level = 1;
+
                 SetMonsterStats();
                 Fight(HeroStats);
 
                 break;
             case ArealTypes.strongMonster:
                 // Set Monster Lvl
-                Level = Random.Range(HeroStats.Lvl +1, HeroStats.Lvl + 3);
+                Level = Random.Range(HeroStats.Lvl + 1, HeroStats.Lvl + 3);
+
                 SetMonsterStats();
                 Fight(HeroStats);
 
@@ -77,6 +81,10 @@ public class Area : MonoBehaviour
 
 
     }
+
+
+     
+
 
     public void SetMonsterStats()
     {

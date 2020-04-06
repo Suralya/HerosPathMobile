@@ -13,7 +13,7 @@ public class AreaChoice : MonoBehaviour
     void Start()
     {
         GM = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-        Debug.Log(GM);
+      //  Debug.Log(GM);
     }
 
     // Update is called once per frame
@@ -24,9 +24,15 @@ public class AreaChoice : MonoBehaviour
 
     private void OnMouseDown()
     {
-        // GM.AddArea(GM.areasOfChoice[ArrayNumberOfChoice]);
-        GM.AddArea();
-        Debug.Log("Area Chosing is Nr:" + (ArrayNumberOfChoice + 1));
-        GM.MoveAreas();
+
+        if (GM.newStepEnabled == true)
+        {
+            GM.newStepEnabled = false;
+            GM.AddArea(GM.AreasOfChoice[ArrayNumberOfChoice]);
+            GM.MoveAreas();
+            GM.ClearArrangement();
+
+        }
+
     }
 }

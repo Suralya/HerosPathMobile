@@ -14,7 +14,7 @@ public class Hero : MonoBehaviour
     public int StageCounter, MonsterCounter = 0;
     public float Spe= 0f;
 
-    private bool ShowMessage=true;
+    public bool ShowMessage=true;
     
 
     // Start is called before the first frame update
@@ -55,7 +55,7 @@ public class Hero : MonoBehaviour
             Debug.Log("You passed " + StageCounter + " Stages for this Lvl");
         }
 
-        if (Hp <= 0 && ShowMessage==true)
+        if (CurrentHp <= 0 && ShowMessage==true)
         {
             Debug.Log("Hero is Dead");
             ShowMessage = false;

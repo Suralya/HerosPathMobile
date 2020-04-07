@@ -57,6 +57,8 @@ public class Area : MonoBehaviour
                 SetMonsterStats();
                 Fight(HeroStats);
 
+                HeroStats.MonsterCounter++;
+
                 break;
             case ArealTypes.Monster:
                 // Set Monster Lvl
@@ -67,6 +69,8 @@ public class Area : MonoBehaviour
                 SetMonsterStats();
                 Fight(HeroStats);
 
+                HeroStats.MonsterCounter++;
+
                 break;
             case ArealTypes.strongMonster:
                 // Set Monster Lvl
@@ -75,16 +79,14 @@ public class Area : MonoBehaviour
                 SetMonsterStats();
                 Fight(HeroStats);
 
+                HeroStats.MonsterCounter++;
+
                 break;
 
         }
 
 
     }
-
-
-     
-
 
     public void SetMonsterStats()
     {

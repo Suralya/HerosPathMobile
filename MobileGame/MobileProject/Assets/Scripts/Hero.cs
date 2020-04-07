@@ -15,13 +15,13 @@ public class Hero : MonoBehaviour
     public float Spe= 0f;
 
     public bool ShowMessage=true;
-    
 
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
+
         Lvl = 1;
-        Hp =  Random.Range(15, 25);
+        Hp = Random.Range(15, 25);
         CurrentHp = Hp;
         Str = Random.Range(3, 9);
         Def = Random.Range(3, 9);
@@ -29,11 +29,17 @@ public class Hero : MonoBehaviour
         Spe = Random.Range(1.0f, 1.8f);
 
         Debug.Log("The Adventure Starts now - This are your Starting Stats:");
-        Debug.Log("HP: " +Hp);
-        Debug.Log("Strength: " +Str);
+        Debug.Log("HP: " + Hp);
+        Debug.Log("Strength: " + Str);
         Debug.Log("Defense: " + Def);
         Debug.Log("Dexterity: " + Dex);
         Debug.Log("Speed: " + Spe);
+
+
+    }
+    // Start is called before the first frame update
+    void Start()
+    {
 
 
     }

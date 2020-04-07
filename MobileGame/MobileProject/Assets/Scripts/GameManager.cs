@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,6 +24,10 @@ public class GameManager : MonoBehaviour
     //Variable to time Area Spawning/ Area Choosing
     public bool newStepEnabled = true;
 
+    //UI HeroStatus
+    public Text HPText;
+    public Image HPIndicator;
+
 
     void Start()
     {
@@ -44,6 +49,7 @@ public class GameManager : MonoBehaviour
         PosEnd.Pos = new Vector3(0, 0, -2);
         PosEnd.Following = null;
 
+        UpdateHeroUI();
 
         GameObject Temp= Instantiate(StartingArea, Pos2.Pos, Quaternion.identity);
         Temp.GetComponent<Area>().CurrentPos = Pos2;
@@ -62,6 +68,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+  
 
     void Update()
     {
@@ -115,6 +122,7 @@ public class GameManager : MonoBehaviour
         Hero.StageCounter++;
         //  Debug.Log(Temp.GetComponent<Area>().AreaType);
         Temp.GetComponent<Area>().ArealAction(Hero);
+        UpdateHeroUI();
 
     }
 
@@ -137,6 +145,12 @@ public class GameManager : MonoBehaviour
             Destroy(Showcase);
         }
 
+    }
+
+    public void UpdateHeroUI()
+    {
+        HPText.text = "HP: " + Hero.CurrentHp + " / " + Hero.Hp;
+        HPIndicator.fillAmount = (float) Hero.CurrentHp / Hero.Hp;
     }
 
 
@@ -165,7 +179,7 @@ public class GameManager : MonoBehaviour
             Destroy(objectToMove);
     }
 
-
+   
 
 
 }

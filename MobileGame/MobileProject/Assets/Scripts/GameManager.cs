@@ -29,6 +29,10 @@ public class GameManager : MonoBehaviour
     public Text HPText;
     public Image HPIndicator;
     public Image ExpIndicator;
+    public Text LevelText,StrText,DefText,DexText,SpeText;
+
+    public Text EnmyLevelText, EnmyStrText, EnmyDefText, EnmyDexText, EnmySpeText;
+
 
     void Start()
     {
@@ -113,6 +117,7 @@ public class GameManager : MonoBehaviour
         Hero.StageCounter++;
         //  Debug.Log(Temp.GetComponent<Area>().AreaType);
         Temp.GetComponent<Area>().ArealAction(Hero);
+        UpdateEnemyUI(Temp.GetComponent<Area>());
 
 
     }
@@ -140,9 +145,61 @@ public class GameManager : MonoBehaviour
 
     public void UpdateHeroUI()
     {
+        //Bars
         HPText.text = "HP: " + Hero.CurrentHp + " / " + Hero.Hp;
         HPIndicator.fillAmount = (float) Hero.CurrentHp / Hero.Hp;
         ExpIndicator.fillAmount = (float)Hero.CurrentExp / Hero.maxExp;
+
+        //Stats public Text LevelText,StrText,DefText,DexText,SpeText;
+        LevelText.text = "Level: " + Hero.Lvl;
+        StrText.text = "Strength: " + Hero.Str;
+        DefText.text = "Defense: " + Hero.Def;
+        DexText.text = "Dexterity: " + Hero.Dex;
+        SpeText.text = "Speed: " + Hero.Spe;
+
+    }
+
+    public void UpdateEnemyUI(Area Enemy)
+    {
+        switch (Enemy.AreaType)
+        {
+            case Area.ArealTypes.Healing:
+                EnmyLevelText.text = "Healing Areal";
+                EnmyStrText.text = "Healing: "+ Enemy.Heal ;
+                EnmyDefText.text = "";
+                EnmyDexText.text = "";
+                EnmySpeText.text = "";
+                break;
+            case Area.ArealTypes.Neutral:
+                EnmyLevelText.text = "Neutral Areal";
+                EnmyStrText.text = "";
+                EnmyDefText.text = "";
+                EnmyDexText.text = "";
+                EnmySpeText.text = "";
+                break;
+            case Area.ArealTypes.weakMonster:
+                EnmyLevelText.text = "Level: " + Enemy.Level;
+                EnmyStrText.text = "Strength: " + Enemy.Str;
+                EnmyDefText.text = "Defense: " + Enemy.Def;
+                EnmyDexText.text = "Dexterity: " + Enemy.Dex;
+                EnmySpeText.text = "Speed: " + Enemy.Spe;
+                break;
+            case Area.ArealTypes.Monster:
+                EnmyLevelText.text = "Level: " + Enemy.Level;
+                EnmyStrText.text = "Strength: " + Enemy.Str;
+                EnmyDefText.text = "Defense: " + Enemy.Def;
+                EnmyDexText.text = "Dexterity: " + Enemy.Dex;
+                EnmySpeText.text = "Speed: " + Enemy.Spe;
+                break;
+            case Area.ArealTypes.strongMonster:
+                EnmyLevelText.text = "Level: " + Enemy.Level;
+                EnmyStrText.text = "Strength: " + Enemy.Str;
+                EnmyDefText.text = "Defense: " + Enemy.Def;
+                EnmyDexText.text = "Dexterity: " + Enemy.Dex;
+                EnmySpeText.text = "Speed: " + Enemy.Spe;
+                break;
+
+        }
     }
 
 

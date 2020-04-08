@@ -5,7 +5,6 @@ ScriptsOnlyBuild:
     - AreaChoice
     - GameManager
     - Hero
-    - MouseDownTouch
     Unity.Postprocessing.Runtime.dll:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
     - UnityEngine.Rendering.PostProcessing.AutoExposure
@@ -68,45 +67,43 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 13928}
+      Script: {instanceID: 11198}
     - Class: 114
-      Script: {instanceID: 13944}
+      Script: {instanceID: 11218}
     - Class: 114
-      Script: {instanceID: 13962}
+      Script: {instanceID: 11236}
     - Class: 114
-      Script: {instanceID: 13968}
+      Script: {instanceID: 11242}
     - Class: 114
-      Script: {instanceID: 14052}
+      Script: {instanceID: 11328}
     - Class: 114
-      Script: {instanceID: 14122}
+      Script: {instanceID: 11398}
     - Class: 114
-      Script: {instanceID: 14166}
+      Script: {instanceID: 11442}
     - Class: 114
-      Script: {instanceID: 14208}
+      Script: {instanceID: 11486}
     - Class: 114
-      Script: {instanceID: 14290}
+      Script: {instanceID: 11568}
     - Class: 114
-      Script: {instanceID: 14320}
+      Script: {instanceID: 11598}
     - Class: 114
-      Script: {instanceID: 14596}
+      Script: {instanceID: 11874}
     - Class: 114
-      Script: {instanceID: 14600}
+      Script: {instanceID: 11878}
     - Class: 114
-      Script: {instanceID: 14822}
+      Script: {instanceID: 12104}
     - Class: 114
-      Script: {instanceID: 14870}
+      Script: {instanceID: 12180}
     - Class: 114
-      Script: {instanceID: 14898}
+      Script: {instanceID: 12850}
     - Class: 114
-      Script: {instanceID: 15550}
+      Script: {instanceID: 13112}
     - Class: 114
-      Script: {instanceID: 15810}
+      Script: {instanceID: 13154}
     - Class: 114
-      Script: {instanceID: 15852}
+      Script: {instanceID: 13160}
     - Class: 114
-      Script: {instanceID: 15858}
-    - Class: 114
-      Script: {instanceID: 15940}
+      Script: {instanceID: 13242}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -254,7 +251,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: bd304084d75b3b84d29484b81503a7d1
+      Hash: 8c3299b0ad76963777fedab15065dae0
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -699,4 +696,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Tina Plavius/Desktop/3DStartup/TestHeroBuild.apk
+  playerPath: C:/Users/Tina Plavius/Desktop/3DStartup/HerosPath_0_01.apk

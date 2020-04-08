@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Area : MonoBehaviour
 {
@@ -11,8 +12,8 @@ public class Area : MonoBehaviour
 
     public int Heal, Experience =0;
 
-    public int Level, Hp, Str, Def, Dex;
-    public float Spe;
+    public int Level, Hp, Str, Def, Dex=0;
+    public float Spe=0f;
 
 
     // Start is called before the first frame update
@@ -232,6 +233,7 @@ public class Area : MonoBehaviour
 
     }
 
+   
 
 
 

@@ -7,7 +7,7 @@ public class Hero : MonoBehaviour
     public string Name = "HERO";
     public int Lvl = 1;
 
-    private int maxExp = 100;
+    public int maxExp = 100;
     public int CurrentExp = 0;
 
     public int Hp, CurrentHp, Str, Def, Dex = 0;
@@ -21,6 +21,7 @@ public class Hero : MonoBehaviour
     {
 
         Lvl = 1;
+        maxExp = 100;
         Hp = Random.Range(15, 25);
         CurrentHp = Hp;
         Str = Random.Range(3, 9);

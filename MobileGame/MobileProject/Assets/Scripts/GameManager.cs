@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     //UI HeroStatus
     public Text HPText;
     public Image HPIndicator;
-
+    public Image ExpIndicator;
 
     void Start()
     {
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
         Pos3 = new Position();
         PosEnd = new Position();
 
+        ShuffleArealist(Areas);
 
         Hero = HeroObject.GetComponent<Hero>();
         Hero.StageCounter ++;
@@ -72,18 +74,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        /*
-        if (Input.GetKeyDown("space"))
-        {
-            if (areasInUseArray[0].transform.position == Pos1.Pos && areasInUseArray[1].transform.position == Pos2.Pos && newStepEnabled == true)
-            {
-                newStepEnabled = false;
-               // Hero.CurrentExp = Hero.CurrentExp + 10;
-
-            }
-        }
-        */
-
+        UpdateHeroUI();
     }
 
 
@@ -122,7 +113,7 @@ public class GameManager : MonoBehaviour
         Hero.StageCounter++;
         //  Debug.Log(Temp.GetComponent<Area>().AreaType);
         Temp.GetComponent<Area>().ArealAction(Hero);
-        UpdateHeroUI();
+
 
     }
 
@@ -151,6 +142,7 @@ public class GameManager : MonoBehaviour
     {
         HPText.text = "HP: " + Hero.CurrentHp + " / " + Hero.Hp;
         HPIndicator.fillAmount = (float) Hero.CurrentHp / Hero.Hp;
+        ExpIndicator.fillAmount = (float)Hero.CurrentExp / Hero.maxExp;
     }
 
 
@@ -179,7 +171,18 @@ public class GameManager : MonoBehaviour
             Destroy(objectToMove);
     }
 
-   
+    public static void ShuffleArealist(List<GameObject> List)
+    {
+        for (int i = List.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i);
+            GameObject temp = List[i];
+            List[i] = List[j];
+            List[j] = temp;
+        }
+
+    }
+
 
 
 }

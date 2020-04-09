@@ -5,6 +5,7 @@ ScriptsOnlyBuild:
     - AreaChoice
     - GameManager
     - Hero
+    - UIManager
     Unity.Postprocessing.Runtime.dll:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
     - UnityEngine.Rendering.PostProcessing.AutoExposure
@@ -30,6 +31,7 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
@@ -95,15 +97,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 12180}
     - Class: 114
+      Script: {instanceID: 12312}
+    - Class: 114
       Script: {instanceID: 12850}
     - Class: 114
-      Script: {instanceID: 13112}
+      Script: {instanceID: 13096}
     - Class: 114
-      Script: {instanceID: 13154}
+      Script: {instanceID: 13114}
     - Class: 114
-      Script: {instanceID: 13160}
+      Script: {instanceID: 13156}
     - Class: 114
-      Script: {instanceID: 13242}
+      Script: {instanceID: 13162}
+    - Class: 114
+      Script: {instanceID: 13244}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -251,7 +257,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 8c3299b0ad76963777fedab15065dae0
+      Hash: 79963b3a8181f5a1acbd6df1930f7508
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -569,6 +575,12 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: UIManager
+  - hash:
+      serializedVersion: 2
       Hash: d5630f96bd5a6a6eed7e1754c3fb8703
     assemblyName: Unity.Postprocessing.Runtime.dll
     namespaceName: UnityEngine.Rendering.PostProcessing
@@ -696,4 +708,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Tina Plavius/Desktop/3DStartup/HerosPath_0_01.apk
+  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_03.apk

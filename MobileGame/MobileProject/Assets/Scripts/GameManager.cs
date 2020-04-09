@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] ChoicePositions = new GameObject[3];
 
     //Variable to time Area Spawning/ Area Choosing
-    public bool newStepEnabled = true;
+    public bool newStepEnabled = false;
     private bool firstAreas = true;
 
     //UI HeroStatus
@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
             areasShown[i] = Temp;
             Temp.transform.localScale = ChoicePositions[i].transform.localScale;
         }
+        newStepEnabled = true;
     }
 
     public void ClearArrangement()
@@ -234,7 +235,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         //  Debug.Log("Object Will be Destroyed");
-        newStepEnabled = true;
+
         ArrangeAreaChoice();
         Destroy(objectToMove);
     }

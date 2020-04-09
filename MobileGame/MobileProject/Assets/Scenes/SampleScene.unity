@@ -189,7 +189,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Enemy Stats:'
+  m_Text: 'Areal/Enemy Stats:'
 --- !u!222 &13191207
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -604,7 +604,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hero Stats:'
+  m_Text: 
 --- !u!222 &226932199
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -952,7 +952,7 @@ GameObject:
   - component: {fileID: 592560066}
   - component: {fileID: 592560065}
   m_Layer: 5
-  m_Name: HeroStats (1)
+  m_Name: EnemyStats
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1087,7 +1087,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hero Stats:'
+  m_Text: 
 --- !u!222 &627327522
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1425,7 +1425,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hero Stats:'
+  m_Text: 
 --- !u!222 &898889340
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1646,7 +1646,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hero Stats:'
+  m_Text: 
 --- !u!222 &966512220
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2532,7 +2532,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Hero Stats:'
+  m_Text: 
 --- !u!222 &1959429958
 CanvasRenderer:
   m_ObjectHideFlags: 0

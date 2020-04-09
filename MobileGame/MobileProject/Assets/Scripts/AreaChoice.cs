@@ -29,8 +29,9 @@ public class AreaChoice : MonoBehaviour
         {
             GM.newStepEnabled = false;
             GM.AddArea(GM.AreasOfChoice[ArrayNumberOfChoice]);
-            GM.MoveAreas();
             GM.ClearArrangement();
+            GM.MoveAreas();
+
 
         }
 

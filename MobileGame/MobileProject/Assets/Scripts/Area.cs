@@ -100,7 +100,14 @@ public class Area : MonoBehaviour
             Spe += Random.Range(0f, 0.3f);
         }
 
-        Experience = (int) (Level*((Mathf.Pow(Level, 1 / 2)/4) * 100)* 0.7f);
+        Hp += Hp * (Level*3 / 100);
+        Str += Str * (Level*3 / 100);
+        Def += Def * (Level*3 / 100);
+        Dex += Dex * (Level*3 / 100);
+        Spe += Spe * (Level*3 / 100);
+
+
+        Experience = (int) (Level*((Mathf.Pow(Level, 1 / 2)/4) * 100)* 0.6f);
 
         Debug.Log("Die Werte des Monsters sind:");
         Debug.Log("Level: " + Level);

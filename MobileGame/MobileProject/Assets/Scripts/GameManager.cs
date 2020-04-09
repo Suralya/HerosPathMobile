@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
 
     //Variable to time Area Spawning/ Area Choosing
     public bool newStepEnabled = true;
+    private bool firstAreas = true;
 
     //UI HeroStatus
     public Text HPText;
@@ -33,9 +34,13 @@ public class GameManager : MonoBehaviour
 
     public Text EnmyLevelText, EnmyStrText, EnmyDefText, EnmyDexText, EnmySpeText;
 
+    //GameUI
+    public Canvas DeathScreen;
+
 
     void Start()
     {
+        DeathScreen.enabled = false;
         Pos1 = new Position();
         Pos2 = new Position();
         Pos3 = new Position();
@@ -70,7 +75,8 @@ public class GameManager : MonoBehaviour
         areasInUse.Enqueue(Temp);
         areasInUseArray = areasInUse.ToArray();
         MoveAreas();
-        ArrangeAreaChoice();
+        Invoke("ArrangeAreaChoice", 1);
+
 
     }
 
@@ -79,6 +85,10 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         UpdateHeroUI();
+        if (Hero.CurrentHp <= 0)
+        {
+            DeathScreen.enabled = true;
+        } 
     }
 
 
@@ -211,6 +221,7 @@ public class GameManager : MonoBehaviour
             objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, Hero.Spe * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
+
     }
 
     public IEnumerator MoveToLastPosition(GameObject objectToMove, Vector3 end)
@@ -225,7 +236,7 @@ public class GameManager : MonoBehaviour
         //  Debug.Log("Object Will be Destroyed");
         newStepEnabled = true;
         ArrangeAreaChoice();
-            Destroy(objectToMove);
+        Destroy(objectToMove);
     }
 
     public static void ShuffleArealist(List<GameObject> List)

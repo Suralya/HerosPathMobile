@@ -36,14 +36,7 @@ public class Area : MonoBehaviour
         {
             case ArealTypes.Healing:
                 Heal = (int) (Random.Range(0.3f, 0.8f) * HeroStats.Hp);
-                Debug.Log("The Hero has got " + HeroStats.CurrentHp + " HP");
-                HeroStats.CurrentHp += Heal;
-                if (HeroStats.CurrentHp > HeroStats.Hp)
-                {
-                    HeroStats.CurrentHp = HeroStats.Hp;
-                }
-                Debug.Log("The Hero was healed " + Heal + " HP");
-                Debug.Log("The Hero has now " + HeroStats.CurrentHp + " HP");
+                StartCoroutine(DoHealing(Heal, HeroStats));
                 break;
             case ArealTypes.Neutral:
                 Experience = 1;
@@ -56,7 +49,7 @@ public class Area : MonoBehaviour
                     Level = 1;
 
                 SetMonsterStats();
-                Fight(HeroStats);
+                StartCoroutine(Fight(HeroStats));
 
                 HeroStats.MonsterCounter++;
 
@@ -68,7 +61,7 @@ public class Area : MonoBehaviour
                     Level = 1;
 
                 SetMonsterStats();
-                Fight(HeroStats);
+                StartCoroutine(Fight(HeroStats));
 
                 HeroStats.MonsterCounter++;
 
@@ -78,7 +71,7 @@ public class Area : MonoBehaviour
                 Level = Random.Range(HeroStats.Lvl + 1, HeroStats.Lvl + 3);
 
                 SetMonsterStats();
-                Fight(HeroStats);
+                StartCoroutine(Fight(HeroStats));
 
                 HeroStats.MonsterCounter++;
 
@@ -120,8 +113,10 @@ public class Area : MonoBehaviour
 
     }
 
-    public void Fight(Hero HeroStats)
+    public IEnumerator Fight(Hero HeroStats)
     {
+        int DamageApplyed;
+        HeroStats.isFighting = true;
         int Damage;
         double CriticalMonster;
         CriticalMonster = (Dex / 8) * 0.1 - (Str / 10) * 0.1;
@@ -145,7 +140,7 @@ public class Area : MonoBehaviour
             while (Hp > 0 && HeroStats.CurrentHp > 0)
             {
                 //MonsterTurn
-                Damage = (int) (Str - (HeroStats.Def * Random.Range(0.6f, 0.95f)));
+                Damage = (int)(Str - (HeroStats.Def * Random.Range(0.6f, 0.95f)));
                 if (Damage < 1)
                 {
                     Damage = 1;
@@ -154,7 +149,18 @@ public class Area : MonoBehaviour
                 {
                     Damage *= 2;
                 }
-                HeroStats.CurrentHp -= Damage;
+                DamageApplyed = HeroStats.CurrentHp -Damage;
+                if (DamageApplyed <0)
+                {
+                    DamageApplyed = 0;
+                }
+                while (HeroStats.CurrentHp != DamageApplyed)
+                {
+                    HeroStats.CurrentHp -= 1;
+                    yield return new WaitForEndOfFrame();
+
+                }
+               // yield return new WaitForSeconds(0.2f);
 
                 //HeroTurn
                 Damage = (int)(HeroStats.Str - (Def * Random.Range(0.6f, 0.95f)));
@@ -180,12 +186,13 @@ public class Area : MonoBehaviour
                     }
                     Hp -= Damage;
                 }
+                yield return new WaitForSeconds(0.2f);
 
             }
         }
         else
         {
-            Debug.Log("Das Held Startet");
+            Debug.Log("Der Held Startet");
             //Hero Starts
             while (Hp > 0 && HeroStats.CurrentHp > 0)
             {
@@ -213,6 +220,7 @@ public class Area : MonoBehaviour
                     }
                     Hp -= Damage;
                 }
+                yield return new WaitForSeconds(0.2f);
 
                 //MonsterTurn
                 Damage = (int)(Str - (HeroStats.Def * Random.Range(0.6f, 0.95f)));
@@ -224,23 +232,57 @@ public class Area : MonoBehaviour
                 {
                     Damage *= 2;
                 }
-                HeroStats.CurrentHp -= Damage;
+                DamageApplyed = HeroStats.CurrentHp - Damage;
+                if (DamageApplyed < 0)
+                {
+                    DamageApplyed = 0;
+                }
+                while (HeroStats.CurrentHp != DamageApplyed)
+                {
+                    HeroStats.CurrentHp -= 1;
+                    yield return new WaitForEndOfFrame();
+
+                }
+                //yield return new WaitForSeconds(0.2f);
 
             }
         }
 
+        HeroStats.isFighting = false;
         //Heros Experience gain
         if (HeroStats.CurrentHp > 0)
         {
             HeroStats.CurrentExp += Experience;
-            Debug.Log("The Hero gained "+Experience+" Experience.");
+            Debug.Log("The Hero gained " + Experience + " Experience.");
             Debug.Log("The Hero has " + HeroStats.CurrentExp + " now.");
         }
 
-
     }
 
-   
+    //Smooth application of HealthChange on Hero
+    public IEnumerator DoHealing(int Healing, Hero HeroStats)
+    {
+        HeroStats.isFighting = true;
+        int temp= HeroStats.CurrentHp+Healing;
+        float addition=0f;
+        if (temp > HeroStats.Hp)
+        {
+            temp = HeroStats.Hp;
+        }
+        while (HeroStats.CurrentHp != temp)
+        {
+            addition += 10 * HeroStats.Spe* Time.deltaTime;
+
+            HeroStats.CurrentHp = (int) (HeroStats.CurrentHp + addition);
+            if (addition > 1)
+            {
+                addition -= 1;
+            }
+            yield return null;
+        }
+        HeroStats.isFighting = false;
+    }
+
 
 
 

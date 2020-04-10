@@ -236,6 +236,10 @@ public class GameManager : MonoBehaviour
         }
         //  Debug.Log("Object Will be Destroyed");
 
+        while (Hero.isFighting == true)
+        {
+            yield return new WaitForEndOfFrame();
+        }
         ArrangeAreaChoice();
         Destroy(objectToMove);
     }

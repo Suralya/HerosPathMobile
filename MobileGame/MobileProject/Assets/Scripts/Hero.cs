@@ -15,6 +15,7 @@ public class Hero : MonoBehaviour
     public float Spe= 0f;
 
     public bool ShowMessage=true;
+    public bool isFighting = false;
 
 
     private void Awake()

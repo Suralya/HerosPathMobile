@@ -36,7 +36,16 @@ public class Area : MonoBehaviour
         {
             case ArealTypes.Healing:
                 Heal = (int) (Random.Range(0.3f, 0.8f) * HeroStats.Hp);
-                StartCoroutine(DoHealing(Heal, HeroStats));
+
+                if (HeroStats.CurrentHp +Heal > HeroStats.Hp)
+                {
+                    HeroStats.CurrentHp = HeroStats.Hp;
+                }
+                else
+                {
+                    HeroStats.CurrentHp += Heal;
+                }
+
                 break;
             case ArealTypes.Neutral:
                 Experience = 1;
@@ -252,37 +261,13 @@ public class Area : MonoBehaviour
         //Heros Experience gain
         if (HeroStats.CurrentHp > 0)
         {
+            yield return new WaitForSeconds(0.1f);
             HeroStats.CurrentExp += Experience;
             Debug.Log("The Hero gained " + Experience + " Experience.");
             Debug.Log("The Hero has " + HeroStats.CurrentExp + " now.");
         }
 
     }
-
-    //Smooth application of HealthChange on Hero
-    public IEnumerator DoHealing(int Healing, Hero HeroStats)
-    {
-        HeroStats.isFighting = true;
-        int temp= HeroStats.CurrentHp+Healing;
-        float addition=0f;
-        if (temp > HeroStats.Hp)
-        {
-            temp = HeroStats.Hp;
-        }
-        while (HeroStats.CurrentHp != temp)
-        {
-            addition += 10 * HeroStats.Spe* Time.deltaTime;
-
-            HeroStats.CurrentHp = (int) (HeroStats.CurrentHp + addition);
-            if (addition > 1)
-            {
-                addition -= 1;
-            }
-            yield return null;
-        }
-        HeroStats.isFighting = false;
-    }
-
 
 
 

@@ -8,19 +8,13 @@ ScriptsOnlyBuild:
     - UIManager
     Unity.Postprocessing.Runtime.dll:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
-    - UnityEngine.Rendering.PostProcessing.AutoExposure
     - UnityEngine.Rendering.PostProcessing.Bloom
-    - UnityEngine.Rendering.PostProcessing.ChromaticAberration
     - UnityEngine.Rendering.PostProcessing.ColorGrading
-    - UnityEngine.Rendering.PostProcessing.DepthOfField
-    - UnityEngine.Rendering.PostProcessing.Grain
     - UnityEngine.Rendering.PostProcessing.LensDistortion
-    - UnityEngine.Rendering.PostProcessing.MotionBlur
     - UnityEngine.Rendering.PostProcessing.PostProcessLayer
     - UnityEngine.Rendering.PostProcessing.PostProcessProfile
     - UnityEngine.Rendering.PostProcessing.PostProcessResources
     - UnityEngine.Rendering.PostProcessing.PostProcessVolume
-    - UnityEngine.Rendering.PostProcessing.ScreenSpaceReflections
     - UnityEngine.Rendering.PostProcessing.Vignette
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -69,47 +63,47 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11198}
+      Script: {instanceID: 11202}
     - Class: 114
-      Script: {instanceID: 11218}
+      Script: {instanceID: 11222}
     - Class: 114
-      Script: {instanceID: 11236}
+      Script: {instanceID: 11240}
     - Class: 114
-      Script: {instanceID: 11242}
+      Script: {instanceID: 11246}
     - Class: 114
-      Script: {instanceID: 11328}
+      Script: {instanceID: 11332}
     - Class: 114
-      Script: {instanceID: 11398}
+      Script: {instanceID: 11402}
     - Class: 114
-      Script: {instanceID: 11442}
+      Script: {instanceID: 11446}
     - Class: 114
-      Script: {instanceID: 11486}
+      Script: {instanceID: 11490}
     - Class: 114
-      Script: {instanceID: 11568}
+      Script: {instanceID: 11572}
     - Class: 114
-      Script: {instanceID: 11598}
-    - Class: 114
-      Script: {instanceID: 11874}
+      Script: {instanceID: 11602}
     - Class: 114
       Script: {instanceID: 11878}
     - Class: 114
-      Script: {instanceID: 12104}
+      Script: {instanceID: 11882}
     - Class: 114
-      Script: {instanceID: 12180}
+      Script: {instanceID: 12108}
     - Class: 114
-      Script: {instanceID: 12312}
+      Script: {instanceID: 12184}
     - Class: 114
-      Script: {instanceID: 12850}
+      Script: {instanceID: 12316}
     - Class: 114
-      Script: {instanceID: 13096}
+      Script: {instanceID: 12854}
     - Class: 114
-      Script: {instanceID: 13114}
+      Script: {instanceID: 13100}
     - Class: 114
-      Script: {instanceID: 13156}
+      Script: {instanceID: 13118}
     - Class: 114
-      Script: {instanceID: 13162}
+      Script: {instanceID: 13160}
     - Class: 114
-      Script: {instanceID: 13244}
+      Script: {instanceID: 13166}
+    - Class: 114
+      Script: {instanceID: 13248}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -117,6 +111,8 @@ ScriptsOnlyBuild:
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -257,7 +253,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 79963b3a8181f5a1acbd6df1930f7508
+      Hash: b62234809d7effc6c7e597e923727f52
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -365,7 +361,7 @@ ScriptsOnlyBuild:
     className: EventSystem
   - hash:
       serializedVersion: 2
-      Hash: 5ffd6adabeaf35022383f3cff4471585
+      Hash: c580ce298cc4cd2c28b662cb849b67e1
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Hero
@@ -575,7 +571,7 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: c8a6059dcadfd9d8a64b805216634137
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -708,4 +704,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_03.apk
+  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_04.apk

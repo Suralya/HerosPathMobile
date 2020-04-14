@@ -1525,7 +1525,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
   m_Name: 
@@ -2333,6 +2333,8 @@ MonoBehaviour:
   - {fileID: 8386047699289812416, guid: b7facd2404d54624baf47beda5daa764, type: 3}
   - {fileID: 6349176043210725641, guid: 026a3828cd4b20f4ca228d33c754b37f, type: 3}
   - {fileID: 5304123632031855167, guid: 7c2f40486824a8b45b93eeac03763a95, type: 3}
+  - {fileID: 2659256494005977948, guid: 48b2e1025f3ff714fbe2da2210968c1d, type: 3}
+  - {fileID: 2659256494005977948, guid: 48b2e1025f3ff714fbe2da2210968c1d, type: 3}
   - {fileID: 8386047699289812416, guid: b7facd2404d54624baf47beda5daa764, type: 3}
   AreasOfChoice:
   - {fileID: 0}
@@ -2343,6 +2345,21 @@ MonoBehaviour:
   - {fileID: 1334045566882784776}
   - {fileID: 7522354703453107225}
   newStepEnabled: 1
+  GameUI: {fileID: 1759498745}
+--- !u!114 &1759498745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759498741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eeb914e095f6364dbfdf8639cfa11db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GM: {fileID: 1759498744}
+  IndicationSpeed: 1
   HPText: {fileID: 1546376530}
   HPIndicator: {fileID: 1255263392}
   ExpIndicator: {fileID: 213146327}
@@ -2357,18 +2374,6 @@ MonoBehaviour:
   EnmyDexText: {fileID: 226932198}
   EnmySpeText: {fileID: 966512219}
   DeathScreen: {fileID: 431185597}
---- !u!114 &1759498745
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1759498741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eeb914e095f6364dbfdf8639cfa11db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1765201572
 GameObject:
   m_ObjectHideFlags: 0

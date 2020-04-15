@@ -15,6 +15,8 @@ public class Area : MonoBehaviour
     public int Level, Hp, Str, Def, Dex=0;
     public float Spe=0f;
 
+    public int ID;
+
 
     // Start is called before the first frame update
     void Start()
@@ -49,7 +51,7 @@ public class Area : MonoBehaviour
                 break;
             case ArealTypes.Neutral:
                 Experience = 1;
-                HeroStats.CurrentExp += Experience;
+                HeroStats.AddExp(Experience);
                 break;
             case ArealTypes.weakMonster:
                 // Set Monster Lvl
@@ -262,7 +264,7 @@ public class Area : MonoBehaviour
         if (HeroStats.CurrentHp > 0)
         {
             yield return new WaitForSeconds(0.1f);
-            HeroStats.CurrentExp += Experience;
+            HeroStats.AddExp(Experience);
             Debug.Log("The Hero gained " + Experience + " Experience.");
             Debug.Log("The Hero has " + HeroStats.CurrentExp + " now.");
         }

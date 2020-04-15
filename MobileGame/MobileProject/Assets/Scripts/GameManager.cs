@@ -32,6 +32,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Game.currentGame = new Game();
+
+        for (int i =1; i<= Areas.Count;i++ )
+        {     
+            Areas[i-1].GetComponent<Area>().ID = i;
+        }
 
         Pos1 = new Position();
         Pos2 = new Position();
@@ -130,7 +136,10 @@ public class GameManager : MonoBehaviour
             areasShown[i] = Temp;
             Temp.transform.localScale = ChoicePositions[i].transform.localScale;
         }
+        SafeCurrentGame();
+        SaveLoad.Save();
         newStepEnabled = true;
+
     }
 
     public void ClearArrangement()
@@ -175,7 +184,7 @@ public class GameManager : MonoBehaviour
         Destroy(objectToMove);
     }
 
-    public static void ShuffleArealist(List<GameObject> List)
+    public void ShuffleArealist(List<GameObject> List)
     {
         for (int i = List.Count - 1; i > 0; i--)
         {
@@ -187,7 +196,21 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void SafeCurrentGame()
+    {
+      //  Game.currentGame.HeroCharacter = Hero;
+        for (int i = 0; i <= 2; i++)
+        {
+            Debug.Log("SafeInstance " + i);
+            if (i!=2)
+            {
+                Game.currentGame.AreasInUse[i] = areasInUseArray[i].GetComponent<Area>().ID;
+            }
 
+            Game.currentGame.AreasforChoice[i]= AreasOfChoice[i].GetComponent<Area>().ID;
+        }
+
+    }
 
 }
 

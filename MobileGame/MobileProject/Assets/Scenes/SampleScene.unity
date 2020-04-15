@@ -2314,8 +2314,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06883221f221a3449a23e482449eb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HeroObject: {fileID: 1883734491}
-  Hero: {fileID: 1883734492}
+  HeroStats:
+    Name: HERO
+    Lvl: 1
+    maxExp: 100
+    CurrentExp: 0
+    Hp: 0
+    CurrentHp: 0
+    Str: 0
+    Def: 0
+    Dex: 0
+    StageCounter: 0
+    MonsterCounter: 0
+    Spe: 0
+    ShowMessage: 1
+    isFighting: 0
   StartingArea: {fileID: 7749213173585009147, guid: 679fa99c5ac5ff04db9ba86b9863b064,
     type: 3}
   Areas:
@@ -2451,24 +2464,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1765201572}
   m_CullTransparentMesh: 0
---- !u!1 &1883734491 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2905869913023535243, guid: b82b08afdd217ba4b9a079f118ac89b9,
-    type: 3}
-  m_PrefabInstance: {fileID: 8593068277235196503}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1883734492 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2280272993940761325, guid: b82b08afdd217ba4b9a079f118ac89b9,
-    type: 3}
-  m_PrefabInstance: {fileID: 8593068277235196503}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1883734491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4279a8e4383f31a44884c00c1308b1e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1959429955
 GameObject:
   m_ObjectHideFlags: 0
@@ -2952,5 +2947,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Hero
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2280272993940761325, guid: b82b08afdd217ba4b9a079f118ac89b9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b82b08afdd217ba4b9a079f118ac89b9, type: 3}

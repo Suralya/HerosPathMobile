@@ -3,41 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Hero : MonoBehaviour
+public class Hero
 {
+    public static Hero CurrentHero;
+
     public string Name = "HERO";
-    public int Lvl = 1;
+    public int Lvl;
 
-    public int maxExp = 100;
-    public int CurrentExp = 0;
+    public int maxExp;
+    public int CurrentExp;
 
-    public int Hp, CurrentHp, Str, Def, Dex = 0;
-    public int StageCounter, MonsterCounter = 0;
-    public float Spe= 0f;
+    public int Hp, CurrentHp, Str, Def, Dex;
+    public int StageCounter, MonsterCounter;
+    public float Spe;
 
     public bool ShowMessage=true;
     public bool isFighting = false;
 
 
-    private void Awake()
-    {
-
-        HeroSetup();
-
-    }
-    // Start is called before the first frame update
-    void Start()
+    public Hero()
     {
 
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        
-    }
 
     public void AddExp(int expGain)
     {

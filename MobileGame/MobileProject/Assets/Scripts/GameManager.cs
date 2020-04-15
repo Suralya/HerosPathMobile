@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject HeroObject;
-    public Hero Hero;
+    public Hero HeroStats;
     public GameObject StartingArea;
     public List<GameObject> Areas = new List<GameObject>();
 
@@ -32,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Hero.CurrentHero = new Hero();
+        Hero.CurrentHero.HeroSetup();
         Game.currentGame = new Game();
 
         for (int i =1; i<= Areas.Count;i++ )
@@ -46,8 +47,8 @@ public class GameManager : MonoBehaviour
 
         ShuffleArealist(Areas);
 
-        Hero = HeroObject.GetComponent<Hero>();
-        Hero.StageCounter ++;
+        HeroStats = Hero.CurrentHero;
+        HeroStats.StageCounter ++;
 
         Pos1.Pos = new Vector3(0, 0, -1);
         Pos1.Following = PosEnd;
@@ -118,9 +119,9 @@ public class GameManager : MonoBehaviour
         Temp.GetComponent<Area>().CurrentPos = Pos3;
         areasInUse.Enqueue(Temp);
         areasInUseArray = areasInUse.ToArray();
-        Hero.StageCounter++;
+        HeroStats.StageCounter++;
         //  Debug.Log(Temp.GetComponent<Area>().AreaType);
-        Temp.GetComponent<Area>().ArealAction(Hero);
+        Temp.GetComponent<Area>().ArealAction(HeroStats);
         GameUI.UpdateEnemyUI(Temp.GetComponent<Area>());
 
 
@@ -159,7 +160,7 @@ public class GameManager : MonoBehaviour
         // speed should be 1 unit per second
         while (objectToMove.transform.position != end)
         {
-            objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, Hero.Spe * Time.deltaTime);
+            objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, HeroStats.Spe * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
 
@@ -171,12 +172,12 @@ public class GameManager : MonoBehaviour
         // speed should be 1 unit per second
         while (objectToMove.transform.position != end)
         {
-            objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, Hero.Spe * Time.deltaTime);
+            objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, HeroStats.Spe * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
         //  Debug.Log("Object Will be Destroyed");
 
-        while (Hero.isFighting == true)
+        while (HeroStats.isFighting == true)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -198,7 +199,7 @@ public class GameManager : MonoBehaviour
 
     public void SafeCurrentGame()
     {
-      //  Game.currentGame.HeroCharacter = Hero;
+        Game.currentGame.HeroCharacter = HeroStats;
         for (int i = 0; i <= 2; i++)
         {
             Debug.Log("SafeInstance " + i);

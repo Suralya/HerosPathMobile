@@ -4,7 +4,6 @@ ScriptsOnlyBuild:
     - Area
     - AreaChoice
     - GameManager
-    - Hero
     - UIManager
     Unity.Postprocessing.Runtime.dll:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
@@ -63,9 +62,9 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 11202}
+      Script: {instanceID: 11200}
     - Class: 114
-      Script: {instanceID: 11222}
+      Script: {instanceID: 11220}
     - Class: 114
       Script: {instanceID: 11240}
     - Class: 114
@@ -85,25 +84,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11878}
     - Class: 114
-      Script: {instanceID: 11882}
-    - Class: 114
       Script: {instanceID: 12108}
     - Class: 114
       Script: {instanceID: 12184}
     - Class: 114
       Script: {instanceID: 12316}
     - Class: 114
-      Script: {instanceID: 12854}
+      Script: {instanceID: 12856}
     - Class: 114
-      Script: {instanceID: 13100}
+      Script: {instanceID: 13102}
     - Class: 114
-      Script: {instanceID: 13118}
+      Script: {instanceID: 13120}
     - Class: 114
-      Script: {instanceID: 13160}
+      Script: {instanceID: 13162}
     - Class: 114
-      Script: {instanceID: 13166}
+      Script: {instanceID: 13168}
     - Class: 114
-      Script: {instanceID: 13248}
+      Script: {instanceID: 13250}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -253,7 +250,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: b62234809d7effc6c7e597e923727f52
+      Hash: 915429f320815b32b846f1e8548ff63b
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -361,12 +358,6 @@ ScriptsOnlyBuild:
     className: EventSystem
   - hash:
       serializedVersion: 2
-      Hash: c580ce298cc4cd2c28b662cb849b67e1
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Hero
-  - hash:
-      serializedVersion: 2
       Hash: 0fb27be807aa299702f28ad0bcad1f46
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -409,7 +400,7 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: 94afd874dd5569c3f627967aacc424eb
+      Hash: 01666ebb229160e75787b3e6f71a2e16
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Area
@@ -704,4 +695,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_04.apk
+  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_05.apk

@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
     void Update()
     {
      UpdateHeroUI();
-        if (GM.HeroStats.CurrentHp <= 0)
+        if (Hero.CurrentHero.CurrentHp <= 0)
         {
             DeathScreen.enabled = true;
         }
@@ -46,6 +46,8 @@ public class UIManager : MonoBehaviour
 
     public void RestartGame()
     {
+        Hero.CurrentHero.Lvl=0;
+        GM.SafeCurrentGame();
         Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
     }
 
@@ -53,58 +55,58 @@ public class UIManager : MonoBehaviour
     {
         //float currentfill;
         //Bars
-        HPText.text = "HP: " + GM.HeroStats.CurrentHp + " / " + GM.HeroStats.Hp;
+        HPText.text = "HP: " + Hero.CurrentHero.CurrentHp + " / " + Hero.CurrentHero.Hp;
 
-        if (HPIndicator.fillAmount < (float)GM.HeroStats.CurrentHp / GM.HeroStats.Hp)
+        if (HPIndicator.fillAmount < (float)Hero.CurrentHero.CurrentHp / Hero.CurrentHero.Hp)
         {
           //  GM.Hero.isFighting = true;
 
             HPIndicator.fillAmount += IndicationSpeed * Time.deltaTime;
-            if (HPIndicator.fillAmount > (float)GM.HeroStats.CurrentHp / GM.HeroStats.Hp)
+            if (HPIndicator.fillAmount > (float)Hero.CurrentHero.CurrentHp / Hero.CurrentHero.Hp)
             {
-                HPIndicator.fillAmount = (float)GM.HeroStats.CurrentHp / GM.HeroStats.Hp;
+                HPIndicator.fillAmount = (float)Hero.CurrentHero.CurrentHp / Hero.CurrentHero.Hp;
             }
 
 
 
         }
-        else if (HPIndicator.fillAmount > (float)GM.HeroStats.CurrentHp / GM.HeroStats.Hp)
+        else if (HPIndicator.fillAmount > (float)Hero.CurrentHero.CurrentHp / Hero.CurrentHero.Hp)
         {
           //  GM.Hero.isFighting = true;
 
             HPIndicator.fillAmount -= IndicationSpeed * Time.deltaTime;
-            if (HPIndicator.fillAmount < (float)GM.HeroStats.CurrentHp / GM.HeroStats.Hp)
+            if (HPIndicator.fillAmount < (float)Hero.CurrentHero.CurrentHp / Hero.CurrentHero.Hp)
             {
-                HPIndicator.fillAmount = (float)GM.HeroStats.CurrentHp / GM.HeroStats.Hp;
+                HPIndicator.fillAmount = (float)Hero.CurrentHero.CurrentHp / Hero.CurrentHero.Hp;
             }
 
         }
-        else if (HPIndicator.fillAmount == (float)GM.HeroStats.CurrentHp / GM.HeroStats.Hp)
+        else if (HPIndicator.fillAmount == (float)Hero.CurrentHero.CurrentHp / Hero.CurrentHero.Hp)
         {
-            GM.HeroStats.isFighting = false;
+            Hero.CurrentHero.isFighting = false;
         }
 
-        if (ExpIndicator.fillAmount < (float)GM.HeroStats.CurrentExp / GM.HeroStats.maxExp)
+        if (ExpIndicator.fillAmount < (float)Hero.CurrentHero.CurrentExp / Hero.CurrentHero.maxExp)
         {
             ExpIndicator.fillAmount += IndicationSpeed * Time.deltaTime;
-            if (ExpIndicator.fillAmount > (float)GM.HeroStats.CurrentExp / GM.HeroStats.maxExp)
+            if (ExpIndicator.fillAmount > (float)Hero.CurrentHero.CurrentExp / Hero.CurrentHero.maxExp)
             {
-                ExpIndicator.fillAmount = (float)GM.HeroStats.CurrentExp / GM.HeroStats.maxExp;
+                ExpIndicator.fillAmount = (float)Hero.CurrentHero.CurrentExp / Hero.CurrentHero.maxExp;
             }
 
         }
         else
         {
-            ExpIndicator.fillAmount = (float)GM.HeroStats.CurrentExp / GM.HeroStats.maxExp;
+            ExpIndicator.fillAmount = (float)Hero.CurrentHero.CurrentExp / Hero.CurrentHero.maxExp;
         }
 
 
         //Stats public Text LevelText,StrText,DefText,DexText,SpeText;
-        LevelText.text = "Level: " + GM.HeroStats.Lvl;
-        StrText.text = "Strength: " + GM.HeroStats.Str;
-        DefText.text = "Defense: " + GM.HeroStats.Def;
-        DexText.text = "Dexterity: " + GM.HeroStats.Dex;
-        SpeText.text = "Speed: " + GM.HeroStats.Spe;
+        LevelText.text = "Level: " + Hero.CurrentHero.Lvl;
+        StrText.text = "Strength: " + Hero.CurrentHero.Str;
+        DefText.text = "Defense: " + Hero.CurrentHero.Def;
+        DexText.text = "Dexterity: " + Hero.CurrentHero.Dex;
+        SpeText.text = "Speed: " + Hero.CurrentHero.Spe;
 
     }
 

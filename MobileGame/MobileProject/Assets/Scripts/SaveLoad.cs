@@ -26,6 +26,7 @@ public class SaveLoad
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/savedGames.HeroPath", FileMode.Open);
             SaveLoad.SavedGame = (Game)bf.Deserialize(file);
+            Game.currentGame = SaveLoad.SavedGame;
             file.Close();
         }
         else

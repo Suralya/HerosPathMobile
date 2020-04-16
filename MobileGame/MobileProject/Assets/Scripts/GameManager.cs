@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
-    public Hero HeroStats;
     public GameObject StartingArea;
     public List<GameObject> Areas = new List<GameObject>();
 
@@ -28,16 +29,14 @@ public class GameManager : MonoBehaviour
     //GameUI
     public UIManager GameUI;
 
-
-    void Start()
+    private void Awake()
     {
         Hero.CurrentHero = new Hero();
-        Hero.CurrentHero.HeroSetup();
         Game.currentGame = new Game();
-
-        for (int i =1; i<= Areas.Count;i++ )
-        {     
-            Areas[i-1].GetComponent<Area>().ID = i;
+        
+        for (int i = 1; i <= Areas.Count; i++)
+        {
+            Areas[i - 1].GetComponent<Area>().ID = i;
         }
 
         Pos1 = new Position();
@@ -47,9 +46,6 @@ public class GameManager : MonoBehaviour
 
         ShuffleArealist(Areas);
 
-        HeroStats = Hero.CurrentHero;
-        HeroStats.StageCounter ++;
-
         Pos1.Pos = new Vector3(0, 0, -1);
         Pos1.Following = PosEnd;
         Pos2.Pos = new Vector3(0, 0, 0);
@@ -58,23 +54,28 @@ public class GameManager : MonoBehaviour
         Pos3.Following = Pos2;
         PosEnd.Pos = new Vector3(0, 0, -2);
         PosEnd.Following = null;
+    }
 
+    void Start()
+    {
 
-
-        GameObject Temp= Instantiate(StartingArea, Pos2.Pos, Quaternion.identity);
-        Temp.GetComponent<Area>().CurrentPos = Pos2;
-        areasInUse.Enqueue(Temp);
-        Temp = Areas[Random.Range(0, Areas.Count - 1)];
-        while (Temp.GetComponent<Area>().AreaType != Area.ArealTypes.Neutral)
+        if (File.Exists(Application.persistentDataPath + "/savedGames.HeroPath"))
         {
-            Temp = Areas[Random.Range(0, Areas.Count - 1)];
+            SaveLoad.Load();
+
+            if (Game.currentGame.HeroCharacter.Lvl > 0)
+            {
+                LoadGame();
+            }
+            else
+            {
+                StartGame();
+            }
         }
-        Temp = Instantiate(Temp, Pos3.Pos, Quaternion.identity);
-        Temp.GetComponent<Area>().CurrentPos = Pos3;
-        areasInUse.Enqueue(Temp);
-        areasInUseArray = areasInUse.ToArray();
-        MoveAreas();
-        Invoke("ArrangeAreaChoice", 1);
+        else
+        {
+            StartGame();
+        }
 
 
     }
@@ -119,9 +120,9 @@ public class GameManager : MonoBehaviour
         Temp.GetComponent<Area>().CurrentPos = Pos3;
         areasInUse.Enqueue(Temp);
         areasInUseArray = areasInUse.ToArray();
-        HeroStats.StageCounter++;
+        Hero.CurrentHero.StageCounter++;
         //  Debug.Log(Temp.GetComponent<Area>().AreaType);
-        Temp.GetComponent<Area>().ArealAction(HeroStats);
+        Temp.GetComponent<Area>().ArealAction(Hero.CurrentHero);
         GameUI.UpdateEnemyUI(Temp.GetComponent<Area>());
 
 
@@ -138,11 +139,9 @@ public class GameManager : MonoBehaviour
             Temp.transform.localScale = ChoicePositions[i].transform.localScale;
         }
         SafeCurrentGame();
-        SaveLoad.Save();
         newStepEnabled = true;
 
     }
-
     public void ClearArrangement()
     {
         foreach (GameObject Showcase in areasShown)
@@ -152,32 +151,28 @@ public class GameManager : MonoBehaviour
 
     }
 
-
-
-
     public IEnumerator MoveToPosition(GameObject objectToMove, Vector3 end)
     {
         // speed should be 1 unit per second
         while (objectToMove.transform.position != end)
         {
-            objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, HeroStats.Spe * Time.deltaTime);
+            objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, Hero.CurrentHero.Spe * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
 
     }
-
     public IEnumerator MoveToLastPosition(GameObject objectToMove, Vector3 end)
     {
 
         // speed should be 1 unit per second
         while (objectToMove.transform.position != end)
         {
-            objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, HeroStats.Spe * Time.deltaTime);
+            objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, Hero.CurrentHero.Spe * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
         //  Debug.Log("Object Will be Destroyed");
 
-        while (HeroStats.isFighting == true)
+        while (Hero.CurrentHero.isFighting == true)
         {
             yield return new WaitForEndOfFrame();
         }
@@ -199,10 +194,10 @@ public class GameManager : MonoBehaviour
 
     public void SafeCurrentGame()
     {
-        Game.currentGame.HeroCharacter = HeroStats;
+        Game.currentGame.HeroCharacter = Hero.CurrentHero;
         for (int i = 0; i <= 2; i++)
         {
-            Debug.Log("SafeInstance " + i);
+           // Debug.Log("SafeInstance " + i);
             if (i!=2)
             {
                 Game.currentGame.AreasInUse[i] = areasInUseArray[i].GetComponent<Area>().ID;
@@ -210,8 +205,67 @@ public class GameManager : MonoBehaviour
 
             Game.currentGame.AreasforChoice[i]= AreasOfChoice[i].GetComponent<Area>().ID;
         }
+        SaveLoad.Save();
 
     }
 
+    public void StartGame()
+    {
+        Hero.CurrentHero.HeroSetup();
+        Hero.CurrentHero.StageCounter++;
+
+        GameObject Temp = Instantiate(StartingArea, Pos2.Pos, Quaternion.identity);
+        Temp.GetComponent<Area>().CurrentPos = Pos2;
+        areasInUse.Enqueue(Temp);
+        Temp = Areas[Random.Range(0, Areas.Count - 1)];
+        while (Temp.GetComponent<Area>().AreaType != Area.ArealTypes.Neutral)
+        {
+            Temp = Areas[Random.Range(0, Areas.Count - 1)];
+        }
+        Temp = Instantiate(Temp, Pos3.Pos, Quaternion.identity);
+        Temp.GetComponent<Area>().CurrentPos = Pos3;
+        areasInUse.Enqueue(Temp);
+        areasInUseArray = areasInUse.ToArray();
+        MoveAreas();
+        Invoke("ArrangeAreaChoice", 1);
+
+    }
+    public void LoadGame()
+    {
+        Hero.CurrentHero = Game.currentGame.HeroCharacter;
+        GameObject Temp;
+        if (Areas.Find(x => x.GetComponent<Area>().ID == Game.currentGame.AreasInUse[0]) == null)
+        {
+            Temp = Instantiate(StartingArea, Pos2.Pos, Quaternion.identity);
+            Temp.GetComponent<Area>().CurrentPos = Pos2;
+            areasInUse.Enqueue(Temp);
+        }
+        else
+        {
+            Temp = Instantiate(Areas.Find(x => x.GetComponent<Area>().ID == Game.currentGame.AreasInUse[0]), Pos2.Pos, Quaternion.identity);
+            Temp.GetComponent<Area>().CurrentPos = Pos2;
+            areasInUse.Enqueue(Temp);
+        }
+
+        Temp = Instantiate(Areas.Find(x => x.GetComponent<Area>().ID == Game.currentGame.AreasInUse[1]), Pos3.Pos, Quaternion.identity);
+        Temp.GetComponent<Area>().CurrentPos = Pos3;
+        areasInUse.Enqueue(Temp);
+        areasInUseArray = areasInUse.ToArray();
+        MoveAreas();
+        Invoke("LoadAreaChoice", 1);
+    }
+    public void LoadAreaChoice()
+    {
+        GameObject Temp;
+        for (int i = 0; i <=2 ; i++)
+        {
+            AreasOfChoice[i] = Areas.Find(x => x.GetComponent<Area>().ID == Game.currentGame.AreasforChoice[i]);
+            Temp = Instantiate(AreasOfChoice[i], ChoicePositions[i].transform.position, Quaternion.identity);
+            areasShown[i] = Temp;
+            Temp.transform.localScale = ChoicePositions[i].transform.localScale;
+        }
+        newStepEnabled = true;
+
+    }
 }
 

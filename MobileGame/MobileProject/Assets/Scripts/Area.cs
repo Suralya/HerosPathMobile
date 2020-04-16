@@ -15,7 +15,7 @@ public class Area : MonoBehaviour
     public int Level, Hp, Str, Def, Dex=0;
     public float Spe=0f;
 
-    public int ID;
+    public int ID=0;
 
 
     // Start is called before the first frame update

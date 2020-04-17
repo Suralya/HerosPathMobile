@@ -72,12 +72,7 @@ public class Hero
         Dex = Random.Range(3, 9);
         Spe = Random.Range(1.0f, 1.8f);
 
-        Debug.Log("The Adventure Starts now - This are your Starting Stats:");
-        Debug.Log("HP: " + Hp);
-        Debug.Log("Strength: " + Str);
-        Debug.Log("Defense: " + Def);
-        Debug.Log("Dexterity: " + Dex);
-        Debug.Log("Speed: " + Spe);
+        Debug.Log("The Adventure Starts now ");
 
     }
 

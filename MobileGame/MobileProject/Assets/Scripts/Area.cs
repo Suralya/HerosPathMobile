@@ -110,18 +110,8 @@ public class Area : MonoBehaviour
         Dex += Dex * (Level*3 / 100);
         Spe += Spe * (Level*3 / 100);
 
-
         Experience = (int) (Level*((Mathf.Pow(Level, 1 / 2)/4) * 100)* 0.6f);
-
-        Debug.Log("Die Werte des Monsters sind:");
-        Debug.Log("Level: " + Level);
-        Debug.Log("HP: " + Hp);
-        Debug.Log("Strength: " + Str);
-        Debug.Log("Defense: " + Def);
-        Debug.Log("Dexterity: " + Dex);
-        Debug.Log("Speed: " + Spe);
   
-
     }
 
     public IEnumerator Fight(Hero HeroStats)
@@ -265,8 +255,8 @@ public class Area : MonoBehaviour
         {
             yield return new WaitForSeconds(0.1f);
             HeroStats.AddExp(Experience);
-            Debug.Log("The Hero gained " + Experience + " Experience.");
-            Debug.Log("The Hero has " + HeroStats.CurrentExp + " now.");
+          //  Debug.Log("The Hero gained " + Experience + " Experience.");
+          //  Debug.Log("The Hero has " + HeroStats.CurrentExp + " now.");
         }
 
     }

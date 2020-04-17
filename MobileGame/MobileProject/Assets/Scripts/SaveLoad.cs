@@ -14,7 +14,7 @@ public class SaveLoad
         SavedGame = Game.currentGame;
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/savedGames.HeroPath");
-        Debug.Log(Application.persistentDataPath + " / savedGames.HeroPath");
+        //Debug.Log(Application.persistentDataPath + " / savedGames.HeroPath");
         bf.Serialize(file, SaveLoad.SavedGame);
         file.Close();
     }
@@ -37,5 +37,5 @@ public class SaveLoad
 
     }
 
-
+    //C:\Users\Tina Plavius\AppData\LocalLow\Suralya\HerosPath
 }

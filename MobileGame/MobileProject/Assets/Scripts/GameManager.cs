@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         Hero.CurrentHero = new Hero();
         Game.currentGame = new Game();
+        ScoreList.Score = new ScoreList();
         
         for (int i = 1; i <= Areas.Count; i++)
         {
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "/savedGames.HeroPath"))
         {
             SaveLoad.Load();
+            ScoreList.Score = Game.currentGame.HighScore;
 
             if (Game.currentGame.HeroCharacter.Lvl > 0)
             {
@@ -195,6 +197,7 @@ public class GameManager : MonoBehaviour
     public void SafeCurrentGame()
     {
         Game.currentGame.HeroCharacter = Hero.CurrentHero;
+        Game.currentGame.HighScore = ScoreList.Score;
         for (int i = 0; i <= 2; i++)
         {
            // Debug.Log("SafeInstance " + i);

@@ -11,12 +11,14 @@ public class Game
     public Hero HeroCharacter;
     public int[] AreasInUse;
     public int[] AreasforChoice;
+    public ScoreList HighScore;
 
     public Game()
     {
         HeroCharacter = null;
         AreasInUse = new int[3];
         AreasforChoice = new int[3];
+        HighScore = new ScoreList();
     }
 
 

@@ -22,6 +22,39 @@ public class ScoreList
         }
     }
 
+    public void AddEntry(Entry E)
+    {
+        HighScoreList.Add(E);
+        if (HighScoreList.Count > 1)
+        {
+            for (int i = HighScoreList.Count - 1; i> 0; i--)
+            {
+                if (HighScoreList[i].HLvl > HighScoreList[i - 1].HLvl)
+                {
+                    Entry Temp = HighScoreList[i - 1];
+                    HighScoreList[i - 1] = HighScoreList[i];
+                    HighScoreList[i] = Temp;
+                }
+                else if (HighScoreList[i].HLvl == HighScoreList[i - 1].HLvl)
+                {
+                    if (HighScoreList[i].MSlayn / HighScoreList[i].APassed > HighScoreList[i - 1].MSlayn / HighScoreList[i - 1].APassed)
+                    {
+                        Entry Temp = HighScoreList[i - 1];
+                        HighScoreList[i - 1] = HighScoreList[i];
+                        HighScoreList[i] = Temp;
+                    }
+                }
+
+            }
+        }
+
+        if (HighScoreList.Count > 10)
+        {
+            HighScoreList.RemoveAt(10);
+        }
+
+    }
+
 }
 
 [System.Serializable]

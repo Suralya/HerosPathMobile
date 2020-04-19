@@ -46,7 +46,7 @@ public class UIManager : MonoBehaviour
 
     public void RestartGame()
     {
-        ScoreList.Score.HighScoreList.Add(new Entry(Hero.CurrentHero.Name, Hero.CurrentHero.Lvl, Hero.CurrentHero.MonsterCounter, Hero.CurrentHero.StageCounter));
+        ScoreList.Score.AddEntry(new Entry(Hero.CurrentHero.Name, Hero.CurrentHero.Lvl, Hero.CurrentHero.MonsterCounter, Hero.CurrentHero.StageCounter));
         Hero.CurrentHero.Lvl=0;
         GM.SafeCurrentGame();
         ScoreList.Score.ShowList();

@@ -20,6 +20,10 @@ public class Hero
     public bool ShowMessage=true;
     public bool isFighting = false;
 
+    public int Gold;
+    public List<Items> Wearing;
+    public List<Items> Pouch;
+
 
     public Hero()
     {
@@ -71,6 +75,7 @@ public class Hero
         Def = Random.Range(3, 9);
         Dex = Random.Range(3, 9);
         Spe = Random.Range(1.0f, 1.8f);
+        Gold = 5;
 
         Debug.Log("The Adventure Starts now ");
 

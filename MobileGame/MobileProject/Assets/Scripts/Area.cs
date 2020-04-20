@@ -97,11 +97,11 @@ public class Area : MonoBehaviour
     {
         for (int i = 0; i <= Level; i++)
         {
-            Hp += Random.Range(1, 4);
-            Str += Random.Range(1, 4);
-            Def += Random.Range(1, 4);
-            Dex += Random.Range(1, 4);
-            Spe += Random.Range(0f, 0.3f);
+            Hp += Random.Range(1, 5);
+            Str += Random.Range(1, 5);
+            Def += Random.Range(1, 5);
+            Dex += Random.Range(1, 5);
+            Spe += Random.Range(0f, 0.4f);
         }
 
         Hp += Hp * (Level*3 / 100);

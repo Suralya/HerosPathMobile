@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Area : MonoBehaviour
 {
     public Position CurrentPos=new Position();
-    public enum ArealTypes {Healing, weakMonster, Monster, strongMonster, Neutral };
+    public enum ArealTypes {Healing, weakMonster, Monster, strongMonster, Neutral, Treasure };
 
     public ArealTypes AreaType;
 
@@ -16,6 +16,9 @@ public class Area : MonoBehaviour
     public float Spe=0f;
 
     public int ID=0;
+
+    public bool ItemLoot = false;
+    public bool MoneyLoot = false;
 
 
     // Start is called before the first frame update
@@ -87,6 +90,21 @@ public class Area : MonoBehaviour
                 HeroStats.MonsterCounter++;
 
                 break;
+            case ArealTypes.Treasure:
+
+                if (Random.Range(0, 100) <= 60)
+                {
+                    //TODO AUTOMATISCHES ANZIEHEN
+                    Items Temp = Picker.PickItem.Pick();
+                    HeroStats.Bag.Add(Temp);
+                    Debug.Log(Temp.Type + "added to Pouch");
+                }
+
+                int mon = HeroStats.Lvl * Random.Range(4, 12);
+                Debug.Log(HeroStats.Name+ " earned " + mon + " Gold!");
+                HeroStats.Gold += mon;
+
+                break;
 
         }
 
@@ -111,7 +129,17 @@ public class Area : MonoBehaviour
         Spe += Spe * (Level*3 / 100);
 
         Experience = (int) (Level*((Mathf.Pow(Level, 1 / 2)/4) * 100)* 0.6f);
-  
+
+        if (Random.Range(0,100)<=8)
+        {
+            ItemLoot = true;
+        }
+
+        if (Random.Range(0, 100) <= 30)
+        {
+            MoneyLoot = true;
+        }
+
     }
 
     public IEnumerator Fight(Hero HeroStats)
@@ -260,6 +288,7 @@ public class Area : MonoBehaviour
         }
 
     }
+
 
 
 

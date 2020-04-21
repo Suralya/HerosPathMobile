@@ -31,6 +31,14 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Picker.PickItem = new Picker();
+        Picker.PickItem.Add(new Items(Items.ItemType.Weapon));
+        Picker.PickItem.Add(new Items(Items.ItemType.Armor));
+        Picker.PickItem.Add(new Items(Items.ItemType.Gloves));
+        Picker.PickItem.Add(new Items(Items.ItemType.Shoes));
+        Picker.PickItem.Add(new Items(Items.ItemType.Accessory));
+
+
         Hero.CurrentHero = new Hero();
         Game.currentGame = new Game();
         ScoreList.Score = new ScoreList();

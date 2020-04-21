@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour
     public Text EnmyLevelText, EnmyStrText, EnmyDefText, EnmyDexText, EnmySpeText;
 
     //GameUI
+    public Text HeroName, HeroMony;
+
+
     public Canvas DeathScreen;
 
 
@@ -29,6 +32,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         DeathScreen.enabled = false;
+        HeroName.text = Hero.CurrentHero.Name;
         UpdateHeroUI();
 
     }
@@ -102,6 +106,7 @@ public class UIManager : MonoBehaviour
             ExpIndicator.fillAmount = (float)Hero.CurrentHero.CurrentExp / Hero.CurrentHero.maxExp;
         }
 
+        HeroMony.text = Hero.CurrentHero.Gold.ToString();
 
         //Stats public Text LevelText,StrText,DefText,DexText,SpeText;
         LevelText.text = "Level: " + Hero.CurrentHero.Lvl;
@@ -109,6 +114,7 @@ public class UIManager : MonoBehaviour
         DefText.text = "Defense: " + Hero.CurrentHero.Def;
         DexText.text = "Dexterity: " + Hero.CurrentHero.Dex;
         SpeText.text = "Speed: " + Hero.CurrentHero.Spe;
+
 
     }
 

@@ -18,7 +18,7 @@ public class Items
     public float Probability;
     public float Weight;
 
-    public Items(ItemType IT, int Level)
+    public Items(ItemType IT)
     {
         Type = IT;
 

@@ -7,7 +7,7 @@ public class Hero
 {
     public static Hero CurrentHero;
 
-    public string Name = "HERO";
+    public string Name = "Adberd";
     public int Lvl;
 
     public int maxExp;
@@ -17,12 +17,12 @@ public class Hero
     public int StageCounter, MonsterCounter;
     public float Spe;
 
-    public bool ShowMessage=true;
+    public bool ShowMessage = true;
     public bool isFighting = false;
 
     public int Gold;
     public List<Items> Wearing;
-    public List<Items> Pouch;
+    public List<Items> Bag;
 
 
     public Hero()
@@ -38,14 +38,6 @@ public class Hero
         if (CurrentExp >= maxExp)
         {
             LvlUp();
-            Debug.Log("You Had a LvlUp, your new Lvl is " + Lvl + "!!");
-            Debug.Log("Your new Stats are:");
-            Debug.Log("HP: " + Hp);
-            Debug.Log("Strength: " + Str);
-            Debug.Log("Defense: " + Def);
-            Debug.Log("Dexterity: " + Dex);
-            Debug.Log("Speed: " + Spe);
-            Debug.Log("You passed " + StageCounter + " Stages for this Lvl");
         }
 
     }
@@ -68,6 +60,7 @@ public class Hero
     {
 
         Lvl = 1;
+        Name = "Adberd";
         maxExp = 100;
         Hp = Random.Range(15, 25);
         CurrentHp = Hp;

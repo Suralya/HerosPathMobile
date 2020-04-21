@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Picker
 {
-    public List<Items> Items = new List<Items>();
+    public static Picker PickItem;
+    public List<Items> Items;
     public float ProbabilitySum;
 
+    public Picker()
+    {
+        Items = new List<Items>();
+    }
 
     public void Add(Items Item)
     {

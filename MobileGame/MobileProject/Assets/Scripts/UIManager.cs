@@ -106,7 +106,7 @@ public class UIManager : MonoBehaviour
             ExpIndicator.fillAmount = (float)Hero.CurrentHero.CurrentExp / Hero.CurrentHero.maxExp;
         }
 
-        HeroMony.text = Hero.CurrentHero.Gold.ToString();
+        HeroMony.text = Hero.CurrentHero.Gold.ToString()+ " Gold";
 
         //Stats public Text LevelText,StrText,DefText,DexText,SpeText;
         LevelText.text = "Level: " + Hero.CurrentHero.Lvl;

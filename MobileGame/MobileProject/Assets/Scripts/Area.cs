@@ -17,8 +17,6 @@ public class Area : MonoBehaviour
 
     public int ID=0;
 
-    public bool ItemLoot = false;
-    public bool MoneyLoot = false;
 
 
     // Start is called before the first frame update
@@ -33,6 +31,7 @@ public class Area : MonoBehaviour
         
     }
 
+    // Ausführen der Arealen Eigenschaften
     public void ArealAction(Hero HeroStats)
     {
         //Hier die Werte, die den Held beeinflussen
@@ -94,10 +93,8 @@ public class Area : MonoBehaviour
 
                 if (Random.Range(0, 100) <= 60)
                 {
-                    //TODO AUTOMATISCHES ANZIEHEN
                     Items Temp = Picker.PickItem.Pick();
-                    HeroStats.Bag.Add(Temp);
-                    Debug.Log(Temp.Type + "added to Pouch");
+                    HeroStats.AddItem(Temp, Random.Range(HeroStats.Lvl - 3, HeroStats.Lvl + 3));
                 }
 
                 int mon = HeroStats.Lvl * Random.Range(4, 12);
@@ -111,6 +108,7 @@ public class Area : MonoBehaviour
 
     }
 
+    //Sets Monster Stats
     public void SetMonsterStats()
     {
         for (int i = 0; i <= Level; i++)
@@ -122,23 +120,17 @@ public class Area : MonoBehaviour
             Spe += Random.Range(0f, 0.4f);
         }
 
-        Hp += Hp * (Level*3 / 100);
-        Str += Str * (Level*3 / 100);
-        Def += Def * (Level*3 / 100);
-        Dex += Dex * (Level*3 / 100);
-        Spe += Spe * (Level*3 / 100);
+        if (Level >5)
+        {
+            Hp += Hp * (Level * 4 / 100);
+            Str += Str * (Level * 4 / 100);
+            Def += Def * (Level * 4 / 100);
+            Dex += Dex * (Level * 4 / 100);
+            Spe += Spe * (Level * 4 / 100);
+        }
+
 
         Experience = (int) (Level*((Mathf.Pow(Level, 1 / 2)/4) * 100)* 0.6f);
-
-        if (Random.Range(0,100)<=8)
-        {
-            ItemLoot = true;
-        }
-
-        if (Random.Range(0, 100) <= 30)
-        {
-            MoneyLoot = true;
-        }
 
     }
 
@@ -278,11 +270,23 @@ public class Area : MonoBehaviour
         }
 
         HeroStats.isFighting = false;
-        //Heros Experience gain
+        //Heros Experience gain and Loot
         if (HeroStats.CurrentHp > 0)
         {
             yield return new WaitForSeconds(0.1f);
             HeroStats.AddExp(Experience);
+
+            if (Random.Range(0, 100) <= 30)
+            {
+                int mon = Level * Random.Range(3, 10);
+                Debug.Log(HeroStats.Name + " earned " + mon + " Gold!");
+                HeroStats.Gold += mon;
+            }
+            if (Random.Range(0, 100) <= 99)
+            {
+                Items Temp = Picker.PickItem.Pick();
+                HeroStats.AddItem(Temp, Random.Range(Level - 5, Level + 3));
+            }
           //  Debug.Log("The Hero gained " + Experience + " Experience.");
           //  Debug.Log("The Hero has " + HeroStats.CurrentExp + " now.");
         }

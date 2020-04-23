@@ -107,20 +107,40 @@ public class Hero
         switch (Gear.Type)
         {
             case Items.ItemType.Weapon:
-                Str += 1 / 3 * Gear.lvl * Str;
+                for (int i = 0; i <= Gear.lvl; i++)
+                {
+                    Gear.strength += Random.Range(0, 3);
+                }
+                Str += (int)Gear.strength;
                 break;
             case Items.ItemType.Armor:
-                Def += 1 / 3 * Gear.lvl * Def;
+                for (int i = 0; i <= Gear.lvl; i++)
+                {
+                    Gear.strength += Random.Range(0, 3);
+                }
+                Def += (int)Gear.strength;
                 break;
             case Items.ItemType.Shoes:
-                Spe += 1 / 3 * Gear.lvl * Spe;
+                for (int i = 0; i <= Gear.lvl; i++)
+                {
+                    Gear.strength += Random.Range(0f,0.5f);
+                }
+                Spe += Gear.strength;
                 break;
             case Items.ItemType.Gloves:
-                Dex += 1 / 3 * Gear.lvl * Dex;
+                for (int i = 0; i <= Gear.lvl; i++)
+                {
+                    Gear.strength += Random.Range(0, 3);
+                }
+                Dex += (int)Gear.strength;
                 break;
             case Items.ItemType.Accessory:
-                Hp += 1 / 3 * Gear.lvl * Hp;
-                CurrentHp += 1 / 3 * Gear.lvl * Hp;
+                for (int i = 0; i <= Gear.lvl; i++)
+                {
+                    Gear.strength += Random.Range(0, 2);
+                }
+                Hp += (int)Gear.strength;
+                CurrentHp += (int)Gear.strength;
                 break;
         }
     }
@@ -131,20 +151,20 @@ public class Hero
         switch (Gear.Type)
         {
             case Items.ItemType.Weapon:
-                Str -= 1 / 3 * Gear.lvl * Str;
+                Str -= (int)Gear.strength;
                 break;
             case Items.ItemType.Armor:
-                Def -= 1 / 3 * Gear.lvl * Def;
+                Def -= (int)Gear.strength;
                 break;
             case Items.ItemType.Shoes:
-                Spe -= 1 / 3 * Gear.lvl * Spe;
+                Spe -= Gear.strength;
                 break;
             case Items.ItemType.Gloves:
-                Dex -= 1 / 3 * Gear.lvl * Dex;
+                Dex -= (int)Gear.strength;
                 break;
             case Items.ItemType.Accessory:
-                Hp -= 1 / 3 * Gear.lvl * Hp;
-                CurrentHp -= 1 / 3 * Gear.lvl * Hp;
+                Hp -= (int)Gear.strength;
+                CurrentHp -= (int)Gear.strength;
                 break;
         }
         Bag.Add(Gear);

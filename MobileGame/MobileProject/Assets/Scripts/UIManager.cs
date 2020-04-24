@@ -27,10 +27,18 @@ public class UIManager : MonoBehaviour
 
     public Canvas DeathScreen;
 
+    //ScoreListUI
+    public Canvas ScorePanel;
+    public RectTransform content;
+    public GameObject Entry;
+    [SerializeField]
+    public Transform SpawnPoint = null;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        ScorePanel.enabled = false;
         DeathScreen.enabled = false;
         HeroName.text = Hero.CurrentHero.Name;
         UpdateHeroUI();
@@ -43,17 +51,22 @@ public class UIManager : MonoBehaviour
      UpdateHeroUI();
         if (Hero.CurrentHero.CurrentHp <= 0)
         {
-            DeathScreen.enabled = true;
+            if (!DeathScreen.enabled)
+            {
+                ScoreList.Score.AddEntry(new Entry(Hero.CurrentHero.Name, Hero.CurrentHero.Lvl, Hero.CurrentHero.MonsterCounter, Hero.CurrentHero.StageCounter));
+                Hero.CurrentHero.Lvl = 0;
+                GM.SafeCurrentGame();
+                ScoreList.Score.ShowList();
+                DeathScreen.enabled = true;
+            }
+
+
         }
 
     }
 
     public void RestartGame()
     {
-        ScoreList.Score.AddEntry(new Entry(Hero.CurrentHero.Name, Hero.CurrentHero.Lvl, Hero.CurrentHero.MonsterCounter, Hero.CurrentHero.StageCounter));
-        Hero.CurrentHero.Lvl=0;
-        GM.SafeCurrentGame();
-        ScoreList.Score.ShowList();
         Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
     }
 
@@ -159,6 +172,32 @@ public class UIManager : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void ShowScorelist()
+    {
+        if (ScorePanel.enabled)
+        {
+            ScorePanel.enabled = false;
+        }
+        else
+        {
+            ScorePanel.enabled = true;
+            content.sizeDelta = new Vector2(0, ScoreList.Score.HighScoreList.Count() * 60);
+
+            for (int i = 0; i < ScoreList.Score.HighScoreList.Count(); i++)
+            {
+                float spawnY = i * 60;
+                Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+                GameObject NewEntry = Instantiate(Entry, pos, SpawnPoint.rotation);
+                NewEntry.transform.SetParent(SpawnPoint, false);
+                NewEntry.GetComponent<ScoreEntrys>().Entrynumber.text = "Nr." + (i+1);
+                NewEntry.GetComponent<ScoreEntrys>().HeroName.text = ScoreList.Score.HighScoreList[i].HName;
+                NewEntry.GetComponent<ScoreEntrys>().HeroLvl.text = "Lvl." + ScoreList.Score.HighScoreList[i].HLvl;
+
+            }
+        }
+
     }
 
 }

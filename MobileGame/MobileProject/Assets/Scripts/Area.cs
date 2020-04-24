@@ -282,7 +282,7 @@ public class Area : MonoBehaviour
                 Debug.Log(HeroStats.Name + " earned " + mon + " Gold!");
                 HeroStats.Gold += mon;
             }
-            if (Random.Range(0, 100) <= 99)
+            if (Random.Range(0, 100) <= 8)
             {
                 Items Temp = Picker.PickItem.Pick();
                 HeroStats.AddItem(Temp, Random.Range(Level - 5, Level + 3));

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -31,13 +32,28 @@ public class UIManager : MonoBehaviour
     public Canvas ScorePanel;
     public RectTransform content;
     public GameObject Entry;
+    public List<GameObject> TableContent;
+
     [SerializeField]
     public Transform SpawnPoint = null;
+
+    //Stats And Inventory UI
+    public Text HeroStats;
+
+    public Canvas InventoryAndStatsPanel;
+    public RectTransform EquipmentContent, BagContent;
+    public GameObject EqippedItem,BagItem;
+    public List<GameObject> TableEqipment, TableBag;
+
+    public Transform EqippedSpawn,BagSpawn;
+
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        InventoryAndStatsPanel.enabled = false;
         ScorePanel.enabled = false;
         DeathScreen.enabled = false;
         HeroName.text = Hero.CurrentHero.Name;
@@ -179,6 +195,13 @@ public class UIManager : MonoBehaviour
         if (ScorePanel.enabled)
         {
             ScorePanel.enabled = false;
+            foreach (GameObject Entry in TableContent)
+            {
+                Destroy(Entry);  
+            }
+
+
+            TableContent.Clear();
         }
         else
         {
@@ -189,15 +212,41 @@ public class UIManager : MonoBehaviour
             {
                 float spawnY = i * 60;
                 Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
-                GameObject NewEntry = Instantiate(Entry, pos, SpawnPoint.rotation);
-                NewEntry.transform.SetParent(SpawnPoint, false);
-                NewEntry.GetComponent<ScoreEntrys>().Entrynumber.text = "Nr." + (i+1);
-                NewEntry.GetComponent<ScoreEntrys>().HeroName.text = ScoreList.Score.HighScoreList[i].HName;
-                NewEntry.GetComponent<ScoreEntrys>().HeroLvl.text = "Lvl." + ScoreList.Score.HighScoreList[i].HLvl;
+                TableContent.Add( Instantiate(Entry, pos, SpawnPoint.rotation));
+                TableContent[i].transform.SetParent(SpawnPoint, false);
+                TableContent[i].GetComponent<ScoreEntrys>().Entrynumber.text = "Nr." + (i+1);
+                TableContent[i].GetComponent<ScoreEntrys>().HeroName.text = ScoreList.Score.HighScoreList[i].HName;
+                TableContent[i].GetComponent<ScoreEntrys>().HeroLvl.text = "Lvl." + ScoreList.Score.HighScoreList[i].HLvl;
 
             }
         }
 
     }
 
+    public void ShowStatsAndInventory()
+    {
+        if (InventoryAndStatsPanel.enabled)
+        {
+            InventoryAndStatsPanel.enabled = false;
+
+        }
+        else
+        {
+            InventoryAndStatsPanel.enabled = true;
+
+            //HeroStatusPanel
+            HeroStats.text = "Level "+ Hero.CurrentHero.Lvl+
+                "\nStr: " + Hero.CurrentHero.Str +
+                "\nDef: "+ Hero.CurrentHero.Def +
+                "\nDex: "+ Hero.CurrentHero.Dex +
+                "\nSpe: "+ (Math.Truncate(100*Hero.CurrentHero.Spe)/100);
+
+            //Hero Equpped List
+
+            //Hero Bag List
+
+
+        }
+
+    }
 }

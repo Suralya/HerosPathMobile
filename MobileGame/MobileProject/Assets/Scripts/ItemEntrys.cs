@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemEntrys : MonoBehaviour
 {
-   public string ItemType;
-   public int ItemLvl;
-   public int ItemStrength;
+   public Text ItemType;
+   public Text ItemLvl;
+   public Text ItemStrength;
 
-    public Items LinkedItem;
+   public Items LinkedItem;
 
 }

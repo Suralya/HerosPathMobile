@@ -280,7 +280,7 @@ public class UIManager : MonoBehaviour
                         TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
                         break;
                     }
-                TableEquipment[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + Hero.CurrentHero.Wearing[i].strength;
+                TableEquipment[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Wearing[i].strength) / 100);
                 TableEquipment[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Wearing[i];
 
             }
@@ -314,7 +314,7 @@ public class UIManager : MonoBehaviour
                         TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
                         break;
                 }
-                TableBag[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + Hero.CurrentHero.Bag[i].strength;
+                TableBag[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].strength) / 100);
                 TableBag[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
 
             }
@@ -333,15 +333,99 @@ public class UIManager : MonoBehaviour
             ScorePanel.enabled = true;
             ShowStatsAndInventory();
             ShowScorelist();
+            GM.InMenu = false;
         }
         else
         {
+            GM.InMenu = true;
             ShowStatsAndInventory();
         }
     }
 
-    public void ChangeGearButton()
+
+    public void UpdateInventoryTables()
     {
+
+        foreach (GameObject Item in TableEquipment)
+        {
+            Destroy(Item);
+        }
+        TableEquipment.Clear();
+
+        foreach (GameObject Item in TableBag)
+        {
+            Destroy(Item);
+        }
+        TableBag.Clear();
+        //Hero Equpped List
+
+        EquipmentContent.sizeDelta = new Vector2(0, ScoreList.Score.HighScoreList.Count() * 60);
+
+        for (int i = 0; i < Hero.CurrentHero.Wearing.Count(); i++)
+        {
+            float spawnY = i * 45;
+            Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+            TableEquipment.Add(Instantiate(EquipedItem, pos, EquipedSpawn.rotation));
+            TableEquipment[i].transform.SetParent(EquipedSpawn, false);
+            TableEquipment[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + Hero.CurrentHero.Wearing[i].lvl;
+            switch (Hero.CurrentHero.Wearing[i].Type)
+            {
+                case Items.ItemType.Weapon:
+                    TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Weapon";
+                    break;
+                case Items.ItemType.Armor:
+                    TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Armor";
+                    break;
+                case Items.ItemType.Shoes:
+                    TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Shoes";
+                    break;
+                case Items.ItemType.Gloves:
+                    TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Gloves";
+                    break;
+                case Items.ItemType.Accessory:
+                    TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
+                    break;
+            }
+            TableEquipment[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Wearing[i].strength) / 100);
+            TableEquipment[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Wearing[i];
+
+        }
+
+        //Hero Bag List
+
+        BagContent.sizeDelta = new Vector2(0, ScoreList.Score.HighScoreList.Count() * 60);
+
+        for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
+        {
+            float spawnY = i * 45;
+            Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+            TableBag.Add(Instantiate(BagItem, pos, BagSpawn.rotation));
+            TableBag[i].transform.SetParent(BagSpawn, false);
+            TableBag[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + Hero.CurrentHero.Bag[i].lvl;
+            switch (Hero.CurrentHero.Bag[i].Type)
+            {
+                case Items.ItemType.Weapon:
+                    TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Weapon";
+                    break;
+                case Items.ItemType.Armor:
+                    TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Armor";
+                    break;
+                case Items.ItemType.Shoes:
+                    TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Shoes";
+                    break;
+                case Items.ItemType.Gloves:
+                    TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Gloves";
+                    break;
+                case Items.ItemType.Accessory:
+                    TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
+                    break;
+            }
+            TableBag[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].strength) / 100);
+            TableBag[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
+
+        }
+
+
 
     }
 

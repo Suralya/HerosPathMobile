@@ -25,7 +25,7 @@ public class AreaChoice : MonoBehaviour
     private void OnMouseDown()
     {
 
-        if (GM.newStepEnabled == true)
+        if (GM.newStepEnabled == true && GM.InMenu==false)
         {
             GM.newStepEnabled = false;
             GM.AddArea(GM.AreasOfChoice[ArrayNumberOfChoice]);

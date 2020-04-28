@@ -11,4 +11,17 @@ public class ItemEntrys : MonoBehaviour
 
    public Items LinkedItem;
 
+    //ifBagentry
+    public void SwapGear()
+    {
+        Hero.CurrentHero.SwapGear(LinkedItem);
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().UpdateInventoryTables();
+    }
+    //ifEquipEntry
+    public void UnequipGear()
+    {
+        Hero.CurrentHero.Unequip(LinkedItem);
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().UpdateInventoryTables();
+    }
+
 }

@@ -8,6 +8,8 @@ using System.IO;
 
 public class GameManager : MonoBehaviour
 {
+    public bool InMenu = false;
+
     public GameObject StartingArea;
     public List<GameObject> Areas = new List<GameObject>();
 

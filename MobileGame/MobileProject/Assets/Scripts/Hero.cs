@@ -25,7 +25,6 @@ public class Hero
     public List<Items> Wearing;
     public List<Items> Bag;
 
-
     public Hero()
     {
 
@@ -86,6 +85,7 @@ public class Hero
             ItemLvl = 1;
         }
         NewItem.lvl = ItemLvl;
+        SetupGear(NewItem);
 
         bool b = Wearing.Any(i => i.Type == NewItem.Type);
 
@@ -101,44 +101,61 @@ public class Hero
         }
     }
 
+    public void SetupGear(Items Gear)
+    {
+        switch (Gear.Type)
+        {
+            case Items.ItemType.Weapon:
+                for (int i = 1; i <= Gear.lvl; i++)
+                {
+                    Gear.strength += Random.Range(0, 3);
+                }
+                break;
+            case Items.ItemType.Armor:
+                for (int i = 1; i <= Gear.lvl; i++)
+                {
+                    Gear.strength += Random.Range(0, 3);
+                }
+                break;
+            case Items.ItemType.Shoes:
+                for (int i = 1; i <= Gear.lvl; i++)
+                {
+                    Gear.strength += Random.Range(0f, 0.5f);
+                }
+                break;
+            case Items.ItemType.Gloves:
+                for (int i = 1; i <= Gear.lvl; i++)
+                {
+                    Gear.strength += Random.Range(0, 3);
+                }
+                break;
+            case Items.ItemType.Accessory:
+                for (int i = 1; i <= Gear.lvl; i++)
+                {
+                    Gear.strength += Random.Range(0, 2);
+                }
+                break;
+        }
+    }
+
     public void Equip(Items Gear)
     {
         Wearing.Add(Gear);
         switch (Gear.Type)
         {
             case Items.ItemType.Weapon:
-                for (int i = 0; i <= Gear.lvl; i++)
-                {
-                    Gear.strength += Random.Range(0, 3);
-                }
                 Str += (int)Gear.strength;
                 break;
             case Items.ItemType.Armor:
-                for (int i = 0; i <= Gear.lvl; i++)
-                {
-                    Gear.strength += Random.Range(0, 3);
-                }
                 Def += (int)Gear.strength;
                 break;
             case Items.ItemType.Shoes:
-                for (int i = 0; i <= Gear.lvl; i++)
-                {
-                    Gear.strength += Random.Range(0f,0.5f);
-                }
                 Spe += Gear.strength;
                 break;
             case Items.ItemType.Gloves:
-                for (int i = 0; i <= Gear.lvl; i++)
-                {
-                    Gear.strength += Random.Range(0, 3);
-                }
                 Dex += (int)Gear.strength;
                 break;
             case Items.ItemType.Accessory:
-                for (int i = 0; i <= Gear.lvl; i++)
-                {
-                    Gear.strength += Random.Range(0, 2);
-                }
                 Hp += (int)Gear.strength;
                 CurrentHp += (int)Gear.strength;
                 break;
@@ -173,8 +190,22 @@ public class Hero
 
     public void SwapGear(Items Gear)
     {
-        Unequip(Gear);
-        Equip(Gear);
+
+        bool b = Wearing.Any(i => i.Type == Gear.Type);
+
+        if (!b)
+        {
+            Equip(Gear);
+            Debug.Log("Item "+Gear.Type+" wurde angelegt.");
+        }
+        else
+        {
+            Unequip(Wearing.Find(i=> i.Type == Gear.Type));
+            Equip(Gear);
+            Debug.Log("Item " + Gear.Type + " wurde ausgetauscht.");
+        }
+        Bag.Remove(Gear);
+
     }
 
 }

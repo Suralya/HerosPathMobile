@@ -160,6 +160,7 @@ public class Hero
                 CurrentHp += (int)Gear.strength;
                 break;
         }
+        SortWearingGear();
     }
 
     public void Unequip(Items Gear)
@@ -205,6 +206,21 @@ public class Hero
             Debug.Log("Item " + Gear.Type + " wurde ausgetauscht.");
         }
         Bag.Remove(Gear);
+
+    }
+
+    public void SortWearingGear()
+    {
+        Debug.Log("Liste wird Sortiert");
+        var sortedEquipment= Wearing.OrderBy(i =>
+                    i.Type == Items.ItemType.Weapon ? 1
+                  : i.Type == Items.ItemType.Armor ? 2
+                  : i.Type == Items.ItemType.Accessory ? 3
+                  : i.Type == Items.ItemType.Gloves ? 4
+                  : 5).ToList();
+
+        Wearing = sortedEquipment;
+
 
     }
 

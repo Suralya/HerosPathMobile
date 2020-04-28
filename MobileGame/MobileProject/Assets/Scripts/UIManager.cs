@@ -425,7 +425,12 @@ public class UIManager : MonoBehaviour
 
         }
 
-
+        HeroStats.text = "Level " + Hero.CurrentHero.Lvl +
+    "\nHP: " + Hero.CurrentHero.CurrentHp + "/" + Hero.CurrentHero.Hp +
+    "\nStr: " + Hero.CurrentHero.Str +
+    "\nDef: " + Hero.CurrentHero.Def +
+    "\nDex: " + Hero.CurrentHero.Dex +
+    "\nSpe: " + (Math.Truncate(100 * Hero.CurrentHero.Spe) / 100);
 
     }
 

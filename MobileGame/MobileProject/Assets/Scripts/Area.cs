@@ -93,7 +93,7 @@ public class Area : MonoBehaviour
 
                 if (Random.Range(0, 100) <= 60)
                 {
-                    Items Temp = Picker.PickItem.Pick();
+                    Items Temp = new Items(Picker.PickItem.Pick().Type);
                     HeroStats.AddItem(Temp, Random.Range(HeroStats.Lvl - 3, HeroStats.Lvl + 3));
                 }
 
@@ -284,7 +284,7 @@ public class Area : MonoBehaviour
             }
             if (Random.Range(0, 100) <= 8)
             {
-                Items Temp = Picker.PickItem.Pick();
+                Items Temp = new Items(Picker.PickItem.Pick().Type);
                 HeroStats.AddItem(Temp, Random.Range(Level - 5, Level + 3));
             }
           //  Debug.Log("The Hero gained " + Experience + " Experience.");

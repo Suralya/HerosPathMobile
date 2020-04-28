@@ -86,8 +86,11 @@ public class Hero
         }
         NewItem.lvl = ItemLvl;
         SetupGear(NewItem);
+        Debug.Log(Name + " got a new " + NewItem.Type + " on Lvl " + NewItem.lvl+ " with a worth of: "+ NewItem.strength);
 
         bool b = Wearing.Any(i => i.Type == NewItem.Type);
+
+        Debug.Log("Is Adberd wearing something like this?" + b);
 
         if (!b)
         {
@@ -219,7 +222,7 @@ public class Hero
                   : i.Type == Items.ItemType.Gloves ? 4
                   : 5).ToList();
 
-        Wearing = sortedEquipment;
+        Wearing = sortedEquipment; 
 
 
     }

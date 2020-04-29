@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Area : MonoBehaviour
 {
     public Position CurrentPos=new Position();
-    public enum ArealTypes {Healing, weakMonster, Monster, strongMonster, Neutral, Treasure };
+    public enum ArealTypes {Healing, weakMonster, Monster, strongMonster, Neutral, Treasure, Market };
 
     public ArealTypes AreaType;
 
@@ -35,6 +35,10 @@ public class Area : MonoBehaviour
     public void ArealAction(Hero HeroStats)
     {
         //Hier die Werte, die den Held beeinflussen
+        if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MarketArea.enabled)
+        {
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MarketArea.enabled = false;
+        }
 
         switch (AreaType)
         {
@@ -100,6 +104,11 @@ public class Area : MonoBehaviour
                 int mon = HeroStats.Lvl * Random.Range(4, 12);
                 Debug.Log(HeroStats.Name+ " earned " + mon + " Gold!");
                 HeroStats.Gold += mon;
+
+                break;
+
+            case ArealTypes.Market:
+                GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MarketArea.enabled=true;
 
                 break;
 

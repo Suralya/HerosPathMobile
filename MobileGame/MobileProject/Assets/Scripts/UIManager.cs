@@ -47,7 +47,8 @@ public class UIManager : MonoBehaviour
 
     public Transform EquipedSpawn,BagSpawn;
 
-
+    //Marketplace UI
+    public Canvas MarketArea, Marketplace;
 
 
     // Start is called before the first frame update
@@ -56,6 +57,9 @@ public class UIManager : MonoBehaviour
         InventoryAndStatsPanel.enabled = false;
         ScorePanel.enabled = false;
         DeathScreen.enabled = false;
+        MarketArea.enabled = false;
+        Marketplace.enabled = false;
+
         HeroName.text = Hero.CurrentHero.Name;
         UpdateHeroUI();
 
@@ -253,7 +257,7 @@ public class UIManager : MonoBehaviour
 
             //Hero Equpped List
 
-            EquipmentContent.sizeDelta = new Vector2(0, ScoreList.Score.HighScoreList.Count() * 60);
+            EquipmentContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Wearing.Count() * 45);
 
             for (int i = 0; i < Hero.CurrentHero.Wearing.Count(); i++)
             {
@@ -286,12 +290,11 @@ public class UIManager : MonoBehaviour
             }
 
             //Hero Bag List
-
-            BagContent.sizeDelta = new Vector2(0, ScoreList.Score.HighScoreList.Count() * 60);
+            BagContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * 52+30);
 
             for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
             {
-                float spawnY = i * 45;
+                float spawnY = i * 52;
                 Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
                 TableBag.Add(Instantiate(BagItem, pos, BagSpawn.rotation));
                 TableBag[i].transform.SetParent(BagSpawn, false);
@@ -359,7 +362,7 @@ public class UIManager : MonoBehaviour
         TableBag.Clear();
         //Hero Equpped List
 
-        EquipmentContent.sizeDelta = new Vector2(0, ScoreList.Score.HighScoreList.Count() * 60);
+        EquipmentContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Wearing.Count() * 45);
 
         for (int i = 0; i < Hero.CurrentHero.Wearing.Count(); i++)
         {
@@ -393,11 +396,11 @@ public class UIManager : MonoBehaviour
 
         //Hero Bag List
 
-        BagContent.sizeDelta = new Vector2(0, ScoreList.Score.HighScoreList.Count() * 60);
+        BagContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * 52+30);
 
         for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
         {
-            float spawnY = i * 45;
+            float spawnY = i * 52;
             Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
             TableBag.Add(Instantiate(BagItem, pos, BagSpawn.rotation));
             TableBag[i].transform.SetParent(BagSpawn, false);

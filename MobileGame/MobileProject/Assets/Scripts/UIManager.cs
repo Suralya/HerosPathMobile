@@ -49,9 +49,12 @@ public class UIManager : MonoBehaviour
 
     //Marketplace UI
     public Canvas MarketArea, Marketplace;
+    public RectTransform BagList, MarketInventoryList;
+    public GameObject ShopBag, ShopInventory;
+    public List<GameObject> BagItems, ShopItems;
+    public Transform ShopBagSpawn, ShopInventorySpawn;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         InventoryAndStatsPanel.enabled = false;
@@ -65,8 +68,7 @@ public class UIManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
      UpdateHeroUI();
         if (Hero.CurrentHero.CurrentHp <= 0)
@@ -189,6 +191,13 @@ public class UIManager : MonoBehaviour
                 EnmyDefText.text = "Defense: " + Enemy.Def;
                 EnmyDexText.text = "Dexterity: " + Enemy.Dex;
                 EnmySpeText.text = "Speed: " + Enemy.Spe;
+                break;
+            default:
+                EnmyLevelText.text = "Special Area";
+                EnmyStrText.text = "";
+                EnmyDefText.text = "";
+                EnmyDexText.text = "";
+                EnmySpeText.text = "";
                 break;
 
         }
@@ -345,7 +354,6 @@ public class UIManager : MonoBehaviour
         }
     }
 
-
     public void UpdateInventoryTables()
     {
 
@@ -436,5 +444,50 @@ public class UIManager : MonoBehaviour
     "\nSpe: " + (Math.Truncate(100 * Hero.CurrentHero.Spe) / 100);
 
     }
+
+
+    //Marketplace
+    public void OpenMarketplace()
+    {
+        if (Marketplace.enabled)
+        {
+            GM.InMenu = false;
+            Marketplace.enabled = false;
+            BagItems.Clear();
+            ShopItems.Clear();
+        }
+        else
+        {
+            GM.InMenu = true;
+            Marketplace.enabled = true;
+
+            //BagItemsforShop
+
+            //ShopInventory
+        }
+    }
+
+    public void UpdateMarketplace()
+    {
+        foreach (GameObject Item in BagItems)
+        {
+            Destroy(Item);
+        }
+        TableEquipment.Clear();
+
+        foreach (GameObject Item in ShopItems)
+        {
+            Destroy(Item);
+        }
+        BagItems.Clear();
+        ShopItems.Clear();
+
+        //BagItemsforShop
+
+        //ShopInventory
+
+
+    }
+
 
 }

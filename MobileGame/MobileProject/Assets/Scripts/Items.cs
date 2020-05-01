@@ -18,6 +18,7 @@ public class Items
 
     public float Probability;
     public float Weight;
+    public int price;
 
     public Items(ItemType IT)
     {

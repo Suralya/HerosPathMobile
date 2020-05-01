@@ -9,15 +9,19 @@ public class Area : MonoBehaviour
     public enum ArealTypes {Healing, weakMonster, Monster, strongMonster, Neutral, Treasure, Market };
 
     public ArealTypes AreaType;
+    public int ID = 0;
 
+    //Area Influence on Hero
     public int Heal, Experience =0;
 
+    //MonsterStats
     public int Level, Hp, Str, Def, Dex=0;
     public float Spe=0f;
 
-    public int ID=0;
-
-
+    //Marketplace
+    public float Tax;
+    public int StoreInventoryCount;
+    public List<Items> MarketStore = new List<Items>(); 
 
     // Start is called before the first frame update
     void Start()
@@ -109,6 +113,17 @@ public class Area : MonoBehaviour
 
             case ArealTypes.Market:
                 GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MarketArea.enabled=true;
+
+                Tax = Random.Range(1.03f, 1.3f);
+                StoreInventoryCount = Random.Range(4, 6);
+
+                for (int i = 1; i <= StoreInventoryCount; i++)
+                {
+                    Items NewStoreItem = new Items(Picker.PickItem.Pick().Type);
+                    NewStoreItem.lvl = Random.Range(HeroStats.Lvl - 4,HeroStats.Lvl+5);
+                    HeroStats.SetupGear(NewStoreItem);
+                    MarketStore.Add(NewStoreItem);
+                }
 
                 break;
 

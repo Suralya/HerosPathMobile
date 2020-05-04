@@ -82,6 +82,7 @@ public class Hero
 
         if (ItemLvl < 1)
         {
+            Debug.Log("LvlAdjust");
             ItemLvl = 1;
         }
         NewItem.lvl = ItemLvl;

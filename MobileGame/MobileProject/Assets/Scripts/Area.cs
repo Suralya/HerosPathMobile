@@ -121,6 +121,10 @@ public class Area : MonoBehaviour
                 {
                     Items NewStoreItem = new Items(Picker.PickItem.Pick().Type);
                     NewStoreItem.lvl = Random.Range(HeroStats.Lvl - 4,HeroStats.Lvl+5);
+                    if (NewStoreItem.lvl < 1)
+                    {
+                        NewStoreItem.lvl = 1;
+                    }
                     HeroStats.SetupGear(NewStoreItem);
                     MarketStore.Add(NewStoreItem);
                 }

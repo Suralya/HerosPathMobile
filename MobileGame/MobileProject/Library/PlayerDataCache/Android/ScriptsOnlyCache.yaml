@@ -4,6 +4,8 @@ ScriptsOnlyBuild:
     - Area
     - AreaChoice
     - GameManager
+    - ItemEntrys
+    - ScoreEntrys
     - UIManager
     Unity.Postprocessing.Runtime.dll:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
@@ -28,6 +30,9 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
+    - UnityEngine.UI.Mask
+    - UnityEngine.UI.ScrollRect
+    - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/SampleScene.unity:
@@ -66,44 +71,56 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11220}
     - Class: 114
-      Script: {instanceID: 11240}
+      Script: {instanceID: 11242}
     - Class: 114
-      Script: {instanceID: 11246}
+      Script: {instanceID: 11248}
     - Class: 114
-      Script: {instanceID: 11332}
+      Script: {instanceID: 11334}
     - Class: 114
-      Script: {instanceID: 11402}
+      Script: {instanceID: 11404}
     - Class: 114
-      Script: {instanceID: 11446}
+      Script: {instanceID: 11406}
     - Class: 114
-      Script: {instanceID: 11490}
+      Script: {instanceID: 11448}
     - Class: 114
-      Script: {instanceID: 11572}
+      Script: {instanceID: 11492}
     - Class: 114
-      Script: {instanceID: 11602}
+      Script: {instanceID: 11574}
     - Class: 114
-      Script: {instanceID: 11878}
+      Script: {instanceID: 11604}
     - Class: 114
-      Script: {instanceID: 12108}
+      Script: {instanceID: 11784}
     - Class: 114
-      Script: {instanceID: 12184}
+      Script: {instanceID: 11882}
     - Class: 114
-      Script: {instanceID: 12316}
+      Script: {instanceID: 12096}
     - Class: 114
-      Script: {instanceID: 12856}
+      Script: {instanceID: 12112}
     - Class: 114
-      Script: {instanceID: 13102}
+      Script: {instanceID: 12188}
     - Class: 114
-      Script: {instanceID: 13120}
+      Script: {instanceID: 12322}
     - Class: 114
-      Script: {instanceID: 13162}
+      Script: {instanceID: 12488}
     - Class: 114
-      Script: {instanceID: 13168}
+      Script: {instanceID: 12864}
     - Class: 114
-      Script: {instanceID: 13250}
+      Script: {instanceID: 12982}
+    - Class: 114
+      Script: {instanceID: 13112}
+    - Class: 114
+      Script: {instanceID: 13130}
+    - Class: 114
+      Script: {instanceID: 13172}
+    - Class: 114
+      Script: {instanceID: 13178}
+    - Class: 114
+      Script: {instanceID: 13260}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
+      Script: {instanceID: 0}
+    - Class: 136
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
@@ -250,7 +267,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 915429f320815b32b846f1e8548ff63b
+      Hash: e2a979da49670c2c1a6f58ad9233c3a5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -400,7 +417,7 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: 01666ebb229160e75787b3e6f71a2e16
+      Hash: eba91e6aef899e7690d55af864cccc39
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Area
@@ -470,6 +487,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: VerticalLayoutGroup
+  - hash:
+      serializedVersion: 2
+      Hash: 54ef993f8c22d3a195b7a1be32bbfbfb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ItemEntrys
   - hash:
       serializedVersion: 2
       Hash: 783f593b9380cf72d0f7ebfd4a0d4bcd
@@ -550,6 +573,12 @@ ScriptsOnlyBuild:
     className: MobileManager
   - hash:
       serializedVersion: 2
+      Hash: cf6fe1ef695940356db7e06614ab309f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ScoreEntrys
+  - hash:
+      serializedVersion: 2
       Hash: c3d3430df9e3ea95e3e3d587961390fb
     assemblyName: Unity.Timeline.dll
     namespaceName: UnityEngine.Timeline
@@ -562,7 +591,7 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
-      Hash: c8a6059dcadfd9d8a64b805216634137
+      Hash: c8b2feb26ebd2f16439e0e83503a11fe
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -695,4 +724,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_05.apk
+  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_06.apk

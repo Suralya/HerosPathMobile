@@ -463,7 +463,6 @@ public class UIManager : MonoBehaviour
 
         if (Marketplace.enabled)
         {
-            GM.SafeCurrentGame();
             GM.InMenu = false;
             Marketplace.enabled = false;
             BagItems.Clear();
@@ -554,6 +553,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateMarketplace()
     {
+        GM.SafeCurrentGame();
         foreach (GameObject Item in BagItems)
         {
             Destroy(Item);

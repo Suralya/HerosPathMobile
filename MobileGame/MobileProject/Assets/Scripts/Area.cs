@@ -112,8 +112,8 @@ public class Area : MonoBehaviour
                 break;
 
             case ArealTypes.Market:
+                
                 GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MarketArea.enabled=true;
-
                 Tax = Random.Range(1.03f, 1.3f);
                 StoreInventoryCount = Random.Range(4, 6);
 

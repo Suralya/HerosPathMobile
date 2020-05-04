@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     //Areas Currently seen in the Game
     private Queue<GameObject> areasInUse = new Queue<GameObject>();
-    private GameObject[] areasInUseArray = new GameObject[3];
+    public GameObject[] areasInUseArray = new GameObject[3];
 
     public Position Pos1, Pos2, Pos3, PosEnd;
 

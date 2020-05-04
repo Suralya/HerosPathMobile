@@ -29,6 +29,7 @@ public class ItemEntrys : MonoBehaviour
     {
         Hero.CurrentHero.Bag.Add(LinkedItem);
         Hero.CurrentHero.Gold -= LinkedItem.price;
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().areasInUseArray[1].GetComponent<Area>().MarketStore.Remove(LinkedItem);
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().UpdateMarketplace();
     }
 
@@ -36,6 +37,7 @@ public class ItemEntrys : MonoBehaviour
     {
         Hero.CurrentHero.Bag.Remove(LinkedItem);
         Hero.CurrentHero.Gold += LinkedItem.price;
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().GM.areasInUseArray[1].GetComponent<Area>().MarketStore.Add(LinkedItem);
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().UpdateMarketplace();
     }
 

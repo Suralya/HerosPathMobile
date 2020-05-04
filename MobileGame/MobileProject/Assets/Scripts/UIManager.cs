@@ -50,7 +50,7 @@ public class UIManager : MonoBehaviour
     //Marketplace UI
     public Canvas MarketArea, Marketplace;
     public RectTransform BagList, MarketInventoryList;
-    public GameObject ShopBag, ShopInventory;
+    public GameObject ShopItem,MarketBagItem;
     public List<GameObject> BagItems, ShopItems;
     public Transform ShopBagSpawn, ShopInventorySpawn;
 
@@ -299,7 +299,7 @@ public class UIManager : MonoBehaviour
             }
 
             //Hero Bag List
-            BagContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * 52+30);
+            BagContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * 52 + 30);
 
             for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
             {
@@ -449,8 +449,21 @@ public class UIManager : MonoBehaviour
     //Marketplace
     public void OpenMarketplace()
     {
+        foreach (GameObject Item in BagItems)
+        {
+            Destroy(Item);
+        }
+
+        foreach (GameObject Item in ShopItems)
+        {
+            Destroy(Item);
+        }
+        BagItems.Clear();
+        ShopItems.Clear();
+
         if (Marketplace.enabled)
         {
+            GM.SafeCurrentGame();
             GM.InMenu = false;
             Marketplace.enabled = false;
             BagItems.Clear();
@@ -458,12 +471,84 @@ public class UIManager : MonoBehaviour
         }
         else
         {
+
             GM.InMenu = true;
             Marketplace.enabled = true;
 
             //BagItemsforShop
+            BagList.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * 72 + 30);
+
+            for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
+            {
+            float spawnY = i * 72;
+            Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+            BagItems.Add(Instantiate(MarketBagItem, pos, ShopBagSpawn.rotation));
+            BagItems[i].transform.SetParent(ShopBagSpawn, false);
+            BagItems[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + Hero.CurrentHero.Bag[i].lvl;
+            switch (Hero.CurrentHero.Bag[i].Type)
+            {
+                case Items.ItemType.Weapon:
+                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Weapon";
+                    break;
+                case Items.ItemType.Armor:
+                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Armor";
+                    break;
+                case Items.ItemType.Shoes:
+                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Shoes";
+                    break;
+                case Items.ItemType.Gloves:
+                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Gloves";
+                    break;
+                case Items.ItemType.Accessory:
+                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
+                    break;
+            }
+            
+            BagItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].strength) / 100);
+            Hero.CurrentHero.Bag[i].price = Hero.CurrentHero.Bag[i].lvl * Hero.CurrentHero.Bag[i].rarity * 6;
+            BagItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + Hero.CurrentHero.Bag[i].price;
+            BagItems[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
+
+
+            }
 
             //ShopInventory
+            MarketInventoryList.sizeDelta = new Vector2(0, GM.areasInUseArray[1].GetComponent<Area>().MarketStore.Count() * 72 + 30);
+
+            for (int i = 0; i < GM.areasInUseArray[1].GetComponent<Area>().MarketStore.Count(); i++)
+            {
+                float spawnY = i * 72;
+                Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+                ShopItems.Add(Instantiate(ShopItem, pos, ShopInventorySpawn.rotation));
+                ShopItems[i].transform.SetParent(ShopInventorySpawn, false);
+                ShopItems[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl;
+                switch (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].Type)
+                {
+                    case Items.ItemType.Weapon:
+                        ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Weapon";
+                        break;
+                    case Items.ItemType.Armor:
+                        ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Armor";
+                        break;
+                    case Items.ItemType.Shoes:
+                        ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Shoes";
+                        break;
+                    case Items.ItemType.Gloves:
+                        ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Gloves";
+                        break;
+                    case Items.ItemType.Accessory:
+                        ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
+                        break;
+                }
+
+                ShopItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].strength) / 100);
+                GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int) (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl*(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl /2)* GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10* GM.areasInUseArray[1].GetComponent<Area>().Tax);
+                ShopItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price;
+                ShopItems[i].GetComponent<ItemEntrys>().LinkedItem = GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i];
+
+
+            }
+
         }
     }
 
@@ -473,8 +558,6 @@ public class UIManager : MonoBehaviour
         {
             Destroy(Item);
         }
-        TableEquipment.Clear();
-
         foreach (GameObject Item in ShopItems)
         {
             Destroy(Item);
@@ -483,8 +566,78 @@ public class UIManager : MonoBehaviour
         ShopItems.Clear();
 
         //BagItemsforShop
+        BagList.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * 72 + 30);
+
+        for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
+        {
+            float spawnY = i * 72;
+            Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+            BagItems.Add(Instantiate(MarketBagItem, pos, ShopBagSpawn.rotation));
+            BagItems[i].transform.SetParent(ShopBagSpawn, false);
+            BagItems[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + Hero.CurrentHero.Bag[i].lvl;
+            switch (Hero.CurrentHero.Bag[i].Type)
+            {
+                case Items.ItemType.Weapon:
+                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Weapon";
+                    break;
+                case Items.ItemType.Armor:
+                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Armor";
+                    break;
+                case Items.ItemType.Shoes:
+                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Shoes";
+                    break;
+                case Items.ItemType.Gloves:
+                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Gloves";
+                    break;
+                case Items.ItemType.Accessory:
+                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
+                    break;
+            }
+
+            BagItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].strength) / 100);
+            Hero.CurrentHero.Bag[i].price = Hero.CurrentHero.Bag[i].lvl * Hero.CurrentHero.Bag[i].rarity * 6;
+            BagItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + Hero.CurrentHero.Bag[i].price;
+            BagItems[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
+
+
+        }
 
         //ShopInventory
+        MarketInventoryList.sizeDelta = new Vector2(0, GM.areasInUseArray[1].GetComponent<Area>().MarketStore.Count() * 72 + 30);
+
+        for (int i = 0; i < GM.areasInUseArray[1].GetComponent<Area>().MarketStore.Count(); i++)
+        {
+            float spawnY = i * 72;
+            Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+            ShopItems.Add(Instantiate(ShopItem, pos, ShopInventorySpawn.rotation));
+            ShopItems[i].transform.SetParent(ShopInventorySpawn, false);
+            ShopItems[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl;
+            switch (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].Type)
+            {
+                case Items.ItemType.Weapon:
+                    ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Weapon";
+                    break;
+                case Items.ItemType.Armor:
+                    ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Armor";
+                    break;
+                case Items.ItemType.Shoes:
+                    ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Shoes";
+                    break;
+                case Items.ItemType.Gloves:
+                    ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Gloves";
+                    break;
+                case Items.ItemType.Accessory:
+                    ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
+                    break;
+            }
+
+            ShopItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].strength) / 100);
+            GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl / 2) * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
+            ShopItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price;
+            ShopItems[i].GetComponent<ItemEntrys>().LinkedItem = GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i];
+
+
+        }
 
 
     }

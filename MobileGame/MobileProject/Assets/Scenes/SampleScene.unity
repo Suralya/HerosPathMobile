@@ -307,8 +307,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 3.9999695}
-  m_SizeDelta: {x: 1, y: 300}
+  m_AnchoredPosition: {x: 0, y: -0.000030518}
+  m_SizeDelta: {x: 1, y: 296}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &43397719
 GameObject:
@@ -1297,8 +1297,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 145688433}
   m_HandleRect: {fileID: 145688432}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.99888736
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1408,7 +1408,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.22234896}
   m_AnchorMax: {x: 1, y: 0.36587247}
-  m_AnchoredPosition: {x: -7.0999756, y: 0.30000305}
+  m_AnchoredPosition: {x: -7.0999756, y: 0.29999924}
   m_SizeDelta: {x: -28.850006, y: 0.80000305}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &226932198
@@ -1931,17 +1931,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415062864}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 32850277}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 61, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -210.5, y: 117.3}
+  m_SizeDelta: {x: -424, y: -295}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &431185594
 GameObject:
@@ -2973,8 +2973,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 115238632}
   m_HandleRect: {fileID: 115238631}
   m_Direction: 2
-  m_Value: 0
-  m_Size: 0.9989301
+  m_Value: 1
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3784,7 +3784,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.00007016871}
+  m_AnchoredPosition: {x: 0, y: -0.00002092123}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1063727135
@@ -5374,7 +5374,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000014576444}
+  m_AnchoredPosition: {x: 0, y: -0.000015396427}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1435762903
@@ -6044,10 +6044,10 @@ RectTransform:
   m_Father: {fileID: 455923118}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.546}
-  m_AnchorMax: {x: 0.307, y: 1}
-  m_AnchoredPosition: {x: 3.1400146, y: -2.300003}
-  m_SizeDelta: {x: -15.8, y: -44.2}
+  m_AnchorMin: {x: 0, y: 0.5405487}
+  m_AnchorMax: {x: 0.31250596, y: 1}
+  m_AnchoredPosition: {x: 1.6400146, y: -0.7999878}
+  m_SizeDelta: {x: -18.799988, y: -47.200012}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1633266348
 MonoBehaviour:
@@ -6209,7 +6209,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000017156271}
+  m_AnchoredPosition: {x: 0, y: 0.000007074544}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1687304722
@@ -6839,7 +6839,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1159504053}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9981554
+  m_Size: 0.99826324
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6913,7 +6913,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.000017275399}
+  m_AnchoredPosition: {x: 0, y: -0.000020980835}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1959429955
@@ -7264,7 +7264,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1357986115}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99893147
+  m_Size: 0.99899703
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:

@@ -26,6 +26,7 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.AspectRatioFitter
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
@@ -88,6 +89,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 11574}
     - Class: 114
       Script: {instanceID: 11604}
+    - Class: 114
+      Script: {instanceID: 11654}
     - Class: 114
       Script: {instanceID: 11784}
     - Class: 114
@@ -724,4 +727,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_06.apk
+  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_06_5.apk

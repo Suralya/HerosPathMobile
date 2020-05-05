@@ -220,6 +220,7 @@ public class UIManager : MonoBehaviour
         {
             ScorePanel.enabled = true;
             height = content.GetComponent<RectTransform>().rect.width;
+            SpawnPoint.localPosition = new Vector3(0,0-( height / Entry.GetComponent<AspectRatioFitter>().aspectRatio / 2), 0);
             content.sizeDelta = new Vector2(0,3+ Hero.CurrentHero.Wearing.Count() * height / Entry.GetComponent<AspectRatioFitter>().aspectRatio);
 
             for (int i = 0; i < ScoreList.Score.HighScoreList.Count(); i++)
@@ -270,6 +271,7 @@ public class UIManager : MonoBehaviour
 
             //Hero Equpped List
             height = EquipmentContent.GetComponent<RectTransform>().rect.width;
+            EquipedSpawn.localPosition = new Vector3(0, 0 - (height / EquipedItem.GetComponent<AspectRatioFitter>().aspectRatio / 2), 0);
             EquipmentContent.sizeDelta = new Vector2(0,3+ Hero.CurrentHero.Wearing.Count() * height / EquipedItem.GetComponent<AspectRatioFitter>().aspectRatio);
             
 
@@ -307,6 +309,7 @@ public class UIManager : MonoBehaviour
 
             //Hero Bag List
             height = BagContent.GetComponent<RectTransform>().rect.width;
+            BagSpawn.localPosition = new Vector3(0, 0 - (height / BagItem.GetComponent<AspectRatioFitter>().aspectRatio / 2), 0);
             BagContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * height / BagItem.GetComponent<AspectRatioFitter>().aspectRatio);
 
             for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
@@ -381,6 +384,7 @@ public class UIManager : MonoBehaviour
 
         //Hero Equpped List
         height = EquipmentContent.GetComponent<RectTransform>().rect.width;
+        EquipedSpawn.localPosition = new Vector3(0, 0 - (height / EquipedItem.GetComponent<AspectRatioFitter>().aspectRatio / 2), 0);
         EquipmentContent.sizeDelta = new Vector2(0,3+ Hero.CurrentHero.Wearing.Count() * height / EquipedItem.GetComponent<AspectRatioFitter>().aspectRatio);
 
         for (int i = 0; i < Hero.CurrentHero.Wearing.Count(); i++)
@@ -415,6 +419,7 @@ public class UIManager : MonoBehaviour
 
         //Hero Bag List
         height = BagContent.GetComponent<RectTransform>().rect.width;
+        BagSpawn.localPosition = new Vector3(0, 0 - (height / BagItem.GetComponent<AspectRatioFitter>().aspectRatio / 2), 0);
         BagContent.sizeDelta = new Vector2(0,3+ Hero.CurrentHero.Bag.Count() * height / BagItem.GetComponent<AspectRatioFitter>().aspectRatio);
 
         for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
@@ -487,14 +492,16 @@ public class UIManager : MonoBehaviour
             Marketplace.enabled = true;
 
             //BagItemsforShop
-            BagList.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * 72 + 30);
+            height = BagList.GetComponent<RectTransform>().rect.width;
+            ShopBagSpawn.localPosition = new Vector3(0, 0 - (height / MarketBagItem.GetComponent<AspectRatioFitter>().aspectRatio / 2 ), 0);
+            BagList.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * height / MarketBagItem.GetComponent<AspectRatioFitter>().aspectRatio);
 
             for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
             {
-            float spawnY = i * 72;
-            Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+            float spawnY = (i * height) - ShopBagSpawn.localPosition.y;
+            Vector3 pos = new Vector3(ShopBagSpawn.localPosition.x, -spawnY, ShopBagSpawn.position.z);
             BagItems.Add(Instantiate(MarketBagItem, pos, ShopBagSpawn.rotation));
-            BagItems[i].transform.SetParent(ShopBagSpawn, false);
+            BagItems[i].transform.SetParent(BagList, false);
             BagItems[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + Hero.CurrentHero.Bag[i].lvl;
             switch (Hero.CurrentHero.Bag[i].Type)
             {
@@ -519,19 +526,21 @@ public class UIManager : MonoBehaviour
             Hero.CurrentHero.Bag[i].price = Hero.CurrentHero.Bag[i].lvl * Hero.CurrentHero.Bag[i].rarity * 6;
             BagItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + Hero.CurrentHero.Bag[i].price;
             BagItems[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
-
+            height = BagItems[0].GetComponent<RectTransform>().rect.height;
 
             }
 
             //ShopInventory
-            MarketInventoryList.sizeDelta = new Vector2(0, GM.areasInUseArray[1].GetComponent<Area>().MarketStore.Count() * 72 + 30);
+            height = MarketInventoryList.GetComponent<RectTransform>().rect.width;
+            ShopInventorySpawn.localPosition = new Vector3(0, 0 - (height / ShopItem.GetComponent<AspectRatioFitter>().aspectRatio / 2), 0);
+            MarketInventoryList.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * height / ShopItem.GetComponent<AspectRatioFitter>().aspectRatio);
 
             for (int i = 0; i < GM.areasInUseArray[1].GetComponent<Area>().MarketStore.Count(); i++)
             {
-                float spawnY = i * 72;
-                Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+                float spawnY = (i * height) - ShopInventorySpawn.localPosition.y;
+                Vector3 pos = new Vector3(ShopInventorySpawn.localPosition.x, -spawnY, ShopInventorySpawn.position.z);
                 ShopItems.Add(Instantiate(ShopItem, pos, ShopInventorySpawn.rotation));
-                ShopItems[i].transform.SetParent(ShopInventorySpawn, false);
+                ShopItems[i].transform.SetParent(MarketInventoryList, false);
                 ShopItems[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl;
                 switch (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].Type)
                 {
@@ -556,6 +565,7 @@ public class UIManager : MonoBehaviour
                 GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int) (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl*(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl /2)* GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10* GM.areasInUseArray[1].GetComponent<Area>().Tax);
                 ShopItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price;
                 ShopItems[i].GetComponent<ItemEntrys>().LinkedItem = GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i];
+                height = ShopItems[0].GetComponent<RectTransform>().rect.height;
 
 
             }
@@ -578,14 +588,16 @@ public class UIManager : MonoBehaviour
         ShopItems.Clear();
 
         //BagItemsforShop
-        BagList.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * 72 + 30);
+        height = BagList.GetComponent<RectTransform>().rect.width;
+        ShopBagSpawn.localPosition = new Vector3(0, 0 - (height / MarketBagItem.GetComponent<AspectRatioFitter>().aspectRatio / 2), 0);
+        BagList.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * height / MarketBagItem.GetComponent<AspectRatioFitter>().aspectRatio);
 
         for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
         {
-            float spawnY = i * 72;
-            Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+            float spawnY = (i * height) - ShopBagSpawn.localPosition.y;
+            Vector3 pos = new Vector3(ShopBagSpawn.localPosition.x, -spawnY, ShopBagSpawn.position.z);
             BagItems.Add(Instantiate(MarketBagItem, pos, ShopBagSpawn.rotation));
-            BagItems[i].transform.SetParent(ShopBagSpawn, false);
+            BagItems[i].transform.SetParent(BagList, false);
             BagItems[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + Hero.CurrentHero.Bag[i].lvl;
             switch (Hero.CurrentHero.Bag[i].Type)
             {
@@ -610,19 +622,21 @@ public class UIManager : MonoBehaviour
             Hero.CurrentHero.Bag[i].price = Hero.CurrentHero.Bag[i].lvl * Hero.CurrentHero.Bag[i].rarity * 6;
             BagItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + Hero.CurrentHero.Bag[i].price;
             BagItems[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
-
+            height = BagItems[0].GetComponent<RectTransform>().rect.height;
 
         }
 
         //ShopInventory
-        MarketInventoryList.sizeDelta = new Vector2(0, GM.areasInUseArray[1].GetComponent<Area>().MarketStore.Count() * 72 + 30);
+        height = MarketInventoryList.GetComponent<RectTransform>().rect.width;
+        ShopInventorySpawn.localPosition = new Vector3(0, 0 - (height / ShopItem.GetComponent<AspectRatioFitter>().aspectRatio / 2), 0);
+        MarketInventoryList.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * height / ShopItem.GetComponent<AspectRatioFitter>().aspectRatio);
 
         for (int i = 0; i < GM.areasInUseArray[1].GetComponent<Area>().MarketStore.Count(); i++)
         {
-            float spawnY = i * 72;
-            Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+            float spawnY = (i * height) - ShopInventorySpawn.localPosition.y;
+            Vector3 pos = new Vector3(ShopInventorySpawn.localPosition.x, -spawnY, ShopInventorySpawn.position.z);
             ShopItems.Add(Instantiate(ShopItem, pos, ShopInventorySpawn.rotation));
-            ShopItems[i].transform.SetParent(ShopInventorySpawn, false);
+            ShopItems[i].transform.SetParent(MarketInventoryList, false);
             ShopItems[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl;
             switch (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].Type)
             {
@@ -647,6 +661,7 @@ public class UIManager : MonoBehaviour
             GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl / 2) * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
             ShopItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price;
             ShopItems[i].GetComponent<ItemEntrys>().LinkedItem = GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i];
+            height = ShopItems[0].GetComponent<RectTransform>().rect.height;
 
 
         }

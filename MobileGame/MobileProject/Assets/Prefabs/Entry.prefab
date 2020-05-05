@@ -70,7 +70,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -89,6 +89,7 @@ GameObject:
   - component: {fileID: 5220612541736722543}
   - component: {fileID: 7521853285601502122}
   - component: {fileID: 2773076642973292539}
+  - component: {fileID: 7502063804652926625}
   m_Layer: 5
   m_Name: Entry
   m_TagString: Untagged
@@ -113,10 +114,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 479.2, y: 60}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -0.32000732, y: -37.03}
+  m_SizeDelta: {x: -13.18, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5220612541736722543
 CanvasRenderer:
@@ -169,6 +170,20 @@ MonoBehaviour:
   Entrynumber: {fileID: 7067382650825148022}
   HeroName: {fileID: 6531852589168114846}
   HeroLvl: {fileID: 6193540896560681378}
+--- !u!114 &7502063804652926625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2883562574317921072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 1
+  m_AspectRatio: 9.924967
 --- !u!1 &5776949475208371692
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,7 +218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0.209, y: 1}
-  m_AnchoredPosition: {x: 2.100006, y: 0}
+  m_AnchoredPosition: {x: 2.1000366, y: 0}
   m_SizeDelta: {x: -7.330017, y: -18.66}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3155647361804875750
@@ -239,7 +254,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -316,7 +331,7 @@ MonoBehaviour:
     m_BestFit: 1
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0

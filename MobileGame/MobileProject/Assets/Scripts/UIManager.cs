@@ -219,17 +219,19 @@ public class UIManager : MonoBehaviour
         else
         {
             ScorePanel.enabled = true;
-            content.sizeDelta = new Vector2(0, ScoreList.Score.HighScoreList.Count() * 60);
+            height = content.GetComponent<RectTransform>().rect.width;
+            content.sizeDelta = new Vector2(0,3+ Hero.CurrentHero.Wearing.Count() * height / Entry.GetComponent<AspectRatioFitter>().aspectRatio);
 
             for (int i = 0; i < ScoreList.Score.HighScoreList.Count(); i++)
             {
-                float spawnY = i * 60;
-                Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+                float spawnY = (i * height + 3) - SpawnPoint.localPosition.y;
+                Vector3 pos = new Vector3(SpawnPoint.localPosition.x, -spawnY, SpawnPoint.position.z);
                 TableContent.Add( Instantiate(Entry, pos, SpawnPoint.rotation));
-                TableContent[i].transform.SetParent(SpawnPoint, false);
+                TableContent[i].transform.SetParent(content, false);
                 TableContent[i].GetComponent<ScoreEntrys>().Entrynumber.text = "Nr." + (i+1);
                 TableContent[i].GetComponent<ScoreEntrys>().HeroName.text = ScoreList.Score.HighScoreList[i].HName;
                 TableContent[i].GetComponent<ScoreEntrys>().HeroLvl.text = "Lvl." + ScoreList.Score.HighScoreList[i].HLvl;
+                height = TableContent[0].GetComponent<RectTransform>().rect.height;
 
             }
         }
@@ -267,8 +269,9 @@ public class UIManager : MonoBehaviour
                 "\nSpe: "+ (Math.Truncate(100*Hero.CurrentHero.Spe)/100);
 
             //Hero Equpped List
-
-            EquipmentContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Wearing.Count() * 45);
+            height = EquipmentContent.GetComponent<RectTransform>().rect.width;
+            EquipmentContent.sizeDelta = new Vector2(0,3+ Hero.CurrentHero.Wearing.Count() * height / EquipedItem.GetComponent<AspectRatioFitter>().aspectRatio);
+            
 
             for (int i = 0; i < Hero.CurrentHero.Wearing.Count(); i++)
             {
@@ -276,7 +279,7 @@ public class UIManager : MonoBehaviour
                 Vector3 pos = new Vector3(EquipedSpawn.localPosition.x, -spawnY, EquipedSpawn.position.z);
                 TableEquipment.Add(Instantiate(EquipedItem, pos, EquipedSpawn.rotation));
                 TableEquipment[i].transform.SetParent(EquipmentContent, false);
-                TableEquipment[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + Hero.CurrentHero.Wearing[i].lvl;
+                TableEquipment[i].GetComponent<ItemEntrys>().ItemLvl.text = "Lvl." + Hero.CurrentHero.Wearing[i].lvl;
                     switch (Hero.CurrentHero.Wearing[i].Type)
                     {
                         case Items.ItemType.Weapon:
@@ -297,21 +300,22 @@ public class UIManager : MonoBehaviour
                     }
                 TableEquipment[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Wearing[i].strength) / 100);
                 TableEquipment[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Wearing[i];
-                height = TableEquipment[0].GetComponent<RectTransform>().rect.height+3;
-                Debug.Log(height);
+                height = TableEquipment[0].GetComponent<RectTransform>().rect.height;
 
             }
 
+
             //Hero Bag List
-            BagContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * 52 + 30);
+            height = BagContent.GetComponent<RectTransform>().rect.width;
+            BagContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * height / BagItem.GetComponent<AspectRatioFitter>().aspectRatio);
 
             for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
             {
-                float spawnY = i * 52;
-                Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+                float spawnY = (i * height) - BagSpawn.localPosition.y;
+                Vector3 pos = new Vector3(BagSpawn.localPosition.x, -spawnY, BagSpawn.position.z);
                 TableBag.Add(Instantiate(BagItem, pos, BagSpawn.rotation));
-                TableBag[i].transform.SetParent(BagSpawn, false);
-                TableBag[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + Hero.CurrentHero.Bag[i].lvl;
+                TableBag[i].transform.SetParent(BagContent, false);
+                TableBag[i].GetComponent<ItemEntrys>().ItemLvl.text = "Lvl." + Hero.CurrentHero.Bag[i].lvl;
                 switch (Hero.CurrentHero.Bag[i].Type)
                 {
                     case Items.ItemType.Weapon:
@@ -332,6 +336,7 @@ public class UIManager : MonoBehaviour
                 }
                 TableBag[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].strength) / 100);
                 TableBag[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
+                height = TableBag[0].GetComponent<RectTransform>().rect.height ;
 
             }
 
@@ -372,9 +377,11 @@ public class UIManager : MonoBehaviour
             Destroy(Item);
         }
         TableBag.Clear();
-        //Hero Equpped List
 
-        EquipmentContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Wearing.Count() * 45);
+
+        //Hero Equpped List
+        height = EquipmentContent.GetComponent<RectTransform>().rect.width;
+        EquipmentContent.sizeDelta = new Vector2(0,3+ Hero.CurrentHero.Wearing.Count() * height / EquipedItem.GetComponent<AspectRatioFitter>().aspectRatio);
 
         for (int i = 0; i < Hero.CurrentHero.Wearing.Count(); i++)
         {
@@ -382,7 +389,7 @@ public class UIManager : MonoBehaviour
             Vector3 pos = new Vector3(EquipedSpawn.localPosition.x, -spawnY, EquipedSpawn.position.z);
             TableEquipment.Add(Instantiate(EquipedItem, pos, EquipedSpawn.rotation));
             TableEquipment[i].transform.SetParent(EquipmentContent, false);
-            TableEquipment[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + Hero.CurrentHero.Wearing[i].lvl;
+            TableEquipment[i].GetComponent<ItemEntrys>().ItemLvl.text = "Lvl." + Hero.CurrentHero.Wearing[i].lvl;
             switch (Hero.CurrentHero.Wearing[i].Type)
             {
                 case Items.ItemType.Weapon:
@@ -403,21 +410,20 @@ public class UIManager : MonoBehaviour
             }
             TableEquipment[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Wearing[i].strength) / 100);
             TableEquipment[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Wearing[i];
-            height = TableEquipment[0].GetComponent<RectTransform>().rect.height+3;
-            Debug.Log(height);
+            height = TableEquipment[0].GetComponent<RectTransform>().rect.height;
         }
 
         //Hero Bag List
-
-        BagContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * 52+30);
+        height = BagContent.GetComponent<RectTransform>().rect.width;
+        BagContent.sizeDelta = new Vector2(0,3+ Hero.CurrentHero.Bag.Count() * height / BagItem.GetComponent<AspectRatioFitter>().aspectRatio);
 
         for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
         {
-            float spawnY = i * 52;
-            Vector3 pos = new Vector3(SpawnPoint.position.x, -spawnY, SpawnPoint.position.z);
+            float spawnY = (i * height) - BagSpawn.localPosition.y;
+            Vector3 pos = new Vector3(BagSpawn.localPosition.x, -spawnY, BagSpawn.position.z);
             TableBag.Add(Instantiate(BagItem, pos, BagSpawn.rotation));
-            TableBag[i].transform.SetParent(BagSpawn, false);
-            TableBag[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + Hero.CurrentHero.Bag[i].lvl;
+            TableBag[i].transform.SetParent(BagContent, false);
+            TableBag[i].GetComponent<ItemEntrys>().ItemLvl.text = "Lvl." + Hero.CurrentHero.Bag[i].lvl;
             switch (Hero.CurrentHero.Bag[i].Type)
             {
                 case Items.ItemType.Weapon:
@@ -438,6 +444,7 @@ public class UIManager : MonoBehaviour
             }
             TableBag[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].strength) / 100);
             TableBag[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
+            height = TableBag[0].GetComponent<RectTransform>().rect.height;
 
         }
 

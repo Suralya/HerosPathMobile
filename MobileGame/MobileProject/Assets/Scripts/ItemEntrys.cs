@@ -27,10 +27,17 @@ public class ItemEntrys : MonoBehaviour
 
     public void BuyItem()
     {
-        Hero.CurrentHero.Bag.Add(LinkedItem);
-        Hero.CurrentHero.Gold -= LinkedItem.price;
-        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().areasInUseArray[1].GetComponent<Area>().MarketStore.Remove(LinkedItem);
-        GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().UpdateMarketplace();
+        if (Hero.CurrentHero.Gold - LinkedItem.price >= 0)
+        {
+            Hero.CurrentHero.Bag.Add(LinkedItem);
+            Hero.CurrentHero.Gold -= LinkedItem.price;
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().areasInUseArray[1].GetComponent<Area>().MarketStore.Remove(LinkedItem);
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().UpdateMarketplace();
+        }
+        else
+        {
+            //TO DO MELDUNG DINGE KÖNNEN NICHT GEKAUFT WERDEN
+        }
     }
 
     public void SellItem()

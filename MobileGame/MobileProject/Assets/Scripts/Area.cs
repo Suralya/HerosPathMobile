@@ -10,9 +10,13 @@ public class Area : MonoBehaviour
 
     public ArealTypes AreaType;
     public int ID = 0;
+    public float Probability;
+    public float Weight;
 
     //Area Influence on Hero
     public int Heal, Experience =0;
+
+    public int itemprobability, moneyprobability;
 
     //MonsterStats
     public int Level, Hp, Str, Def, Dex=0;
@@ -65,7 +69,7 @@ public class Area : MonoBehaviour
                 break;
             case ArealTypes.weakMonster:
                 // Set Monster Lvl
-                Level = Random.Range(HeroStats.Lvl - 6, HeroStats.Lvl - 3);
+                Level = Random.Range(HeroStats.Lvl - 6, HeroStats.Lvl - 2);
                 if (Level < 1)
                     Level = 1;
 
@@ -77,7 +81,7 @@ public class Area : MonoBehaviour
                 break;
             case ArealTypes.Monster:
                 // Set Monster Lvl
-                Level = Random.Range(HeroStats.Lvl - 2, HeroStats.Lvl + 2);
+                Level = Random.Range(HeroStats.Lvl , HeroStats.Lvl + 4);
                 if (Level < 1)
                     Level = 1;
 
@@ -89,7 +93,7 @@ public class Area : MonoBehaviour
                 break;
             case ArealTypes.strongMonster:
                 // Set Monster Lvl
-                Level = Random.Range(HeroStats.Lvl + 1, HeroStats.Lvl + 3);
+                Level = Random.Range(HeroStats.Lvl + 4, HeroStats.Lvl + 7);
 
                 SetMonsterStats();
                 StartCoroutine(Fight(HeroStats));
@@ -99,15 +103,17 @@ public class Area : MonoBehaviour
                 break;
             case ArealTypes.Treasure:
 
-                if (Random.Range(0, 100) <= 60)
+                if (Random.Range(0, 100) <= itemprobability)
                 {
                     Items Temp = new Items(Picker.PickItem.Pick().Type);
-                    HeroStats.AddItem(Temp, Random.Range(HeroStats.Lvl - 3, HeroStats.Lvl + 3));
+                    HeroStats.AddItem(Temp, Random.Range(HeroStats.Lvl - 3, HeroStats.Lvl + 5));
                 }
 
-                int mon = HeroStats.Lvl * Random.Range(4, 12);
-                Debug.Log(HeroStats.Name+ " earned " + mon + " Gold!");
-                HeroStats.Gold += mon;
+                if (Random.Range(0, 100) <= moneyprobability)
+                {
+                    int mon = HeroStats.Lvl * Random.Range(4, 20);
+                    HeroStats.Gold += mon;
+                }
 
                 break;
 
@@ -150,15 +156,19 @@ public class Area : MonoBehaviour
 
         if (Level >5)
         {
-            Hp += Hp * (Level * 4 / 100);
-            Str += Str * (Level * 4 / 100);
-            Def += Def * (Level * 4 / 100);
-            Dex += Dex * (Level * 4 / 100);
-            Spe += Spe * (Level * 4 / 100);
+            for (int i = 1; i <= Level / 5; i++)
+            {
+                Hp += Hp * (Level * 4 / 100);
+                Str += Str * (Level * 4 / 100);
+                Def += Def * (Level * 4 / 100);
+                Dex += Dex * (Level * 4 / 100);
+                Spe += Spe * (Level * 4 / 100);
+            }
+
         }
 
 
-        Experience = (int) (Level*((Mathf.Pow(Level, 1 / 2)/4) * 100)* 0.6f);
+        Experience = (int) (Level*((Mathf.Pow(Level, 1 / 2)/4) * 100)* 0.3f);
 
     }
 
@@ -272,25 +282,28 @@ public class Area : MonoBehaviour
                 yield return new WaitForSeconds(0.2f);
 
                 //MonsterTurn
-                Damage = (int)(Str - (HeroStats.Def * Random.Range(0.6f, 0.95f)));
-                if (Damage < 1)
+                if (Hp > 0)
                 {
-                    Damage = 1;
-                }
-                if (Random.Range(0f, 10f) < CriticalMonster)
-                {
-                    Damage *= 2;
-                }
-                DamageApplyed = HeroStats.CurrentHp - Damage;
-                if (DamageApplyed < 0)
-                {
-                    DamageApplyed = 0;
-                }
-                while (HeroStats.CurrentHp != DamageApplyed)
-                {
-                    HeroStats.CurrentHp -= 1;
-                    yield return new WaitForEndOfFrame();
+                    Damage = (int)(Str - (HeroStats.Def * Random.Range(0.6f, 0.95f)));
+                    if (Damage < 1)
+                    {
+                        Damage = 1;
+                    }
+                    if (Random.Range(0f, 10f) < CriticalMonster)
+                    {
+                        Damage *= 2;
+                    }
+                    DamageApplyed = HeroStats.CurrentHp - Damage;
+                    if (DamageApplyed < 0)
+                    {
+                        DamageApplyed = 0;
+                    }
+                    while (HeroStats.CurrentHp != DamageApplyed)
+                    {
+                        HeroStats.CurrentHp -= 1;
+                        yield return new WaitForEndOfFrame();
 
+                    }
                 }
                 //yield return new WaitForSeconds(0.2f);
 
@@ -304,19 +317,17 @@ public class Area : MonoBehaviour
             yield return new WaitForSeconds(0.1f);
             HeroStats.AddExp(Experience);
 
-            if (Random.Range(0, 100) <= 30)
+            if (Random.Range(0, 100) <= moneyprobability)
             {
                 int mon = Level * Random.Range(3, 10);
                 Debug.Log(HeroStats.Name + " earned " + mon + " Gold!");
                 HeroStats.Gold += mon;
             }
-            if (Random.Range(0, 100) <= 8)
+            if (Random.Range(0, 100) <= itemprobability)
             {
                 Items Temp = new Items(Picker.PickItem.Pick().Type);
                 HeroStats.AddItem(Temp, Random.Range(Level - 5, Level + 3));
             }
-          //  Debug.Log("The Hero gained " + Experience + " Experience.");
-          //  Debug.Log("The Hero has " + HeroStats.CurrentExp + " now.");
         }
 
     }

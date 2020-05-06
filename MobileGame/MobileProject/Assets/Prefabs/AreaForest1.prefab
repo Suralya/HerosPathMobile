@@ -696,9 +696,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AreaType: 4
-  HealingPotential: 0
-  MonsterbasisAtk: 0
+  ID: 14
+  Probability: 10
+  Weight: 0
+  Heal: 0
   Experience: 0
+  Level: 0
+  Hp: 0
+  Str: 0
+  Def: 0
+  Dex: 0
+  Spe: 0
+  Tax: 0
+  StoreInventoryCount: 0
+  MarketStore: []
 --- !u!1 &7584529828068738155
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,11 +1351,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 908459927017986714}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 54ee537a47630a14396cf0ce4f1eec78,
-        type: 3}
-      propertyPath: m_Name
-      value: Tree_Birch
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 54ee537a47630a14396cf0ce4f1eec78,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1425,6 +1431,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: d6229e231103f9e499ead1d72c6fba09, type: 2}
+    - target: {fileID: -927199367670048503, guid: 54ee537a47630a14396cf0ce4f1eec78,
+        type: 3}
+      propertyPath: m_Name
+      value: Tree_Birch
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54ee537a47630a14396cf0ce4f1eec78, type: 3}
 --- !u!4 &1854596163654372685 stripped

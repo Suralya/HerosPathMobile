@@ -36,7 +36,7 @@ public class ItemEntrys : MonoBehaviour
         }
         else
         {
-            //TO DO MELDUNG DINGE KÖNNEN NICHT GEKAUFT WERDEN
+            StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().ShowShopErrorMessage());
         }
     }
 

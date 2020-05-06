@@ -125,14 +125,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AreaType: 3
+  ID: 8
+  Probability: 2
+  Weight: 0.3292683
   Heal: 0
   Experience: 0
+  itemprobability: 50
+  moneyprobability: 80
   Level: 0
   Hp: 0
   Str: 0
   Def: 0
   Dex: 0
   Spe: 0
+  Tax: 0
+  StoreInventoryCount: 0
+  MarketStore: []
 --- !u!1 &8179240006137075553
 GameObject:
   m_ObjectHideFlags: 0

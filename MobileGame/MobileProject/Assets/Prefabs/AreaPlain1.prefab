@@ -565,7 +565,7 @@ GameObject:
   - component: {fileID: 7214375339838637464}
   - component: {fileID: 3320408011634211917}
   m_Layer: 0
-  m_Name: AreaPlain
+  m_Name: AreaPlain1
   m_TagString: Area
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -616,9 +616,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AreaType: 4
-  HealingPotential: 0
-  MonsterbasisAtk: 0
+  ID: 1
+  Probability: 5
+  Weight: 0
+  Heal: 0
   Experience: 0
+  Level: 0
+  Hp: 0
+  Str: 0
+  Def: 0
+  Dex: 0
+  Spe: 0
+  Tax: 0
+  StoreInventoryCount: 0
+  MarketStore: []
 --- !u!1 &2786933428538849087
 GameObject:
   m_ObjectHideFlags: 0

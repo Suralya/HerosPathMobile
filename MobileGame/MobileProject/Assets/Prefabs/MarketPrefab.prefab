@@ -402,15 +402,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AreaType: 6
+  ID: 11
+  Probability: 2
+  Weight: 0.06097561
   Heal: 0
   Experience: 0
+  itemprobability: 0
+  moneyprobability: 0
   Level: 0
   Hp: 0
   Str: 0
   Def: 0
   Dex: 0
   Spe: 0
-  ID: 10
+  Tax: 0
+  StoreInventoryCount: 0
+  MarketStore: []
 --- !u!1001 &1508037796489714020
 PrefabInstance:
   m_ObjectHideFlags: 0

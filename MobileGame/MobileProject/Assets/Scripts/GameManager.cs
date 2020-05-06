@@ -40,6 +40,12 @@ public class GameManager : MonoBehaviour
         Picker.PickItem.Add(new Items(Items.ItemType.Shoes));
         Picker.PickItem.Add(new Items(Items.ItemType.Accessory));
 
+        AreaPicker.PickArea = new AreaPicker();
+        foreach (GameObject A in Areas)
+        {
+            AreaPicker.PickArea.Add(A);
+        }
+
 
         Hero.CurrentHero = new Hero();
         Game.currentGame = new Game();
@@ -55,7 +61,7 @@ public class GameManager : MonoBehaviour
         Pos3 = new Position();
         PosEnd = new Position();
 
-        ShuffleArealist(Areas);
+        //ShuffleArealist(Areas);
 
         Pos1.Pos = new Vector3(0, 0, -1);
         Pos1.Following = PosEnd;
@@ -145,7 +151,7 @@ public class GameManager : MonoBehaviour
         GameObject Temp;
         for (int i = 0; i < 3; i++)
         {
-            AreasOfChoice[i] = Areas[Random.Range(0, Areas.Count - 1)];
+            AreasOfChoice[i] = AreaPicker.PickArea.Pick();
             Temp = Instantiate(AreasOfChoice[i], ChoicePositions[i].transform.position, Quaternion.identity);
             areasShown[i] = Temp;
             Temp.transform.localScale = ChoicePositions[i].transform.localScale;
@@ -233,7 +239,7 @@ public class GameManager : MonoBehaviour
         Temp = Areas[Random.Range(0, Areas.Count - 1)];
         while (Temp.GetComponent<Area>().AreaType != Area.ArealTypes.Neutral)
         {
-            Temp = Areas[Random.Range(0, Areas.Count - 1)];
+            Temp = AreaPicker.PickArea.Pick();
         }
         Temp = Instantiate(Temp, Pos3.Pos, Quaternion.identity);
         Temp.GetComponent<Area>().CurrentPos = Pos3;

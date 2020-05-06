@@ -206,6 +206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AreaType: 0
+  ID: 6
+  Probability: 10
+  Weight: 0
   Heal: 0
   Experience: 0
   Level: 0
@@ -214,6 +217,9 @@ MonoBehaviour:
   Def: 0
   Dex: 0
   Spe: 0
+  Tax: 0
+  StoreInventoryCount: 0
+  MarketStore: []
 --- !u!1 &8770124311900798234
 GameObject:
   m_ObjectHideFlags: 0

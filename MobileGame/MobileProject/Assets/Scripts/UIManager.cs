@@ -56,6 +56,8 @@ public class UIManager : MonoBehaviour
     public List<GameObject> BagItems, ShopItems;
     public Transform ShopBagSpawn, ShopInventorySpawn;
 
+    public Canvas ShoppingError;
+
 
     void Start()
     {
@@ -64,6 +66,7 @@ public class UIManager : MonoBehaviour
         DeathScreen.enabled = false;
         MarketArea.enabled = false;
         Marketplace.enabled = false;
+        ShoppingError.enabled = false;
 
         HeroName.text = Hero.CurrentHero.Name;
         UpdateHeroUI();
@@ -563,6 +566,10 @@ public class UIManager : MonoBehaviour
 
                 ShopItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].strength) / 100);
                 GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int) (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl*(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl /2)* GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10* GM.areasInUseArray[1].GetComponent<Area>().Tax);
+                if (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl %2 != 0)
+                {
+                    GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * ((GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl / 2)+0.5) * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
+                }
                 ShopItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price;
                 ShopItems[i].GetComponent<ItemEntrys>().LinkedItem = GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i];
                 height = ShopItems[0].GetComponent<RectTransform>().rect.height;
@@ -659,6 +666,10 @@ public class UIManager : MonoBehaviour
 
             ShopItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].strength) / 100);
             GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl / 2) * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
+            if (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl % 2 != 0)
+            {
+                GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * ((GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl / 2) + 0.5) * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
+            }
             ShopItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price;
             ShopItems[i].GetComponent<ItemEntrys>().LinkedItem = GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i];
             height = ShopItems[0].GetComponent<RectTransform>().rect.height;
@@ -669,5 +680,13 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public IEnumerator ShowShopErrorMessage()
+    {
+
+        ShoppingError.enabled = true;
+            yield return new WaitForSeconds(1);
+        ShoppingError.enabled = false;
+
+    }
 
 }

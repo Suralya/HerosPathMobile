@@ -1818,6 +1818,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AreaType: 4
-  HealingPotential: 0
-  MonsterbasisAtk: 0
+  ID: 2
+  Probability: 5
+  Weight: 0
+  Heal: 0
   Experience: 0
+  Level: 0
+  Hp: 0
+  Str: 0
+  Def: 0
+  Dex: 0
+  Spe: 0
+  Tax: 0
+  StoreInventoryCount: 0
+  MarketStore: []

@@ -58,6 +58,10 @@ public class UIManager : MonoBehaviour
 
     public Canvas ShoppingError;
 
+    public Canvas SafetyQuestionShopping;
+    public Text EquiToBuy, EquiWorn, Price;
+    public Items ItemOfChoice;
+
 
     void Start()
     {
@@ -67,6 +71,7 @@ public class UIManager : MonoBehaviour
         MarketArea.enabled = false;
         Marketplace.enabled = false;
         ShoppingError.enabled = false;
+        SafetyQuestionShopping.enabled = false;
 
         HeroName.text = Hero.CurrentHero.Name;
         UpdateHeroUI();
@@ -303,7 +308,7 @@ public class UIManager : MonoBehaviour
                         TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
                         break;
                     }
-                TableEquipment[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Wearing[i].strength) / 100);
+                TableEquipment[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Wearing[i].worth) / 100);
                 TableEquipment[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Wearing[i];
                 height = TableEquipment[0].GetComponent<RectTransform>().rect.height;
 
@@ -340,7 +345,7 @@ public class UIManager : MonoBehaviour
                         TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
                         break;
                 }
-                TableBag[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].strength) / 100);
+                TableBag[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].worth) / 100);
                 TableBag[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
                 height = TableBag[0].GetComponent<RectTransform>().rect.height ;
 
@@ -415,7 +420,7 @@ public class UIManager : MonoBehaviour
                     TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
                     break;
             }
-            TableEquipment[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Wearing[i].strength) / 100);
+            TableEquipment[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Wearing[i].worth) / 100);
             TableEquipment[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Wearing[i];
             height = TableEquipment[0].GetComponent<RectTransform>().rect.height;
         }
@@ -450,7 +455,7 @@ public class UIManager : MonoBehaviour
                     TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
                     break;
             }
-            TableBag[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].strength) / 100);
+            TableBag[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].worth) / 100);
             TableBag[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
             height = TableBag[0].GetComponent<RectTransform>().rect.height;
 
@@ -525,7 +530,7 @@ public class UIManager : MonoBehaviour
                     break;
             }
             
-            BagItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].strength) / 100);
+            BagItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].worth) / 100);
             Hero.CurrentHero.Bag[i].price = Hero.CurrentHero.Bag[i].lvl * Hero.CurrentHero.Bag[i].rarity * 6;
             BagItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + Hero.CurrentHero.Bag[i].price;
             BagItems[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
@@ -564,7 +569,7 @@ public class UIManager : MonoBehaviour
                         break;
                 }
 
-                ShopItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].strength) / 100);
+                ShopItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].worth) / 100);
                 GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int) (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl*(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl /2)* GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10* GM.areasInUseArray[1].GetComponent<Area>().Tax);
                 if (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl %2 != 0)
                 {
@@ -625,7 +630,7 @@ public class UIManager : MonoBehaviour
                     break;
             }
 
-            BagItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].strength) / 100);
+            BagItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].worth) / 100);
             Hero.CurrentHero.Bag[i].price = Hero.CurrentHero.Bag[i].lvl * Hero.CurrentHero.Bag[i].rarity * 6;
             BagItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + Hero.CurrentHero.Bag[i].price;
             BagItems[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
@@ -664,7 +669,7 @@ public class UIManager : MonoBehaviour
                     break;
             }
 
-            ShopItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].strength) / 100);
+            ShopItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].worth) / 100);
             GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl / 2) * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
             if (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl % 2 != 0)
             {
@@ -678,6 +683,75 @@ public class UIManager : MonoBehaviour
         }
 
 
+    }
+
+    public void SafeShopping(Items ChosenItem)
+    {
+        SafetyQuestionShopping.enabled = true;
+        ItemOfChoice = ChosenItem;
+        
+        switch (ChosenItem.Type)
+        {
+            case Items.ItemType.Weapon:
+                EquiToBuy.text ="Weapon, Worth: " + ChosenItem.worth;
+                break;
+            case Items.ItemType.Armor:
+                EquiToBuy.text = "Armor, Worth: " + ChosenItem.worth;
+                break;
+            case Items.ItemType.Shoes:
+                EquiToBuy.text = "Shoes, Worth: " + ChosenItem.worth;
+                break;
+            case Items.ItemType.Gloves:
+                EquiToBuy.text = "Gloves, Worth: " + ChosenItem.worth;
+                break;
+            case Items.ItemType.Accessory:
+                EquiToBuy.text = "Accessory, Worth: " + ChosenItem.worth;
+                break;
+        }
+        Price.text = "for " + ChosenItem.price + " G?";
+        bool b = Hero.CurrentHero.Wearing.Any(i => i.Type == ChosenItem.Type);
+
+        if (b)
+        {
+            switch (ChosenItem.Type)
+            {
+                case Items.ItemType.Weapon:
+                    EquiWorn.text = "Currently equipped: Weapon, Worth: " + Hero.CurrentHero.Wearing.Find(i => i.Type == ChosenItem.Type).worth;
+                    break;
+                case Items.ItemType.Armor:
+                    EquiWorn.text = "Currently equipped: Armor, Worth: " + Hero.CurrentHero.Wearing.Find(i => i.Type == ChosenItem.Type).worth;
+                    break;
+                case Items.ItemType.Shoes:
+                    EquiWorn.text = "Currently equipped: Shoes, Worth: " + Hero.CurrentHero.Wearing.Find(i => i.Type == ChosenItem.Type).worth;
+                    break;
+                case Items.ItemType.Gloves:
+                    EquiWorn.text = "Currently equipped: Gloves, Worth: " + Hero.CurrentHero.Wearing.Find(i => i.Type == ChosenItem.Type).worth;
+                    break;
+                case Items.ItemType.Accessory:
+                    EquiWorn.text = "Currently equipped: Accessory, Worth: " + Hero.CurrentHero.Wearing.Find(i => i.Type == ChosenItem.Type).worth;
+                    break;
+            }
+        }
+        else
+        {
+            EquiWorn.text = "";
+        }
+
+
+    }
+    public void SafeShoppingNo()
+    {
+        SafetyQuestionShopping.enabled = false;
+    }
+
+    public void SafeShoppingYes()
+    {
+        SafetyQuestionShopping.enabled = false;
+
+        Hero.CurrentHero.Bag.Add(ItemOfChoice);
+        Hero.CurrentHero.Gold -= ItemOfChoice.price;
+        GM.areasInUseArray[1].GetComponent<Area>().MarketStore.Remove(ItemOfChoice);
+        UpdateMarketplace();
     }
 
     public IEnumerator ShowShopErrorMessage()

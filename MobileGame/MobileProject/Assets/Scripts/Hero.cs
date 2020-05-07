@@ -82,12 +82,10 @@ public class Hero
 
         if (ItemLvl < 1)
         {
-            Debug.Log("LvlAdjust");
             ItemLvl = 1;
         }
         NewItem.lvl = ItemLvl;
         SetupGear(NewItem);
-        Debug.Log(Name + " got a new " + NewItem.Type + " on Lvl " + NewItem.lvl+ " with a worth of: "+ NewItem.strength);
 
         bool b = Wearing.Any(i => i.Type == NewItem.Type);
 
@@ -96,12 +94,10 @@ public class Hero
         if (!b)
         {
             Equip(NewItem);
-            Debug.Log(Name + " is now wearing " + NewItem.Type + " on Lvl " + NewItem.lvl);
         }
         else
         {
             Bag.Add(NewItem);
-            Debug.Log(Name + " added " + NewItem.Type + " on Lvl " + NewItem.lvl+" to his bag");
         }
     }
 
@@ -112,31 +108,31 @@ public class Hero
             case Items.ItemType.Weapon:
                 for (int i = 1; i <= Gear.lvl; i++)
                 {
-                    Gear.strength += Random.Range(0, 3);
+                    Gear.worth += Random.Range(0, 3);
                 }
                 break;
             case Items.ItemType.Armor:
                 for (int i = 1; i <= Gear.lvl; i++)
                 {
-                    Gear.strength += Random.Range(0, 3);
+                    Gear.worth += Random.Range(0, 3);
                 }
                 break;
             case Items.ItemType.Shoes:
                 for (int i = 1; i <= Gear.lvl; i++)
                 {
-                    Gear.strength += Random.Range(0f, 0.5f);
+                    Gear.worth += Random.Range(0f, 0.5f);
                 }
                 break;
             case Items.ItemType.Gloves:
                 for (int i = 1; i <= Gear.lvl; i++)
                 {
-                    Gear.strength += Random.Range(0, 3);
+                    Gear.worth += Random.Range(0, 3);
                 }
                 break;
             case Items.ItemType.Accessory:
                 for (int i = 1; i <= Gear.lvl; i++)
                 {
-                    Gear.strength += Random.Range(0, 2);
+                    Gear.worth += Random.Range(0, 2);
                 }
                 break;
         }
@@ -148,20 +144,20 @@ public class Hero
         switch (Gear.Type)
         {
             case Items.ItemType.Weapon:
-                Str += (int)Gear.strength;
+                Str += (int)Gear.worth;
                 break;
             case Items.ItemType.Armor:
-                Def += (int)Gear.strength;
+                Def += (int)Gear.worth;
                 break;
             case Items.ItemType.Shoes:
-                Spe += Gear.strength;
+                Spe += Gear.worth;
                 break;
             case Items.ItemType.Gloves:
-                Dex += (int)Gear.strength;
+                Dex += (int)Gear.worth;
                 break;
             case Items.ItemType.Accessory:
-                Hp += (int)Gear.strength;
-                CurrentHp += (int)Gear.strength;
+                Hp += (int)Gear.worth;
+                CurrentHp += (int)Gear.worth;
                 break;
         }
         SortWearingGear();
@@ -173,20 +169,20 @@ public class Hero
         switch (Gear.Type)
         {
             case Items.ItemType.Weapon:
-                Str -= (int)Gear.strength;
+                Str -= (int)Gear.worth;
                 break;
             case Items.ItemType.Armor:
-                Def -= (int)Gear.strength;
+                Def -= (int)Gear.worth;
                 break;
             case Items.ItemType.Shoes:
-                Spe -= Gear.strength;
+                Spe -= Gear.worth;
                 break;
             case Items.ItemType.Gloves:
-                Dex -= (int)Gear.strength;
+                Dex -= (int)Gear.worth;
                 break;
             case Items.ItemType.Accessory:
-                Hp -= (int)Gear.strength;
-                CurrentHp -= (int)Gear.strength;
+                Hp -= (int)Gear.worth;
+                CurrentHp -= (int)Gear.worth;
                 break;
         }
         Bag.Add(Gear);

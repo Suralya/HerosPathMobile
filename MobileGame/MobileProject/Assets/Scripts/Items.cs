@@ -14,7 +14,7 @@ public class Items
     public int rarity;
     public int lvl;
     public ItemType Type;
-    public float strength;
+    public float worth;
 
     public float Probability;
     public float Weight;

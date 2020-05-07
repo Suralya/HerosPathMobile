@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.034385744, y: 0.057142884}
   m_AnchorMax: {x: 0.4832285, y: 0.44285715}
-  m_AnchoredPosition: {x: -0.070007324, y: 0.6000023}
+  m_AnchoredPosition: {x: -0.070007324, y: 0.6000061}
   m_SizeDelta: {x: -0.019996643, y: -0.87999916}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &169285807573731962
@@ -67,9 +67,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 80
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -144,9 +144,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 80
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -195,8 +195,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 7.2999954, y: -37.274994}
-  m_SizeDelta: {x: 12.5, y: 70}
+  m_AnchoredPosition: {x: 7.299988, y: -37.274994}
+  m_SizeDelta: {x: 12.5, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &159171278211241160
 CanvasRenderer:
@@ -307,7 +307,7 @@ MonoBehaviour:
     rarity: 0
     lvl: 0
     Type: 0
-    strength: 0
+    worth: 0
     Probability: 0
     Weight: 0
     price: 0
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AspectMode: 0
+  m_AspectMode: 1
   m_AspectRatio: 3.4136424
 --- !u!1 &5708733875933516988
 GameObject:
@@ -393,9 +393,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 80
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -470,9 +470,9 @@ MonoBehaviour:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
     m_FontSize: 20
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 80
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1

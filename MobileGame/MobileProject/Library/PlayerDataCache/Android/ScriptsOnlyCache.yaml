@@ -55,6 +55,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 48
       Script: {instanceID: 0}
+    - Class: 49
+      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 72
@@ -70,55 +72,55 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11200}
     - Class: 114
-      Script: {instanceID: 11220}
+      Script: {instanceID: 11222}
     - Class: 114
-      Script: {instanceID: 11242}
+      Script: {instanceID: 11244}
     - Class: 114
-      Script: {instanceID: 11248}
+      Script: {instanceID: 11250}
     - Class: 114
-      Script: {instanceID: 11334}
-    - Class: 114
-      Script: {instanceID: 11404}
+      Script: {instanceID: 11336}
     - Class: 114
       Script: {instanceID: 11406}
     - Class: 114
-      Script: {instanceID: 11448}
+      Script: {instanceID: 11408}
     - Class: 114
-      Script: {instanceID: 11492}
+      Script: {instanceID: 11450}
     - Class: 114
-      Script: {instanceID: 11574}
+      Script: {instanceID: 11494}
     - Class: 114
-      Script: {instanceID: 11604}
+      Script: {instanceID: 11576}
     - Class: 114
-      Script: {instanceID: 11654}
+      Script: {instanceID: 11606}
     - Class: 114
-      Script: {instanceID: 11784}
+      Script: {instanceID: 11656}
     - Class: 114
-      Script: {instanceID: 11882}
+      Script: {instanceID: 11786}
     - Class: 114
-      Script: {instanceID: 12098}
+      Script: {instanceID: 11884}
     - Class: 114
-      Script: {instanceID: 12114}
+      Script: {instanceID: 12100}
     - Class: 114
-      Script: {instanceID: 12190}
+      Script: {instanceID: 12116}
     - Class: 114
-      Script: {instanceID: 12324}
+      Script: {instanceID: 12194}
     - Class: 114
-      Script: {instanceID: 12490}
+      Script: {instanceID: 12328}
     - Class: 114
-      Script: {instanceID: 12866}
+      Script: {instanceID: 12494}
     - Class: 114
-      Script: {instanceID: 12984}
+      Script: {instanceID: 12870}
     - Class: 114
-      Script: {instanceID: 13114}
+      Script: {instanceID: 12988}
     - Class: 114
-      Script: {instanceID: 13132}
+      Script: {instanceID: 13118}
     - Class: 114
-      Script: {instanceID: 13174}
+      Script: {instanceID: 13136}
     - Class: 114
-      Script: {instanceID: 13180}
+      Script: {instanceID: 13178}
     - Class: 114
-      Script: {instanceID: 13262}
+      Script: {instanceID: 13184}
+    - Class: 114
+      Script: {instanceID: 13266}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -727,4 +729,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_09.apk
+  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_09_2.apk

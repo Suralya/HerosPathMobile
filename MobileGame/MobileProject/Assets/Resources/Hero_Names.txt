@@ -1,0 +1,73 @@
+{
+  "NameList": [
+    {
+      "Name": "Adberd"
+    },
+    {
+      "Name": "Jaython"
+    },
+    {
+      "Name": "Jax"
+    },
+    {
+      "Name": "Tholan"
+    },
+    {
+      "Name": "Titus"
+    },
+    {
+      "Name": "Kace"
+    },
+    {
+      "Name": "Derik"
+    },
+    {
+      "Name": "Endor"
+    },
+    {
+      "Name": "Damon"
+    },
+    {
+      "Name": "Halmar"
+    },
+    {
+      "Name": "Rhys"
+    },
+    {
+      "Name": "Nixon"
+    },
+    {
+      "Name": "Thorn"
+    },
+    {
+      "Name": "Fynn"
+    },
+    {
+      "Name": "Zane"
+    },
+    {
+      "Name": "Zander"
+    },
+    {
+      "Name": "Rocco"
+    },
+    {
+      "Name": "Blaze"
+    },
+    {
+      "Name": "Bakugo"
+    },
+    {
+      "Name": "Sephiroth"
+    },
+    {
+      "Name": "Cloud"
+    },
+    {
+      "Name": "Karseth"
+    },
+    {
+      "Name": "Alphinaud"
+    }
+  ]
+}

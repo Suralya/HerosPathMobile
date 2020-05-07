@@ -229,8 +229,11 @@ public class Hero
 
     public string GetName()
     {
-        string path = Application.dataPath + "/JSON_Data/Hero_Names.json";
-        string jsonString = File.ReadAllText(path);
+
+        TextAsset file = Resources.Load("Hero_Names") as TextAsset;
+        Debug.Log(file.ToString());
+        string jsonString = file.ToString();
+
         HeroNameList<HeroNames> HeroNamesList = JsonUtility.FromJson<HeroNameList<HeroNames>>(jsonString);
         List<string> HeroNames= new List<string>();
         //put everything into a list

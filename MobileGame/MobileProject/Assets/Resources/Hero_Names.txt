@@ -66,6 +66,9 @@
     {
       "Name": "Karseth"
     },
+	    {
+      "Name": "Thales"
+    },
     {
       "Name": "Alphinaud"
     }

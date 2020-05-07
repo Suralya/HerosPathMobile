@@ -152,20 +152,16 @@ public class Area : MonoBehaviour
             Def += Random.Range(1, 5);
             Dex += Random.Range(1, 5);
             Spe += Random.Range(0f, 0.4f);
-        }
-
-        if (Level >5)
-        {
-            for (int i = 1; i <= Level / 5; i++)
+            if (Level % 5 == 0)
             {
-                Hp += Hp * (Level * 4 / 100);
-                Str += Str * (Level * 4 / 100);
-                Def += Def * (Level * 4 / 100);
-                Dex += Dex * (Level * 4 / 100);
-                Spe += Spe * (Level * 4 / 100);
+                Hp += Hp *  ( 15 / 100);
+                Str += Str * ( 15 / 100);
+                Def += Def * ( 15 / 100);
+                Dex += Dex * ( 15 / 100);
+                Spe += Spe * ( 15 / 100);
             }
-
         }
+
 
 
         Experience = (int) (Level*((Mathf.Pow(Level, 1 / 2)/4) * 100)* 0.3f);

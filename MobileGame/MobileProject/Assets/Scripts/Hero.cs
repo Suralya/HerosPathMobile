@@ -135,7 +135,7 @@ public class Hero
             case Items.ItemType.Accessory:
                 for (int i = 1; i <= Gear.lvl; i++)
                 {
-                    Gear.worth += Random.Range(0, 2);
+                    Gear.worth += Random.Range(0, 5);
                 }
                 break;
         }

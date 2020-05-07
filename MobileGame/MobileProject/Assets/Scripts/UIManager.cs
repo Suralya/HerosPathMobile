@@ -365,7 +365,11 @@ public class UIManager : MonoBehaviour
             ScorePanel.enabled = true;
             ShowStatsAndInventory();
             ShowScorelist();
-            GM.InMenu = false;
+            if (!Marketplace.enabled)
+            {
+                GM.InMenu = false;
+            }
+
         }
         else
         {

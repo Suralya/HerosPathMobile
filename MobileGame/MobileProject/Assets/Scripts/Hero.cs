@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using System.IO;
 
 [System.Serializable]
 public class Hero
 {
     public static Hero CurrentHero;
 
-    public string Name = "Adberd";
+    public string Name = "NoName";
     public int Lvl;
 
     public int maxExp;
@@ -60,7 +61,9 @@ public class Hero
     {
 
         Lvl = 1;
-        Name = "Adberd";
+
+
+        Name = GetName();
         maxExp = 100;
         Hp = Random.Range(15, 25);
         CurrentHp = Hp;
@@ -221,6 +224,31 @@ public class Hero
 
         Wearing = sortedEquipment; 
 
+
+    }
+
+    public string GetName()
+    {
+        string path = Application.dataPath + "/JSON_Data/Hero_Names.json";
+        string jsonString = File.ReadAllText(path);
+        HeroNameList<HeroNames> HeroNamesList = JsonUtility.FromJson<HeroNameList<HeroNames>>(jsonString);
+        List<string> HeroNames= new List<string>();
+        //put everything into a list
+        for (int i = 0; i < HeroNamesList.NameList.Length; i++)
+        {
+            HeroNames.Add(HeroNamesList.NameList[i].Name);
+        }
+
+        //Randomize Namelist
+        for (int i = HeroNames.Count - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i);
+            string temp = HeroNames[i];
+            HeroNames[i] = HeroNames[j];
+            HeroNames[j] = temp;
+        }
+
+        return HeroNames[Random.Range(0, HeroNames.Count)];
 
     }
 

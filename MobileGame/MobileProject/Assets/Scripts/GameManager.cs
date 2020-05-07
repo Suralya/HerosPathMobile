@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+
         Picker.PickItem = new Picker();
         Picker.PickItem.Add(new Items(Items.ItemType.Weapon));
         Picker.PickItem.Add(new Items(Items.ItemType.Armor));
@@ -70,7 +71,8 @@ public class GameManager : MonoBehaviour
         Pos3.Pos = new Vector3(0, 0, 1);
         Pos3.Following = Pos2;
         PosEnd.Pos = new Vector3(0, 0, -2);
-        PosEnd.Following = null;
+        PosEnd.Following = null;     
+
     }
 
     void Start()

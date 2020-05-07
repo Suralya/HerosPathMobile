@@ -699,7 +699,7 @@ public class UIManager : MonoBehaviour
                 EquiToBuy.text = "Armor, Worth: " + ChosenItem.worth;
                 break;
             case Items.ItemType.Shoes:
-                EquiToBuy.text = "Shoes, Worth: " + ChosenItem.worth;
+                EquiToBuy.text = "Shoes, Worth: " + (Math.Truncate(100 *ChosenItem.worth) / 100);
                 break;
             case Items.ItemType.Gloves:
                 EquiToBuy.text = "Gloves, Worth: " + ChosenItem.worth;
@@ -722,7 +722,7 @@ public class UIManager : MonoBehaviour
                     EquiWorn.text = "Currently equipped: Armor, Worth: " + Hero.CurrentHero.Wearing.Find(i => i.Type == ChosenItem.Type).worth;
                     break;
                 case Items.ItemType.Shoes:
-                    EquiWorn.text = "Currently equipped: Shoes, Worth: " + Hero.CurrentHero.Wearing.Find(i => i.Type == ChosenItem.Type).worth;
+                    EquiWorn.text = "Currently equipped: Shoes, Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Wearing.Find(i => i.Type == ChosenItem.Type).worth) / 100);
                     break;
                 case Items.ItemType.Gloves:
                     EquiWorn.text = "Currently equipped: Gloves, Worth: " + Hero.CurrentHero.Wearing.Find(i => i.Type == ChosenItem.Type).worth;

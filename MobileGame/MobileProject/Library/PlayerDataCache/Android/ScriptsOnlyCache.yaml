@@ -9,19 +9,13 @@ ScriptsOnlyBuild:
     - UIManager
     Unity.Postprocessing.Runtime.dll:
     - UnityEngine.Rendering.PostProcessing.AmbientOcclusion
-    - UnityEngine.Rendering.PostProcessing.AutoExposure
     - UnityEngine.Rendering.PostProcessing.Bloom
-    - UnityEngine.Rendering.PostProcessing.ChromaticAberration
     - UnityEngine.Rendering.PostProcessing.ColorGrading
-    - UnityEngine.Rendering.PostProcessing.DepthOfField
-    - UnityEngine.Rendering.PostProcessing.Grain
     - UnityEngine.Rendering.PostProcessing.LensDistortion
-    - UnityEngine.Rendering.PostProcessing.MotionBlur
     - UnityEngine.Rendering.PostProcessing.PostProcessLayer
     - UnityEngine.Rendering.PostProcessing.PostProcessProfile
     - UnityEngine.Rendering.PostProcessing.PostProcessResources
     - UnityEngine.Rendering.PostProcessing.PostProcessVolume
-    - UnityEngine.Rendering.PostProcessing.ScreenSpaceReflections
     - UnityEngine.Rendering.PostProcessing.Vignette
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
@@ -426,7 +420,7 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: 55641371fb0108f65d6cc0799f4540e2
+      Hash: d784ade2ae48b329815188a42126195e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Area
@@ -498,7 +492,7 @@ ScriptsOnlyBuild:
     className: VerticalLayoutGroup
   - hash:
       serializedVersion: 2
-      Hash: 54ef993f8c22d3a195b7a1be32bbfbfb
+      Hash: 52cf6a57e6cd6c693d34520f94596717
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ItemEntrys
@@ -600,7 +594,7 @@ ScriptsOnlyBuild:
     className: TMP_StyleSheet
   - hash:
       serializedVersion: 2
-      Hash: cf365c7904137116da0371d8c3d341a3
+      Hash: 0a6bfc22eaaaee7fa79570945b6201f5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: UIManager
@@ -733,4 +727,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene.unity
-  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_08.apk
+  playerPath: C:/Users/Tina Plavius/Desktop/3DStartupAPK/HerosPath_0_09.apk

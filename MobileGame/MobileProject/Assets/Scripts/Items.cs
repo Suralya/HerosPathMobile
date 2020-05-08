@@ -48,7 +48,7 @@ public class Items
                 break;
             case ItemType.Accessory:
                 rarity = 3;
-                Probability = 1;
+                Probability = 0.3f;
 
                 break;
 

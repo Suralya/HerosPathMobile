@@ -152,13 +152,13 @@ public class Area : MonoBehaviour
             Def += Random.Range(1, 5);
             Dex += Random.Range(1, 5);
             Spe += Random.Range(0f, 0.4f);
-            if (Level % 5 == 0)
+            if (i % 5 == 0)
             {
                 Hp += Hp *  ( 15 / 100);
-                Str += Str * ( 15 / 100);
-                Def += Def * ( 15 / 100);
-                Dex += Dex * ( 15 / 100);
-                Spe += Spe * ( 15 / 100);
+                Str += Str * (15 / 100);
+                Def += Def * (15 / 100);
+                Dex += Dex * (15 / 100);
+                Spe += Spe * (15 / 100);
             }
         }
 

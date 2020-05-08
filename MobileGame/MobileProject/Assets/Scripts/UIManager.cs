@@ -494,6 +494,8 @@ public class UIManager : MonoBehaviour
         {
             GM.InMenu = false;
             Marketplace.enabled = false;
+            ShoppingError.enabled = false;
+            SafetyQuestionShopping.enabled = false;
             BagItems.Clear();
             ShopItems.Clear();
         }
@@ -765,6 +767,12 @@ public class UIManager : MonoBehaviour
             yield return new WaitForSeconds(1);
         ShoppingError.enabled = false;
 
+    }
+
+    public void UseBestEquipment()
+    {
+        Hero.CurrentHero.WearBestEquipment();
+        UpdateInventoryTables();
     }
 
 }

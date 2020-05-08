@@ -17,12 +17,20 @@ public class ItemEntrys : MonoBehaviour
     {
         Hero.CurrentHero.SwapGear(LinkedItem);
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().UpdateInventoryTables();
+        if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().Marketplace.enabled)
+        {
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().UpdateMarketplace();
+        }
     }
     //ifEquipEntry
     public void UnequipGear()
     {
         Hero.CurrentHero.Unequip(LinkedItem);
         GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().UpdateInventoryTables();
+        if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().Marketplace.enabled)
+        {
+            GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().UpdateMarketplace();
+        }
     }
 
     public void BuyItem()

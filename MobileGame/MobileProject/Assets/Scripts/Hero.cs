@@ -143,6 +143,7 @@ public class Hero
 
     public void Equip(Items Gear)
     {
+
         Wearing.Add(Gear);
         switch (Gear.Type)
         {
@@ -200,13 +201,11 @@ public class Hero
         if (!b)
         {
             Equip(Gear);
-            Debug.Log("Item "+Gear.Type+" wurde angelegt.");
         }
         else
         {
             Unequip(Wearing.Find(i=> i.Type == Gear.Type));
             Equip(Gear);
-            Debug.Log("Item " + Gear.Type + " wurde ausgetauscht.");
         }
         Bag.Remove(Gear);
 
@@ -254,5 +253,31 @@ public class Hero
         return HeroNames[Random.Range(0, HeroNames.Count)];
 
     }
+
+    public void WearBestEquipment()
+    {
+        Debug.Log("Optimizing");
+        foreach (Items Gear in Bag.ToList<Items>())
+        {
+            bool b = Wearing.Any(i => i.Type == Gear.Type);
+            if (!b)
+            {
+                Equip(Gear);
+                Bag.Remove(Gear);
+            }
+            else
+            {
+                if (Wearing.Find(i => i.Type == Gear.Type).worth < Gear.worth)
+                {
+                    SwapGear(Gear);
+                }
+            }
+
+        }
+        Debug.Log("finished");
+
+
+    }
+
 
 }

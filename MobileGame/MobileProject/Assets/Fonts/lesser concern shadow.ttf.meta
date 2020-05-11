@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 734f1b7e9a316b24083f3fc83a82d9ed
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Lesser Concern
+  fontNames:
+  - Lesser Concern
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: e2ccdf4335d1a4348a94105a4754a1be, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

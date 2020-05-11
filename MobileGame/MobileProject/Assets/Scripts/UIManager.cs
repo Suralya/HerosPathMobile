@@ -22,8 +22,12 @@ public class UIManager : MonoBehaviour
 
     public Text EnmyLevelText, EnmyStrText, EnmyDefText, EnmyDexText, EnmySpeText;
 
+    //UI OnEnemyencounter
+    public Canvas EnemyEncounter;
+    public Text Enemylvl;
+
     //GameUI
-    public Text HeroName, HeroMony;
+    public Text HeroName, HeroMony, HeroLvl;
 
 
     public Canvas DeathScreen;
@@ -35,8 +39,6 @@ public class UIManager : MonoBehaviour
     public RectTransform content;
     public GameObject Entry;
     public List<GameObject> TableContent;
-
-    [SerializeField]
     public Transform SpawnPoint = null;
 
     //Stats And Inventory UI
@@ -46,7 +48,6 @@ public class UIManager : MonoBehaviour
     public RectTransform EquipmentContent, BagContent;
     public GameObject EquipedItem,BagItem;
     public List<GameObject> TableEquipment, TableBag;
-
     public Transform EquipedSpawn,BagSpawn;
 
     //Marketplace UI
@@ -72,6 +73,7 @@ public class UIManager : MonoBehaviour
         Marketplace.enabled = false;
         ShoppingError.enabled = false;
         SafetyQuestionShopping.enabled = false;
+        EnemyEncounter.enabled = false;
 
         HeroName.text = Hero.CurrentHero.Name;
         UpdateHeroUI();
@@ -93,6 +95,17 @@ public class UIManager : MonoBehaviour
             }
 
 
+        }
+
+        if (GM.areasInUseArray[1].GetComponent<Area>().AreaType == Area.ArealTypes.weakMonster ||
+            GM.areasInUseArray[1].GetComponent<Area>().AreaType == Area.ArealTypes.Monster ||
+            GM.areasInUseArray[1].GetComponent<Area>().AreaType == Area.ArealTypes.strongMonster)
+        {
+            EnemyEncounter.enabled = true;
+        }
+        else
+        {
+            EnemyEncounter.enabled = false;
         }
 
     }
@@ -151,7 +164,8 @@ public class UIManager : MonoBehaviour
             ExpIndicator.fillAmount = (float)Hero.CurrentHero.CurrentExp / Hero.CurrentHero.maxExp;
         }
 
-        HeroMony.text = Hero.CurrentHero.Gold.ToString()+ " Gold";
+        HeroMony.text = Hero.CurrentHero.Gold + " G";
+        HeroLvl.text = "Lvl."+Hero.CurrentHero.Lvl;
 
         //Stats public Text LevelText,StrText,DefText,DexText,SpeText;
         LevelText.text = "Level: " + Hero.CurrentHero.Lvl;
@@ -187,6 +201,8 @@ public class UIManager : MonoBehaviour
                 EnmyDefText.text = "Defense: " + Enemy.Def;
                 EnmyDexText.text = "Dexterity: " + Enemy.Dex;
                 EnmySpeText.text = "Speed: " + Enemy.Spe;
+                Enemylvl.text = "Lvl." + Enemy.Level;
+                Debug.Log (GM.areasInUseArray[1].GetComponent<Area>().Level);
                 break;
             case Area.ArealTypes.Monster:
                 EnmyLevelText.text = "Level: " + Enemy.Level;
@@ -194,6 +210,7 @@ public class UIManager : MonoBehaviour
                 EnmyDefText.text = "Defense: " + Enemy.Def;
                 EnmyDexText.text = "Dexterity: " + Enemy.Dex;
                 EnmySpeText.text = "Speed: " + Enemy.Spe;
+                Enemylvl.text = "Lvl." + Enemy.Level;
                 break;
             case Area.ArealTypes.strongMonster:
                 EnmyLevelText.text = "Level: " + Enemy.Level;
@@ -201,6 +218,7 @@ public class UIManager : MonoBehaviour
                 EnmyDefText.text = "Defense: " + Enemy.Def;
                 EnmyDexText.text = "Dexterity: " + Enemy.Dex;
                 EnmySpeText.text = "Speed: " + Enemy.Spe;
+                Enemylvl.text = "Lvl." + Enemy.Level;
                 break;
             default:
                 EnmyLevelText.text = "Special Area";
@@ -577,9 +595,13 @@ public class UIManager : MonoBehaviour
 
                 ShopItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].worth) / 100);
                 GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int) (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl*(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl /2)* GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10* GM.areasInUseArray[1].GetComponent<Area>().Tax);
-                if (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl %2 != 0)
+                if (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl == 1)
                 {
-                    GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * ((GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl / 2)+0.5) * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
+                    GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
+                }
+                else if (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl % 2 != 0)
+                {
+                    GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * ((GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl / 2) + 0.5) * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
                 }
                 ShopItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price;
                 ShopItems[i].GetComponent<ItemEntrys>().LinkedItem = GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i];
@@ -677,7 +699,11 @@ public class UIManager : MonoBehaviour
 
             ShopItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].worth) / 100);
             GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl / 2) * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
-            if (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl % 2 != 0)
+            if (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl == 1)
+            {
+                GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
+            }
+            else if (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl % 2 != 0)
             {
                 GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * ((GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl / 2) + 0.5) * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
             }
@@ -773,6 +799,10 @@ public class UIManager : MonoBehaviour
     {
         Hero.CurrentHero.WearBestEquipment();
         UpdateInventoryTables();
+        if (Marketplace.enabled)
+        {
+            UpdateMarketplace();
+        }
     }
 
 }

@@ -71,7 +71,7 @@ public class Hero
         Def = Random.Range(3, 9);
         Dex = Random.Range(3, 9);
         Spe = Random.Range(1.0f, 1.8f);
-        Gold = 5;
+        Gold = 12;
 
         Wearing = new List<Items>();
         Bag = new List<Items>();

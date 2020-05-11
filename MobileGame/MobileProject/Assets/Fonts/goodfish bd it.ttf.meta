@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 0fad5595ba087334fb89ac5562eba980
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Goodfish
+  fontNames:
+  - Goodfish
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: ae60b265e96fba94a966c92425be2b3c, type: 3}
+  - {fileID: 12800000, guid: 7d090de5d06bb72479c8d23c962f9821, type: 3}
+  - {fileID: 12800000, guid: 4a5a2c3fec849fa43a66435edf335154, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

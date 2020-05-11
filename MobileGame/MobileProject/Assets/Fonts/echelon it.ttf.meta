@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: cef82eb70cdf5434c84b7a800b1b68eb
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Echelon
+  fontNames:
+  - Echelon
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: ab0ebc0ddc4370d4baba4e6653d6dbe9, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

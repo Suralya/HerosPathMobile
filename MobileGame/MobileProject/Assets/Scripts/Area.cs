@@ -71,7 +71,7 @@ public class Area : MonoBehaviour
                 // Set Monster Lvl
                 Level = Random.Range(HeroStats.Lvl - 6, HeroStats.Lvl - 2);
                 if (Level < 1)
-                    Level = 1;
+                { Level = 1; }
 
                 SetMonsterStats();
                 StartCoroutine(Fight(HeroStats));
@@ -83,7 +83,7 @@ public class Area : MonoBehaviour
                 // Set Monster Lvl
                 Level = Random.Range(HeroStats.Lvl , HeroStats.Lvl + 4);
                 if (Level < 1)
-                    Level = 1;
+                { Level = 1; }
 
                 SetMonsterStats();
                 StartCoroutine(Fight(HeroStats));
@@ -120,7 +120,7 @@ public class Area : MonoBehaviour
             case ArealTypes.Market:
                 
                 GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MarketArea.enabled=true;
-                Tax = Random.Range(1.03f, 1.3f);
+                Tax = Random.Range(1.03f, 1.35f);
                 StoreInventoryCount = Random.Range(4, 6);
 
                 for (int i = 1; i <= StoreInventoryCount; i++)
@@ -147,11 +147,11 @@ public class Area : MonoBehaviour
     {
         for (int i = 0; i <= Level; i++)
         {
-            Hp += Random.Range(1, 5);
-            Str += Random.Range(1, 5);
-            Def += Random.Range(1, 5);
-            Dex += Random.Range(1, 5);
-            Spe += Random.Range(0f, 0.4f);
+            Hp += Random.Range(1, 6);
+            Str += Random.Range(1, 6);
+            Def += Random.Range(1, 6);
+            Dex += Random.Range(1, 6);
+            Spe += Random.Range(0f, 0.5f);
             if (i % 5 == 0)
             {
                 Hp += Hp *  ( 15 / 100);
@@ -162,9 +162,8 @@ public class Area : MonoBehaviour
             }
         }
 
-
-
         Experience = (int) (Level*((Mathf.Pow(Level, 1 / 2)/4) * 100)* 0.3f);
+
 
     }
 

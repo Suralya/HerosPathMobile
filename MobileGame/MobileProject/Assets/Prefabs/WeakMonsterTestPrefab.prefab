@@ -129,10 +129,10 @@ MonoBehaviour:
   AreaType: 1
   ID: 9
   Probability: 20
-  Weight: 0.2682927
+  Weight: 0.26136366
   Heal: 0
   Experience: 0
-  itemprobability: 5
+  itemprobability: 15
   moneyprobability: 40
   Level: 0
   Hp: 0

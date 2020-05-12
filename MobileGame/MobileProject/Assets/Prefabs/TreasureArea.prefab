@@ -137,8 +137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AreaType: 5
   ID: 10
-  Probability: 1
-  Weight: 0.085365854
+  Probability: 0.5
+  Weight: 0.03
   Heal: 0
   Experience: 0
   itemprobability: 80

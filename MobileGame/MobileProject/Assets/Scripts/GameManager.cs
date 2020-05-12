@@ -31,6 +31,9 @@ public class GameManager : MonoBehaviour
     //GameUI
     public UIManager GameUI;
 
+    //ParticlesInGame
+    public ParticleSystem OnLvlUp;
+
     private void Awake()
     {
 

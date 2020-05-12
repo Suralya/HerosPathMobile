@@ -288,8 +288,8 @@ public class UIManager : MonoBehaviour
             InventoryAndStatsPanel.enabled = true;
 
             //HeroStatusPanel
-            HeroStats.text = "Level "+ Hero.CurrentHero.Lvl+
-                "\nHP: "+ Hero.CurrentHero.CurrentHp+ "/" + Hero.CurrentHero.Hp+
+            HeroStats.text = 
+                "HP: "+ Hero.CurrentHero.CurrentHp+ "/" + Hero.CurrentHero.Hp+
                 "\nStr: " + Hero.CurrentHero.Str +
                 "\nDef: "+ Hero.CurrentHero.Def +
                 "\nDex: "+ Hero.CurrentHero.Dex +
@@ -483,8 +483,8 @@ public class UIManager : MonoBehaviour
 
         }
 
-        HeroStats.text = "Level " + Hero.CurrentHero.Lvl +
-    "\nHP: " + Hero.CurrentHero.CurrentHp + "/" + Hero.CurrentHero.Hp +
+        HeroStats.text = 
+    "HP: " + Hero.CurrentHero.CurrentHp + "/" + Hero.CurrentHero.Hp +
     "\nStr: " + Hero.CurrentHero.Str +
     "\nDef: " + Hero.CurrentHero.Def +
     "\nDex: " + Hero.CurrentHero.Dex +

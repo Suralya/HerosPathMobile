@@ -55,6 +55,8 @@ public class Hero
         Dex += Random.Range(0, 6);
         Spe += Random.Range(0f, 0.5f);
 
+        GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().OnLvlUp.Play();
+
     }
 
     public void HeroSetup()

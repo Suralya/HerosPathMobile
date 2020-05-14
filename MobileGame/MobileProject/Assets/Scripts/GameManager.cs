@@ -162,6 +162,10 @@ public class GameManager : MonoBehaviour
         }
         SafeCurrentGame();
         newStepEnabled = true;
+        foreach (GameObject Areal in areasShown)
+        {
+            StartCoroutine(SpinArea(Areal));
+        }
 
     }
     public void ClearArrangement()
@@ -214,6 +218,15 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public IEnumerator SpinArea(GameObject Areal)
+    {
+        while (newStepEnabled)
+        {
+            Areal.transform.RotateAround(Areal.transform.position, Areal.transform.up, Time.deltaTime * 40f);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     public void SafeCurrentGame()
     {
         Game.currentGame.HeroCharacter = Hero.CurrentHero;
@@ -231,7 +244,6 @@ public class GameManager : MonoBehaviour
         SaveLoad.Save();
 
     }
-
     public void StartGame()
     {
         Hero.CurrentHero.HeroSetup();
@@ -288,6 +300,10 @@ public class GameManager : MonoBehaviour
             Temp.transform.localScale = ChoicePositions[i].transform.localScale;
         }
         newStepEnabled = true;
+        foreach (GameObject Areal in areasShown)
+        {
+            StartCoroutine(SpinArea(Areal));
+        }
 
     }
 }

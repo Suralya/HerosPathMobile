@@ -19,7 +19,6 @@ public class UIManager : MonoBehaviour
     public Image HPIndicator;
     public Image ExpIndicator;
     public Text LevelText, StrText, DefText, DexText, SpeText;
-
     public Text EnmyLevelText, EnmyStrText, EnmyDefText, EnmyDexText, EnmySpeText;
 
     //UI OnEnemyencounter
@@ -28,8 +27,6 @@ public class UIManager : MonoBehaviour
 
     //GameUI
     public Text HeroName, HeroMony, HeroLvl;
-
-
     public Canvas DeathScreen;
 
     private float height = 0f;
@@ -63,6 +60,11 @@ public class UIManager : MonoBehaviour
     public Text EquiToBuy, EquiWorn, Price;
     public Items ItemOfChoice;
 
+    //PopUp on New Aquired Gold/Item
+    public GameObject NewItem, NewMoney;
+    private Color NewItemTextColor, NewMoneyTextcolor;
+    public GameObject MovingPointNewItem,MovingPointNewMoney;
+    public float FadeDuration=2;
 
     void Start()
     {
@@ -75,6 +77,11 @@ public class UIManager : MonoBehaviour
         SafetyQuestionShopping.enabled = false;
         EnemyEncounter.enabled = false;
 
+        NewItem.GetComponent<Text>().text = "";
+        NewMoney.GetComponent<Text>().text = "";
+        NewItemTextColor = NewItem.GetComponent<Text>().color;
+        NewMoneyTextcolor = NewMoney.GetComponent<Text>().color;
+
         HeroName.text = Hero.CurrentHero.Name;
         UpdateHeroUI();
 
@@ -85,6 +92,7 @@ public class UIManager : MonoBehaviour
      UpdateHeroUI();
         if (Hero.CurrentHero.CurrentHp <= 0)
         {
+            GM.newStepEnabled = false;
             if (!DeathScreen.enabled)
             {
                 ScoreList.Score.AddEntry(new Entry(Hero.CurrentHero.Name, Hero.CurrentHero.Lvl, Hero.CurrentHero.MonsterCounter, Hero.CurrentHero.StageCounter));
@@ -492,6 +500,15 @@ public class UIManager : MonoBehaviour
 
     }
 
+    public void UseBestEquipment()
+    {
+        Hero.CurrentHero.WearBestEquipment();
+        UpdateInventoryTables();
+        if (Marketplace.enabled)
+        {
+            UpdateMarketplace();
+        }
+    }
 
     //Marketplace
     public void OpenMarketplace()
@@ -795,14 +812,67 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void UseBestEquipment()
+    //Gaining Items or Money
+
+    public IEnumerator NewItemGained(Items Item)
     {
-        Hero.CurrentHero.WearBestEquipment();
-        UpdateInventoryTables();
-        if (Marketplace.enabled)
+        GameObject Temp = Instantiate(NewItem);
+        Temp.transform.SetParent(NewItem.transform.parent, false);
+        Temp.GetComponent<Text>().color = NewItemTextColor;
+        Color EndColor = new Color(255,255,255,0);
+        switch (Item.Type)
         {
-            UpdateMarketplace();
+            case Items.ItemType.Weapon:
+                Temp.GetComponent<Text>().text = "+ Lvl."+Item.lvl+" Weapon" ;
+                break;
+            case Items.ItemType.Armor:
+                Temp.GetComponent<Text>().text = "+ Lvl." + Item.lvl + " Armor";
+                break;
+            case Items.ItemType.Shoes:
+                Temp.GetComponent<Text>().text = "+ Lvl." + Item.lvl + " Shoes";
+                break;
+            case Items.ItemType.Gloves:
+                Temp.GetComponent<Text>().text = "+ Lvl." + Item.lvl + " Gloves";
+                break;
+            case Items.ItemType.Accessory:
+                Temp.GetComponent<Text>().text = "+ Lvl." + Item.lvl + " Accessory";
+                break;
         }
+        StartCoroutine(MoveText(Temp, MovingPointNewItem.transform.position));
+        for (float t = 0; t < FadeDuration; t += Time.deltaTime)
+        {
+            float normalizedTime = t / FadeDuration;
+            Temp.GetComponent<Text>().color = Color.Lerp(NewItemTextColor, EndColor, normalizedTime);
+            yield return null;
+        }
+
+    }
+
+    public IEnumerator MoneyGained(int Money)
+    {
+        GameObject Temp = Instantiate(NewMoney);
+        Temp.transform.SetParent(NewMoney.transform.parent, false);
+        Temp.GetComponent<Text>().color = NewMoneyTextcolor;
+        Temp.GetComponent<Text>().text = "+ " + Money + " G";
+        Color EndColor = new Color(255, 255, 255, 0);
+        StartCoroutine(MoveText(Temp, MovingPointNewMoney.transform.position));
+        for (float t = 0; t < FadeDuration; t += Time.deltaTime)
+        {
+            float normalizedTime = t / FadeDuration;
+            Temp.GetComponent<Text>().color = Color.Lerp(NewMoneyTextcolor, EndColor, normalizedTime);
+            yield return null;
+        }
+
+    }
+
+    public IEnumerator MoveText(GameObject Text, Vector3 end)
+    {
+        while (Text.transform.position != end)
+        {
+            Text.transform.position = Vector3.MoveTowards(Text.transform.position, end, 3 * Time.deltaTime);
+            yield return new WaitForEndOfFrame();
+        }
+        Destroy(Text);
     }
 
 }

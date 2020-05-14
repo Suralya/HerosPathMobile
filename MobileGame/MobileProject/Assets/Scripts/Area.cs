@@ -107,12 +107,14 @@ public class Area : MonoBehaviour
                 {
                     Items Temp = new Items(Picker.PickItem.Pick().Type);
                     HeroStats.AddItem(Temp, Random.Range(HeroStats.Lvl - 3, HeroStats.Lvl + 5));
+                    StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().NewItemGained(Temp));
                 }
 
                 if (Random.Range(0, 100) <= moneyprobability)
                 {
                     int mon = HeroStats.Lvl * Random.Range(4, 20);
                     HeroStats.Gold += mon;
+                    StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MoneyGained(mon));
                 }
 
                 break;
@@ -317,11 +319,13 @@ public class Area : MonoBehaviour
                 int mon = Level * Random.Range(3, 10);
                 Debug.Log(HeroStats.Name + " earned " + mon + " Gold!");
                 HeroStats.Gold += mon;
+                StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MoneyGained(mon));
             }
             if (Random.Range(0, 100) <= itemprobability)
             {
                 Items Temp = new Items(Picker.PickItem.Pick().Type);
                 HeroStats.AddItem(Temp, Random.Range(Level - 5, Level + 3));
+                StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().NewItemGained(Temp));
             }
         }
 

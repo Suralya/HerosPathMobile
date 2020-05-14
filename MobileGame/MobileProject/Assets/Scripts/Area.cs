@@ -53,6 +53,11 @@ public class Area : MonoBehaviour
             case ArealTypes.Healing:
                 Heal = (int) (Random.Range(0.3f, 0.8f) * HeroStats.Hp);
 
+                foreach (ParticleSystem P in GetComponentsInChildren<ParticleSystem>())
+                {
+                    P.Play();
+                }
+
                 if (HeroStats.CurrentHp +Heal > HeroStats.Hp)
                 {
                     HeroStats.CurrentHp = HeroStats.Hp;

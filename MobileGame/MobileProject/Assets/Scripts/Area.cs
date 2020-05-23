@@ -1,47 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Area : MonoBehaviour
 {
-    public Position CurrentPos=new Position();
-    public enum ArealTypes {Healing, weakMonster, Monster, strongMonster, Neutral, Treasure, Market };
+    public Position CurrentPos = new Position();
+
+    public enum ArealTypes { Healing, weakMonster, Monster, strongMonster, Neutral, Treasure, Market };
 
     public ArealTypes AreaType;
     public int ID = 0;
     public float Probability;
     public float Weight;
 
+    public Animator HeroAnimation;
+
     //Area Influence on Hero
-    public int Heal, Experience =0;
+    public int Heal, Experience = 0;
 
     public int itemprobability, moneyprobability;
 
     //MonsterStats
-    public int Level, Hp, Str, Def, Dex=0;
-    public float Spe=0f;
+    public int Level, Hp, Str, Def, Dex = 0;
+
+    public float Spe = 0f;
 
     //Marketplace
     public float Tax;
+
     public int StoreInventoryCount;
-    public List<Items> MarketStore = new List<Items>(); 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    public List<Items> MarketStore = new List<Items>();
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 
     // Ausführen der Arealen Eigenschaften
     public void ArealAction(Hero HeroStats)
     {
+        HeroAnimation = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().HeroAnimation;
         //Hier die Werte, die den Held beeinflussen
         if (GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MarketArea.enabled)
         {
@@ -51,14 +49,14 @@ public class Area : MonoBehaviour
         switch (AreaType)
         {
             case ArealTypes.Healing:
-                Heal = (int) (Random.Range(0.3f, 0.8f) * HeroStats.Hp);
+                Heal = (int)(Random.Range(0.3f, 0.8f) * HeroStats.Hp);
 
+                //HealingArealParticles
                 foreach (ParticleSystem P in GetComponentsInChildren<ParticleSystem>())
                 {
                     P.Play();
                 }
-
-                if (HeroStats.CurrentHp +Heal > HeroStats.Hp)
+                if (HeroStats.CurrentHp + Heal > HeroStats.Hp)
                 {
                     HeroStats.CurrentHp = HeroStats.Hp;
                 }
@@ -66,12 +64,14 @@ public class Area : MonoBehaviour
                 {
                     HeroStats.CurrentHp += Heal;
                 }
-
+ 
                 break;
+
             case ArealTypes.Neutral:
                 Experience = 1;
                 HeroStats.AddExp(Experience);
                 break;
+
             case ArealTypes.weakMonster:
                 // Set Monster Lvl
                 Level = Random.Range(HeroStats.Lvl - 6, HeroStats.Lvl - 2);
@@ -84,9 +84,10 @@ public class Area : MonoBehaviour
                 HeroStats.MonsterCounter++;
 
                 break;
+
             case ArealTypes.Monster:
                 // Set Monster Lvl
-                Level = Random.Range(HeroStats.Lvl , HeroStats.Lvl + 4);
+                Level = Random.Range(HeroStats.Lvl, HeroStats.Lvl + 4);
                 if (Level < 1)
                 { Level = 1; }
 
@@ -96,6 +97,7 @@ public class Area : MonoBehaviour
                 HeroStats.MonsterCounter++;
 
                 break;
+
             case ArealTypes.strongMonster:
                 // Set Monster Lvl
                 Level = Random.Range(HeroStats.Lvl + 4, HeroStats.Lvl + 7);
@@ -106,34 +108,34 @@ public class Area : MonoBehaviour
                 HeroStats.MonsterCounter++;
 
                 break;
-            case ArealTypes.Treasure:
 
+            case ArealTypes.Treasure:
+                //set Item
                 if (Random.Range(0, 100) <= itemprobability)
                 {
                     Items Temp = new Items(Picker.PickItem.Pick().Type);
                     HeroStats.AddItem(Temp, Random.Range(HeroStats.Lvl - 3, HeroStats.Lvl + 5));
                     StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().NewItemGained(Temp));
                 }
-
+                //set Money
                 if (Random.Range(0, 100) <= moneyprobability)
                 {
                     int mon = HeroStats.Lvl * Random.Range(4, 20);
                     HeroStats.Gold += mon;
                     StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MoneyGained(mon));
                 }
-
                 break;
 
             case ArealTypes.Market:
-                
-                GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MarketArea.enabled=true;
+
+                GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MarketArea.enabled = true;
                 Tax = Random.Range(1.03f, 1.35f);
                 StoreInventoryCount = Random.Range(4, 6);
 
                 for (int i = 1; i <= StoreInventoryCount; i++)
                 {
                     Items NewStoreItem = new Items(Picker.PickItem.Pick().Type);
-                    NewStoreItem.lvl = Random.Range(HeroStats.Lvl - 4,HeroStats.Lvl+5);
+                    NewStoreItem.lvl = Random.Range(HeroStats.Lvl - 4, HeroStats.Lvl + 5);
                     if (NewStoreItem.lvl < 1)
                     {
                         NewStoreItem.lvl = 1;
@@ -143,10 +145,7 @@ public class Area : MonoBehaviour
                 }
 
                 break;
-
         }
-
-
     }
 
     //Sets Monster Stats
@@ -161,7 +160,7 @@ public class Area : MonoBehaviour
             Spe += Random.Range(0f, 0.5f);
             if (i % 5 == 0)
             {
-                Hp += Hp *  ( 15 / 100);
+                Hp += Hp * (15 / 100);
                 Str += Str * (15 / 100);
                 Def += Def * (15 / 100);
                 Dex += Dex * (15 / 100);
@@ -169,38 +168,51 @@ public class Area : MonoBehaviour
             }
         }
 
-        Experience = (int) (Level*((Mathf.Pow(Level, 1 / 2)/4) * 100)* 0.3f);
+        Experience = (int)(Level * ((Mathf.Pow(Level, 1 / 2) / 4) * 100) * 0.3f);
 
-
+        //reducing worth of weak monsters on long run
+        if (Level < Hero.CurrentHero.Lvl-1 && Hero.CurrentHero.Lvl > 10)
+        {
+            Experience /= 3;
+        }
     }
 
     public IEnumerator Fight(Hero HeroStats)
     {
+        if (Hero.CurrentHero.Spe < 10)
+        {
+            HeroAnimation.speed = Hero.CurrentHero.Spe;
+        }
+        else
+        {
+            HeroAnimation.speed = 10;
+        }
+
         int DamageApplyed;
-        HeroStats.isFighting = true;
+        Hero.CurrentHero.isFighting = true;
         int Damage;
         double CriticalMonster;
-        CriticalMonster = (Dex / 8) * 0.1 - (Str / 10) * 0.1;
-        if (CriticalMonster > 9.5)
+        CriticalMonster = (Dex / 8) - (Str / 10) * 0.8;
+        if (CriticalMonster > 8.5)
         {
-            CriticalMonster = 9.5;
+            CriticalMonster = 8.5;
         }
 
         double CriticalHero;
-        CriticalHero = (HeroStats.Dex / 8) * 0.1 - (HeroStats.Str / 10) * 0.1;
+        CriticalHero = (HeroStats.Dex / 8) - (HeroStats.Str / 10) * 0.8;
         if (CriticalHero > 9.5)
         {
             CriticalHero = 9.5;
         }
-
+        yield return new WaitForSeconds(0.5f);
         //initiative Check
         if (Dex > HeroStats.Dex)
         {
-            Debug.Log("Das Monster Startet");
             //Monster Starts
             while (Hp > 0 && HeroStats.CurrentHp > 0)
             {
                 //MonsterTurn
+                HeroAnimation.SetInteger("FightState", 1);
                 Damage = (int)(Str - (HeroStats.Def * Random.Range(0.6f, 0.95f)));
                 if (Damage < 1)
                 {
@@ -210,8 +222,8 @@ public class Area : MonoBehaviour
                 {
                     Damage *= 2;
                 }
-                DamageApplyed = HeroStats.CurrentHp -Damage;
-                if (DamageApplyed <0)
+                DamageApplyed = HeroStats.CurrentHp - Damage;
+                if (DamageApplyed < 0)
                 {
                     DamageApplyed = 0;
                 }
@@ -219,9 +231,8 @@ public class Area : MonoBehaviour
                 {
                     HeroStats.CurrentHp -= 1;
                     yield return new WaitForEndOfFrame();
-
                 }
-               // yield return new WaitForSeconds(0.2f);
+                // yield return new WaitForSeconds(0.2f);
 
                 //HeroTurn
                 Damage = (int)(HeroStats.Str - (Def * Random.Range(0.6f, 0.95f)));
@@ -232,8 +243,13 @@ public class Area : MonoBehaviour
                 if (Random.Range(0f, 10f) < CriticalHero)
                 {
                     Damage *= 2;
+                    HeroAnimation.SetInteger("FightState", 3);
                 }
+                HeroAnimation.SetBool("Attacking", true);
                 Hp -= Damage;
+                yield return new WaitForSeconds(2f / HeroAnimation.speed);
+                HeroAnimation.SetBool("Attacking", false);
+                HeroAnimation.SetInteger("FightState", 2);
                 if (HeroStats.Spe > Spe + (Spe / 3))
                 {
                     Damage = (int)(HeroStats.Str - (Def * Random.Range(0.6f, 0.95f)));
@@ -244,20 +260,21 @@ public class Area : MonoBehaviour
                     if (Random.Range(0f, 10f) < CriticalHero)
                     {
                         Damage *= 2;
+                        HeroAnimation.SetInteger("FightState", 3);
                     }
                     Hp -= Damage;
+                    yield return new WaitForSeconds(2f / HeroAnimation.speed);
+                    HeroAnimation.SetBool("Attacking", false);
                 }
-                yield return new WaitForSeconds(0.2f);
-
             }
         }
         else
         {
-            Debug.Log("Der Held Startet");
             //Hero Starts
             while (Hp > 0 && HeroStats.CurrentHp > 0)
             {
                 //HeroTurn
+                HeroAnimation.SetInteger("FightState", 1);
                 Damage = (int)(HeroStats.Str - (Def * Random.Range(0.6f, 0.95f)));
                 if (Damage < 1)
                 {
@@ -266,9 +283,14 @@ public class Area : MonoBehaviour
                 if (Random.Range(0f, 10f) < CriticalHero)
                 {
                     Damage *= 2;
+                    HeroAnimation.SetInteger("FightState", 3);
                 }
+                HeroAnimation.SetBool("Attacking", true);
                 Hp -= Damage;
-                if (HeroStats.Spe > Spe + (Spe / 3))
+                yield return new WaitForSeconds(2f / HeroAnimation.speed);
+                HeroAnimation.SetBool("Attacking", false);
+                HeroAnimation.SetInteger("FightState", 2);
+                if (HeroStats.Spe > Spe + (Spe / 3) && Hp > 0)
                 {
                     Damage = (int)(HeroStats.Str - (Def * Random.Range(0.6f, 0.95f)));
                     if (Damage < 1)
@@ -278,10 +300,13 @@ public class Area : MonoBehaviour
                     if (Random.Range(0f, 10f) < CriticalHero)
                     {
                         Damage *= 2;
+                        HeroAnimation.SetInteger("FightState", 3);
                     }
+                    HeroAnimation.SetBool("Attacking", true);
                     Hp -= Damage;
+                    yield return new WaitForSeconds(2f / HeroAnimation.speed);
+                    HeroAnimation.SetBool("Attacking", false);
                 }
-                yield return new WaitForSeconds(0.2f);
 
                 //MonsterTurn
                 if (Hp > 0)
@@ -304,15 +329,13 @@ public class Area : MonoBehaviour
                     {
                         HeroStats.CurrentHp -= 1;
                         yield return new WaitForEndOfFrame();
-
                     }
                 }
                 //yield return new WaitForSeconds(0.2f);
-
             }
         }
 
-        HeroStats.isFighting = false;
+        Hero.CurrentHero.isFighting = false;
         //Heros Experience gain and Loot
         if (HeroStats.CurrentHp > 0)
         {
@@ -333,16 +356,5 @@ public class Area : MonoBehaviour
                 StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().NewItemGained(Temp));
             }
         }
-
     }
-
-
-
-
-
 }
-
-
-
-
-

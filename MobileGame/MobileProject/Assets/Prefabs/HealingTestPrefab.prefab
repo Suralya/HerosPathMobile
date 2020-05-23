@@ -4730,7 +4730,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1049150285
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -9718,9 +9718,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AreaType: 0
-  ID: 6
-  Probability: 10
-  Weight: 0
+  ID: 5
+  Probability: 5
+  Weight: 0.68
+  HeroAnimation: {fileID: 0}
   Heal: 0
   Experience: 0
   itemprobability: 0

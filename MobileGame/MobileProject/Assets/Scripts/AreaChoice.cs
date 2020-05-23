@@ -25,8 +25,9 @@ public class AreaChoice : MonoBehaviour
     private void OnMouseDown()
     {
 
-        if (GM.newStepEnabled == true && GM.InMenu==false)
+        if (GM.newStepEnabled == true && GM.InMenu==false && Hero.CurrentHero.isFighting==false)
         {
+            Debug.Log(Hero.CurrentHero.isFighting);
             GM.newStepEnabled = false;
             GM.AddArea(GM.AreasOfChoice[ArrayNumberOfChoice]);
             GM.ClearArrangement();

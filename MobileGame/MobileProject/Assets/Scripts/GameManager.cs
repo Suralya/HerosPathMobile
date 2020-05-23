@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 {
     public bool InMenu = false;
 
+    public Animator HeroAnimation;
+
     public GameObject StartingArea;
     public List<GameObject> Areas = new List<GameObject>();
 
@@ -177,15 +179,25 @@ public class GameManager : MonoBehaviour
 
     }
 
+    //Moves Areas and Enables Running Parameter on HeroAnimator
     public IEnumerator MoveToPosition(GameObject objectToMove, Vector3 end)
     {
+        if (Hero.CurrentHero.Spe < 10)
+        {
+            HeroAnimation.speed = Hero.CurrentHero.Spe;
+        }
+        else
+        {
+            HeroAnimation.speed = 10;
+        }
+        HeroAnimation.SetBool("running", true);
         // speed should be 1 unit per second
         while (objectToMove.transform.position != end)
         {
             objectToMove.transform.position = Vector3.MoveTowards(objectToMove.transform.position, end, Hero.CurrentHero.Spe * Time.deltaTime);
             yield return new WaitForEndOfFrame();
         }
-
+        HeroAnimation.SetBool("running", false);
     }
     public IEnumerator MoveToLastPosition(GameObject objectToMove, Vector3 end)
     {

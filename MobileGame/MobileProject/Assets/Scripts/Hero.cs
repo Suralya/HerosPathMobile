@@ -232,7 +232,6 @@ public class Hero
     {
 
         TextAsset file = Resources.Load("Hero_Names") as TextAsset;
-        Debug.Log(file.ToString());
         string jsonString = file.ToString();
 
         HeroNameList<HeroNames> HeroNamesList = JsonUtility.FromJson<HeroNameList<HeroNames>>(jsonString);

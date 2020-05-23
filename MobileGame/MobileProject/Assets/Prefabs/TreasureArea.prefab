@@ -137,8 +137,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AreaType: 5
   ID: 10
-  Probability: 0.5
-  Weight: 0.03
+  Probability: 0.3
+  Weight: 0.028571429
+  HeroAnimation: {fileID: 0}
   Heal: 0
   Experience: 0
   itemprobability: 80

@@ -144,7 +144,6 @@ public class UIManager : MonoBehaviour
         }
         else if (HPIndicator.fillAmount > (float)Hero.CurrentHero.CurrentHp / Hero.CurrentHero.Hp)
         {
-          //  GM.Hero.isFighting = true;
 
             HPIndicator.fillAmount -= IndicationSpeed * Time.deltaTime;
             if (HPIndicator.fillAmount < (float)Hero.CurrentHero.CurrentHp / Hero.CurrentHero.Hp)
@@ -153,10 +152,11 @@ public class UIManager : MonoBehaviour
             }
 
         }
-        else if (HPIndicator.fillAmount == (float)Hero.CurrentHero.CurrentHp / Hero.CurrentHero.Hp)
+      /*  else if (HPIndicator.fillAmount == (float)Hero.CurrentHero.CurrentHp / Hero.CurrentHero.Hp)
         {
             Hero.CurrentHero.isFighting = false;
         }
+      */
 
         if (ExpIndicator.fillAmount < (float)Hero.CurrentHero.CurrentExp / Hero.CurrentHero.maxExp)
         {

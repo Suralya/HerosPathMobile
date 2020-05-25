@@ -577,7 +577,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8386047699289812416}
-  m_LocalRotation: {x: -0, y: 0.84455603, z: -0, w: -0.5354673}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -608,6 +608,7 @@ MonoBehaviour:
   ID: 6
   Probability: 10
   Weight: 0.5657143
+  HeroAnimation: {fileID: 0}
   Heal: 0
   Experience: 0
   itemprobability: 0

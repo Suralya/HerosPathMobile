@@ -13,7 +13,9 @@ public class Area : MonoBehaviour
     public float Probability;
     public float Weight;
 
+    //Animationen
     public Animator HeroAnimation;
+    public Animator MonsterAnimation;
 
     //Area Influence on Hero
     public int Heal, Experience = 0;
@@ -73,6 +75,8 @@ public class Area : MonoBehaviour
                 break;
 
             case ArealTypes.weakMonster:
+                if (GetComponentsInChildren<Animator>().Length>0)
+                MonsterAnimation = GetComponentsInChildren<Animator>()[0];
                 // Set Monster Lvl
                 Level = Random.Range(HeroStats.Lvl - 6, HeroStats.Lvl - 2);
                 if (Level < 1)
@@ -86,6 +90,8 @@ public class Area : MonoBehaviour
                 break;
 
             case ArealTypes.Monster:
+                if (GetComponentsInChildren<Animator>().Length > 0)
+                    MonsterAnimation = GetComponentsInChildren<Animator>()[0];
                 // Set Monster Lvl
                 Level = Random.Range(HeroStats.Lvl, HeroStats.Lvl + 4);
                 if (Level < 1)
@@ -99,6 +105,8 @@ public class Area : MonoBehaviour
                 break;
 
             case ArealTypes.strongMonster:
+                if (GetComponentsInChildren<Animator>().Length > 0)
+                    MonsterAnimation = GetComponentsInChildren<Animator>()[0];
                 // Set Monster Lvl
                 Level = Random.Range(HeroStats.Lvl + 4, HeroStats.Lvl + 7);
 
@@ -146,6 +154,7 @@ public class Area : MonoBehaviour
 
                 break;
         }
+
     }
 
     //Sets Monster Stats
@@ -175,10 +184,25 @@ public class Area : MonoBehaviour
         {
             Experience /= 3;
         }
+
+
+
     }
 
     public IEnumerator Fight(Hero HeroStats)
     {
+        float AnimationSpeed;
+        if (Spe < 10)
+        {
+            AnimationSpeed = Spe;
+            if (Spe < 1.2f)
+            { AnimationSpeed = 1.2f; }
+        }
+        else
+        {
+            AnimationSpeed = 10;
+        }
+
         if (Hero.CurrentHero.Spe < 10)
         {
             HeroAnimation.speed = Hero.CurrentHero.Spe;
@@ -187,6 +211,7 @@ public class Area : MonoBehaviour
         {
             HeroAnimation.speed = 10;
         }
+
 
         int DamageApplyed;
         Hero.CurrentHero.isFighting = true;
@@ -212,7 +237,6 @@ public class Area : MonoBehaviour
             while (Hp > 0 && HeroStats.CurrentHp > 0)
             {
                 //MonsterTurn
-                HeroAnimation.SetInteger("FightState", 1);
                 Damage = (int)(Str - (HeroStats.Def * Random.Range(0.6f, 0.95f)));
                 if (Damage < 1)
                 {
@@ -223,18 +247,23 @@ public class Area : MonoBehaviour
                     Damage *= 2;
                 }
                 DamageApplyed = HeroStats.CurrentHp - Damage;
+                    PlayMonsterAnimation("Attack");
+                    yield return new WaitForSeconds(2f / AnimationSpeed);
+                
                 if (DamageApplyed < 0)
                 {
                     DamageApplyed = 0;
                 }
+                
                 while (HeroStats.CurrentHp != DamageApplyed)
                 {
                     HeroStats.CurrentHp -= 1;
                     yield return new WaitForEndOfFrame();
                 }
-                // yield return new WaitForSeconds(0.2f);
+
 
                 //HeroTurn
+                HeroAnimation.SetInteger("FightState", 1);
                 Damage = (int)(HeroStats.Str - (Def * Random.Range(0.6f, 0.95f)));
                 if (Damage < 1)
                 {
@@ -250,7 +279,7 @@ public class Area : MonoBehaviour
                 yield return new WaitForSeconds(2f / HeroAnimation.speed);
                 HeroAnimation.SetBool("Attacking", false);
                 HeroAnimation.SetInteger("FightState", 2);
-                if (HeroStats.Spe > Spe + (Spe / 3))
+                if (HeroStats.Spe > Spe + (Spe / 3) && Hp>0)
                 {
                     Damage = (int)(HeroStats.Str - (Def * Random.Range(0.6f, 0.95f)));
                     if (Damage < 1)
@@ -262,9 +291,14 @@ public class Area : MonoBehaviour
                         Damage *= 2;
                         HeroAnimation.SetInteger("FightState", 3);
                     }
+                    HeroAnimation.SetBool("Attacking", true);
                     Hp -= Damage;
                     yield return new WaitForSeconds(2f / HeroAnimation.speed);
                     HeroAnimation.SetBool("Attacking", false);
+                }
+                if (Hp <= 0)
+                {
+                    PlayMonsterAnimation("Die");
                 }
             }
         }
@@ -307,6 +341,10 @@ public class Area : MonoBehaviour
                     yield return new WaitForSeconds(2f / HeroAnimation.speed);
                     HeroAnimation.SetBool("Attacking", false);
                 }
+                if (Hp <= 0)
+                {
+                    PlayMonsterAnimation("Die");
+                }
 
                 //MonsterTurn
                 if (Hp > 0)
@@ -325,11 +363,16 @@ public class Area : MonoBehaviour
                     {
                         DamageApplyed = 0;
                     }
+                        PlayMonsterAnimation("Attack");
+                        yield return new WaitForSeconds(2f / AnimationSpeed);                    
+
+                    
                     while (HeroStats.CurrentHp != DamageApplyed)
                     {
                         HeroStats.CurrentHp -= 1;
                         yield return new WaitForEndOfFrame();
                     }
+                    
                 }
                 //yield return new WaitForSeconds(0.2f);
             }
@@ -355,6 +398,45 @@ public class Area : MonoBehaviour
                 HeroStats.AddItem(Temp, Random.Range(Level - 5, Level + 3));
                 StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().NewItemGained(Temp));
             }
+        }
+    }
+
+    public void PlayMonsterAnimation(string Animation)
+    {
+        StartCoroutine(StartMonsterAnimation(Animation));
+    }
+
+    public IEnumerator StartMonsterAnimation(string Animation)
+    {
+        if (GetComponentsInChildren<Animator>().Length > 0)
+        {
+            if (Spe < 10)
+            {
+                MonsterAnimation.speed = Spe;
+                if (Spe < 1.2f)
+                { MonsterAnimation.speed = 1.2f; }
+            }
+            else
+            {
+                MonsterAnimation.speed = 10;
+            }
+
+
+            switch (Animation)
+            {
+                case "Attack":
+                    MonsterAnimation.SetBool("Attacking", true);
+                    yield return new WaitForSeconds(1f / MonsterAnimation.speed);
+                    MonsterAnimation.SetBool("Attacking", false);
+                    break;
+
+                case "Die":
+                    MonsterAnimation.SetBool("Dying", true);
+                    break;
+
+            }
+
+
         }
     }
 }

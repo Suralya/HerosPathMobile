@@ -39,12 +39,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
 
-        Picker.PickItem = new Picker();
-        Picker.PickItem.Add(new Items(Items.ItemType.Weapon));
-        Picker.PickItem.Add(new Items(Items.ItemType.Armor));
-        Picker.PickItem.Add(new Items(Items.ItemType.Gloves));
-        Picker.PickItem.Add(new Items(Items.ItemType.Shoes));
-        Picker.PickItem.Add(new Items(Items.ItemType.Accessory));
+        ItemPicker.PickItem = new ItemPicker();
+        ItemPicker.PickItem.Add(new Items(Items.ItemType.Weapon));
+        ItemPicker.PickItem.Add(new Items(Items.ItemType.Armor));
+        ItemPicker.PickItem.Add(new Items(Items.ItemType.Gloves));
+        ItemPicker.PickItem.Add(new Items(Items.ItemType.Shoes));
+        ItemPicker.PickItem.Add(new Items(Items.ItemType.Accessory));
 
         AreaPicker.PickArea = new AreaPicker();
         foreach (GameObject A in Areas)

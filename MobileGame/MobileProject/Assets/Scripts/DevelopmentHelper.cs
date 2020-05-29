@@ -61,7 +61,7 @@ public class DevelopmentHelper : MonoBehaviour
 
     public void AddHeroItem()
     {
-        Items Temp = new Items(ItemPicker.PickItem.Pick().Type);
+        Items Temp = new Items(WeightedItemPicker.PickItem.Pick().Type);
         Hero.CurrentHero.AddItem(Temp, Random.Range(Hero.CurrentHero.Lvl, Hero.CurrentHero.Lvl + 5));
         StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().NewItemGained(Temp));
     }

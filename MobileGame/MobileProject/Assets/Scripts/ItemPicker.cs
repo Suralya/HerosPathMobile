@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemPicker
+public class WeightedItemPicker
 {
-    public static ItemPicker PickItem;
+    public static WeightedItemPicker PickItem;
     public List<Items> Items;
     public float ProbabilitySum;
 
-    public ItemPicker()
+    public WeightedItemPicker()
     {
         Items = new List<Items>();
     }

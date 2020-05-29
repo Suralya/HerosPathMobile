@@ -17,16 +17,21 @@ public class GameManager : MonoBehaviour
 
     //Areas Currently seen in the Game
     private Queue<GameObject> areasInUse = new Queue<GameObject>();
+    [HideInInspector]
     public GameObject[] areasInUseArray = new GameObject[3];
 
     public Position Pos1, Pos2, Pos3, PosEnd;
 
     //Variables to enable AreaChoice system
+    [HideInInspector]
     public GameObject[] AreasOfChoice = new GameObject[3];
+    [HideInInspector]
     private GameObject[] areasShown = new GameObject[3];
+    [HideInInspector]
     public GameObject[] ChoicePositions = new GameObject[3];
 
     //Variable to time Area Spawning/ Area Choosing
+    [HideInInspector]
     public bool newStepEnabled = false;
   //  private bool firstAreas = true;
 
@@ -39,14 +44,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
 
-        ItemPicker.PickItem = new ItemPicker();
-        ItemPicker.PickItem.Add(new Items(Items.ItemType.Weapon));
-        ItemPicker.PickItem.Add(new Items(Items.ItemType.Armor));
-        ItemPicker.PickItem.Add(new Items(Items.ItemType.Gloves));
-        ItemPicker.PickItem.Add(new Items(Items.ItemType.Shoes));
-        ItemPicker.PickItem.Add(new Items(Items.ItemType.Accessory));
-
-        Picker<Items> WItemPicker =new Picker<Items>(); 
+        WeightedItemPicker.PickItem = new WeightedItemPicker();
+        WeightedItemPicker.PickItem.Add(new Items(Items.ItemType.Weapon));
+        WeightedItemPicker.PickItem.Add(new Items(Items.ItemType.Armor));
+        WeightedItemPicker.PickItem.Add(new Items(Items.ItemType.Gloves));
+        WeightedItemPicker.PickItem.Add(new Items(Items.ItemType.Shoes));
+        WeightedItemPicker.PickItem.Add(new Items(Items.ItemType.Accessory));
 
         AreaPicker.PickArea = new AreaPicker();
         foreach (GameObject A in Areas)

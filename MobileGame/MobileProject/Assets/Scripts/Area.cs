@@ -9,6 +9,7 @@ public class Area : MonoBehaviour
     public enum ArealTypes { Healing, weakMonster, Monster, strongMonster, Neutral, Treasure, Market };
 
     public ArealTypes AreaType;
+    [HideInInspector]
     public int ID = 0;
     public float Probability;
     public float Weight;
@@ -23,14 +24,16 @@ public class Area : MonoBehaviour
     public int itemprobability, moneyprobability;
 
     //MonsterStats
+    [HideInInspector]
     public int Level, Hp, Str, Def, Dex = 0;
-
+    [HideInInspector]
     public float Spe = 0f;
 
     //Marketplace
     public float Tax;
 
     public int StoreInventoryCount;
+    [HideInInspector]
     public List<Items> MarketStore = new List<Items>();
 
     // Update is called once per frame
@@ -121,7 +124,7 @@ public class Area : MonoBehaviour
                 //set Item
                 if (Random.Range(0, 100) <= itemprobability)
                 {
-                    Items Temp = new Items(ItemPicker.PickItem.Pick().Type);
+                    Items Temp = new Items(WeightedItemPicker.PickItem.Pick().Type);
                     HeroStats.AddItem(Temp, Random.Range(HeroStats.Lvl - 3, HeroStats.Lvl + 5));
                     StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().NewItemGained(Temp));
                 }
@@ -142,7 +145,7 @@ public class Area : MonoBehaviour
 
                 for (int i = 1; i <= StoreInventoryCount; i++)
                 {
-                    Items NewStoreItem = new Items(ItemPicker.PickItem.Pick().Type);
+                    Items NewStoreItem = new Items(WeightedItemPicker.PickItem.Pick().Type);
                     NewStoreItem.lvl = Random.Range(HeroStats.Lvl - 4, HeroStats.Lvl + 5);
                     if (NewStoreItem.lvl < 1)
                     {
@@ -394,7 +397,7 @@ public class Area : MonoBehaviour
             }
             if (Random.Range(0, 100) <= itemprobability)
             {
-                Items Temp = new Items(ItemPicker.PickItem.Pick().Type);
+                Items Temp = new Items(WeightedItemPicker.PickItem.Pick().Type);
                 HeroStats.AddItem(Temp, Random.Range(Level - 5, Level + 3));
                 StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().NewItemGained(Temp));
             }

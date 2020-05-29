@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b77c5407dc277943b591ade9e6b18c5, type: 3}
   m_Name: LensDistortion
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -120,7 +120,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.57
+    value: 0.29
   color:
     overrideState: 1
     value: {r: 0.102280974, g: 0, b: 0.1981132, a: 1}
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -238,14 +238,14 @@ MonoBehaviour:
     value: 1
   ldrLut:
     overrideState: 0
-    value: {fileID: 0}
+    value: {fileID: 2800000, guid: 3745df98eec7b1b45b76960b9953a6a4, type: 3}
     defaultState: 4
   ldrLutContribution:
     overrideState: 0
     value: 1
   temperature:
     overrideState: 1
-    value: 2.4
+    value: 4.8
   tint:
     overrideState: 0
     value: 21.9
@@ -257,16 +257,16 @@ MonoBehaviour:
     value: 20
   saturation:
     overrideState: 1
-    value: 3.3
+    value: -5.7
   brightness:
     overrideState: 1
-    value: -0.9
+    value: 8.1
   postExposure:
     overrideState: 0
     value: 0
   contrast:
     overrideState: 0
-    value: 19.7
+    value: 23.4
   mixerRedOutRedIn:
     overrideState: 0
     value: 100
@@ -296,10 +296,10 @@ MonoBehaviour:
     value: 100
   lift:
     overrideState: 1
-    value: {x: 0.99017155, y: 0.9857249, z: 1, w: -0.050251257}
+    value: {x: 0.9760844, y: 0.97471493, z: 1, w: -0.050251257}
   gamma:
     overrideState: 1
-    value: {x: 0.9762218, y: 1, z: 0.96317756, w: -0.025125626}
+    value: {x: 1, y: 0.9284022, z: 0.90147686, w: 0.0519952}
   gain:
     overrideState: 1
     value: {x: 0.9208167, y: 0.94061255, z: 1, w: 0.012562815}

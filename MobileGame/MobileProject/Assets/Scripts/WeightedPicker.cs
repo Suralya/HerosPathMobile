@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 
 
-    internal class Picker<T> where T : IComparable
+    class Picker<T>
     {
         public List<WeightedObject<T>> WeightedList = new List<WeightedObject<T>>();
         public float ProbabilitySum;
@@ -54,7 +54,7 @@ using System.Collections.Generic;
     }
 
 
-    internal class WeightedObject<T> where T : IComparable
+    internal class WeightedObject<T>
     {
         public readonly T Container;
         public float Probability;

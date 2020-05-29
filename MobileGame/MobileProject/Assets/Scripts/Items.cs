@@ -7,7 +7,7 @@ using UnityEngine;
 public class Items
 {
 
-    // Weopen->Str; Armor->Def, Shoes->Spe, Gloves->Dex, Accessory->HP
+    // Weapon->Str; Armor->Def, Shoes->Spe, Gloves->Dex, Accessory->HP
     public enum ItemType {Weapon, Armor, Shoes, Gloves, Accessory };
     
     // 1=common, 2=rare, 3=super rare;

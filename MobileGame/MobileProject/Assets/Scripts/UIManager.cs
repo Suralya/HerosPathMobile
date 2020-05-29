@@ -101,8 +101,6 @@ public class UIManager : MonoBehaviour
                 ScoreList.Score.ShowList();
                 DeathScreen.enabled = true;
             }
-
-
         }
 
         if (GM.areasInUseArray[1].GetComponent<Area>().AreaType == Area.ArealTypes.weakMonster ||
@@ -152,11 +150,6 @@ public class UIManager : MonoBehaviour
             }
 
         }
-      /*  else if (HPIndicator.fillAmount == (float)Hero.CurrentHero.CurrentHp / Hero.CurrentHero.Hp)
-        {
-            Hero.CurrentHero.isFighting = false;
-        }
-      */
 
         if (ExpIndicator.fillAmount < (float)Hero.CurrentHero.CurrentExp / Hero.CurrentHero.maxExp)
         {

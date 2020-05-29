@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
         ItemPicker.PickItem.Add(new Items(Items.ItemType.Shoes));
         ItemPicker.PickItem.Add(new Items(Items.ItemType.Accessory));
 
+        Picker<Items> WItemPicker =new Picker<Items>(); 
+
         AreaPicker.PickArea = new AreaPicker();
         foreach (GameObject A in Areas)
         {
@@ -66,8 +68,6 @@ public class GameManager : MonoBehaviour
         Pos2 = new Position();
         Pos3 = new Position();
         PosEnd = new Position();
-
-        //ShuffleArealist(Areas);
 
         Pos1.Pos = new Vector3(0, 0, -1);
         Pos1.Following = PosEnd;
@@ -104,13 +104,10 @@ public class GameManager : MonoBehaviour
 
     }
 
-  
-
     void Update()
     {
 
     }
-
 
     public void MoveAreas()
     {
@@ -216,18 +213,6 @@ public class GameManager : MonoBehaviour
         }
         ArrangeAreaChoice();
         Destroy(objectToMove);
-    }
-
-    public void ShuffleArealist(List<GameObject> List)
-    {
-        for (int i = List.Count - 1; i > 0; i--)
-        {
-            int j = Random.Range(0, i);
-            GameObject temp = List[i];
-            List[i] = List[j];
-            List[j] = temp;
-        }
-
     }
 
     public IEnumerator SpinArea(GameObject Areal)

@@ -32,7 +32,6 @@ public class Hero
 
     }
 
-
     public void AddExp(int expGain)
     {
         CurrentExp += expGain;
@@ -215,7 +214,6 @@ public class Hero
 
     public void SortWearingGear()
     {
-        Debug.Log("Liste wird Sortiert");
         var sortedEquipment= Wearing.OrderBy(i =>
                     i.Type == Items.ItemType.Weapon ? 1
                   : i.Type == Items.ItemType.Armor ? 2
@@ -257,7 +255,6 @@ public class Hero
 
     public void WearBestEquipment()
     {
-        Debug.Log("Optimizing");
         foreach (Items Gear in Bag.ToList<Items>())
         {
             bool b = Wearing.Any(i => i.Type == Gear.Type);
@@ -275,8 +272,6 @@ public class Hero
             }
 
         }
-        Debug.Log("finished");
-
 
     }
 

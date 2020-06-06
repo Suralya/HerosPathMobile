@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -166,7 +167,7 @@ public class GameManager : MonoBehaviour
         newStepEnabled = true;
         foreach (GameObject Areal in areasShown)
         {
-            StartCoroutine(SpinArea(Areal));
+            StartCoroutine(AnimateArea(Areal));
         }
 
     }
@@ -218,11 +219,18 @@ public class GameManager : MonoBehaviour
         Destroy(objectToMove);
     }
 
-    public IEnumerator SpinArea(GameObject Areal)
+    public IEnumerator AnimateArea(GameObject Areal)
     {
+        float Basepos=Areal.transform.position.y;
+        float takentime = 0f;
         while (newStepEnabled)
         {
-            Areal.transform.RotateAround(Areal.transform.position, Areal.transform.up, Time.deltaTime * 40f);
+            //Rotation
+            Areal.transform.RotateAround(Areal.transform.position, Areal.transform.up, Time.deltaTime * 5f);
+            //Up and Down
+            takentime += Time.deltaTime;
+            Areal.transform.position = new Vector3(Areal.transform.position.x,Basepos + (float) Math.Sin(takentime * 100 * (Math.PI/180))*0.03f, Areal.transform.position.z);
+
             yield return new WaitForEndOfFrame();
         }
     }
@@ -252,7 +260,7 @@ public class GameManager : MonoBehaviour
         GameObject Temp = Instantiate(StartingArea, Pos2.Pos, Quaternion.identity);
         Temp.GetComponent<Area>().CurrentPos = Pos2;
         areasInUse.Enqueue(Temp);
-        Temp = Areas[Random.Range(0, Areas.Count - 1)];
+        Temp = Areas[UnityEngine.Random.Range(0, Areas.Count - 1)];
         while (Temp.GetComponent<Area>().AreaType != Area.ArealTypes.Neutral)
         {
             Temp = AreaPicker.PickArea.Pick();
@@ -302,7 +310,7 @@ public class GameManager : MonoBehaviour
         newStepEnabled = true;
         foreach (GameObject Areal in areasShown)
         {
-            StartCoroutine(SpinArea(Areal));
+            StartCoroutine(AnimateArea(Areal));
         }
 
     }

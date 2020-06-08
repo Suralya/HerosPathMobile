@@ -52,21 +52,22 @@ public class GameManager : MonoBehaviour
         WeightedItemPicker.PickItem.Add(new Items(Items.ItemType.Shoes));
         WeightedItemPicker.PickItem.Add(new Items(Items.ItemType.Accessory));
 
+        for (int i = 1; i <= Areas.Count; i++)
+        {
+            Areas[i - 1].GetComponent<Area>().ID = i;
+        }
+
         AreaPicker.PickArea = new AreaPicker();
         foreach (GameObject A in Areas)
         {
             AreaPicker.PickArea.Add(A);
         }
 
-
         Hero.CurrentHero = new Hero();
         Game.currentGame = new Game();
         ScoreList.Score = new ScoreList();
         
-        for (int i = 1; i <= Areas.Count; i++)
-        {
-            Areas[i - 1].GetComponent<Area>().ID = i;
-        }
+
 
         Pos1 = new Position();
         Pos2 = new Position();

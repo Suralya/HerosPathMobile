@@ -1042,16 +1042,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336dcec62f1f1c040828fa3d6e508247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AreaType: 3
+  AreaType: 1
   ID: 8
   Probability: 2
-  Weight: 0.3292683
+  Weight: 0
   HeroAnimation: {fileID: 0}
   MonsterAnimation: {fileID: 0}
   Heal: 0
   Experience: 0
   itemprobability: 50
   moneyprobability: 80
+  Minlvl: 4
+  Maxlvl: 7
   Level: 0
   Hp: 0
   Str: 0

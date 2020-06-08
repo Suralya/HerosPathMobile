@@ -417,7 +417,9 @@ MonoBehaviour:
   AreaType: 6
   ID: 11
   Probability: 2
-  Weight: 0.06097561
+  Weight: 0
+  HeroAnimation: {fileID: 0}
+  MonsterAnimation: {fileID: 0}
   Heal: 0
   Experience: 0
   itemprobability: 0

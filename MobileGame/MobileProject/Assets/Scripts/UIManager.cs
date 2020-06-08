@@ -103,9 +103,7 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        if (GM.areasInUseArray[1].GetComponent<Area>().AreaType == Area.ArealTypes.weakMonster ||
-            GM.areasInUseArray[1].GetComponent<Area>().AreaType == Area.ArealTypes.Monster ||
-            GM.areasInUseArray[1].GetComponent<Area>().AreaType == Area.ArealTypes.strongMonster)
+        if (GM.areasInUseArray[1].GetComponent<Area>().AreaType == Area.ArealTypes.Monster )
         {
             EnemyEncounter.enabled = true;
         }
@@ -196,24 +194,7 @@ public class UIManager : MonoBehaviour
                 EnmyDexText.text = "";
                 EnmySpeText.text = "";
                 break;
-            case Area.ArealTypes.weakMonster:
-                EnmyLevelText.text = "Level: " + Enemy.Level;
-                EnmyStrText.text = "Strength: " + Enemy.Str;
-                EnmyDefText.text = "Defense: " + Enemy.Def;
-                EnmyDexText.text = "Dexterity: " + Enemy.Dex;
-                EnmySpeText.text = "Speed: " + Enemy.Spe;
-                Enemylvl.text = "Lvl." + Enemy.Level;
-                Debug.Log (GM.areasInUseArray[1].GetComponent<Area>().Level);
-                break;
             case Area.ArealTypes.Monster:
-                EnmyLevelText.text = "Level: " + Enemy.Level;
-                EnmyStrText.text = "Strength: " + Enemy.Str;
-                EnmyDefText.text = "Defense: " + Enemy.Def;
-                EnmyDexText.text = "Dexterity: " + Enemy.Dex;
-                EnmySpeText.text = "Speed: " + Enemy.Spe;
-                Enemylvl.text = "Lvl." + Enemy.Level;
-                break;
-            case Area.ArealTypes.strongMonster:
                 EnmyLevelText.text = "Level: " + Enemy.Level;
                 EnmyStrText.text = "Strength: " + Enemy.Str;
                 EnmyDefText.text = "Defense: " + Enemy.Def;

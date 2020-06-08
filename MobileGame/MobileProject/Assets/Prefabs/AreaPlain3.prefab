@@ -1108,12 +1108,16 @@ MonoBehaviour:
   AreaType: 4
   ID: 3
   Probability: 8
-  Weight: 0.8857143
+  Weight: 0
   HeroAnimation: {fileID: 0}
+  MonsterAnimation: {fileID: 0}
   Heal: 0
-  Experience: 0
+  Experience: 1
   itemprobability: 0
   moneyprobability: 0
+  moneyamount: 0
+  Minlvl: 0
+  Maxlvl: 0
   Level: 0
   Hp: 0
   Str: 0

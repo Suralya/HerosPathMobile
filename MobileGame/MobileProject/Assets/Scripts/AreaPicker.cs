@@ -22,10 +22,12 @@ public class AreaPicker
         {
             Areas[i].GetComponent<Area>().Weight = Areas[i].GetComponent<Area>().Probability / ProbabilitySum;
 
+            
             if (i <= Areas.Count - 2)
             {
                 Areas[i].GetComponent<Area>().Weight += Areas[i + 1].GetComponent<Area>().Weight;
             }
+            
         }
     }
 

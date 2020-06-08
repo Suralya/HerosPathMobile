@@ -6,10 +6,10 @@ public class Area : MonoBehaviour
 {
     public Position CurrentPos = new Position();
 
-    public enum ArealTypes { Healing, weakMonster, Monster, strongMonster, Neutral, Treasure, Market };
+    public enum ArealTypes { Healing, Monster, Neutral, Treasure, Market };
 
     public ArealTypes AreaType;
-    [HideInInspector]
+
     public int ID = 0;
     public float Probability;
     public float Weight;
@@ -20,20 +20,21 @@ public class Area : MonoBehaviour
 
     //Area Influence on Hero
     public int Heal, Experience = 0;
+    public float MaxHeal,MinHeal;
 
     public int itemprobability, moneyprobability;
+    public int moneyamount;
 
     //MonsterStats
-    [HideInInspector]
+    public int Minlvl, Maxlvl = 0;
+
     public int Level, Hp, Str, Def, Dex = 0;
-    [HideInInspector]
     public float Spe = 0f;
 
     //Marketplace
     public float Tax;
-
+    public int minStoreItems, maxStoreItems;
     public int StoreInventoryCount;
-    [HideInInspector]
     public List<Items> MarketStore = new List<Items>();
 
     // Update is called once per frame
@@ -54,7 +55,7 @@ public class Area : MonoBehaviour
         switch (AreaType)
         {
             case ArealTypes.Healing:
-                Heal = (int)(Random.Range(0.3f, 0.8f) * HeroStats.Hp);
+                Heal = (int)(Random.Range(MinHeal, MaxHeal) * HeroStats.Hp);
 
                 //HealingArealParticles
                 foreach (ParticleSystem P in GetComponentsInChildren<ParticleSystem>())
@@ -73,45 +74,21 @@ public class Area : MonoBehaviour
                 break;
 
             case ArealTypes.Neutral:
-                Experience = 1;
                 HeroStats.AddExp(Experience);
-                break;
-
-            case ArealTypes.weakMonster:
-                if (GetComponentsInChildren<Animator>().Length>0)
-                MonsterAnimation = GetComponentsInChildren<Animator>()[0];
-                // Set Monster Lvl
-                Level = Random.Range(HeroStats.Lvl - 6, HeroStats.Lvl - 2);
-                if (Level < 1)
-                { Level = 1; }
-
-                SetMonsterStats();
-                StartCoroutine(Fight(HeroStats));
-
-                HeroStats.MonsterCounter++;
-
+                if (moneyamount!=0&& Random.Range(0, 100) <= moneyprobability)
+                {
+                    HeroStats.Gold += moneyamount;
+                    StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MoneyGained(moneyamount));
+                }
                 break;
 
             case ArealTypes.Monster:
                 if (GetComponentsInChildren<Animator>().Length > 0)
                     MonsterAnimation = GetComponentsInChildren<Animator>()[0];
                 // Set Monster Lvl
-                Level = Random.Range(HeroStats.Lvl, HeroStats.Lvl + 4);
+                Level = Random.Range(HeroStats.Lvl+Minlvl, HeroStats.Lvl + Maxlvl);
                 if (Level < 1)
                 { Level = 1; }
-
-                SetMonsterStats();
-                StartCoroutine(Fight(HeroStats));
-
-                HeroStats.MonsterCounter++;
-
-                break;
-
-            case ArealTypes.strongMonster:
-                if (GetComponentsInChildren<Animator>().Length > 0)
-                    MonsterAnimation = GetComponentsInChildren<Animator>()[0];
-                // Set Monster Lvl
-                Level = Random.Range(HeroStats.Lvl + 4, HeroStats.Lvl + 7);
 
                 SetMonsterStats();
                 StartCoroutine(Fight(HeroStats));
@@ -131,9 +108,17 @@ public class Area : MonoBehaviour
                 //set Money
                 if (Random.Range(0, 100) <= moneyprobability)
                 {
-                    int mon = HeroStats.Lvl * Random.Range(4, 20);
-                    HeroStats.Gold += mon;
-                    StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MoneyGained(mon));
+                    if (moneyamount == 0)
+                    {
+                        int mon = HeroStats.Lvl * Random.Range(4, 20);
+                        HeroStats.Gold += mon;
+                        StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MoneyGained(mon));
+                    }
+                    else
+                    {
+                        HeroStats.Gold += moneyamount;
+                        StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MoneyGained(moneyamount));
+                    }
                 }
                 break;
 
@@ -141,7 +126,7 @@ public class Area : MonoBehaviour
 
                 GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MarketArea.enabled = true;
                 Tax = Random.Range(1.03f, 1.35f);
-                StoreInventoryCount = Random.Range(4, 6);
+                StoreInventoryCount = Random.Range(minStoreItems, maxStoreItems);
 
                 for (int i = 1; i <= StoreInventoryCount; i++)
                 {
@@ -390,10 +375,17 @@ public class Area : MonoBehaviour
 
             if (Random.Range(0, 100) <= moneyprobability)
             {
-                int mon = Level * Random.Range(3, 10);
-                Debug.Log(HeroStats.Name + " earned " + mon + " Gold!");
-                HeroStats.Gold += mon;
-                StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MoneyGained(mon));
+                if (moneyamount == 0)
+                {
+                    int mon = Level * Random.Range(3, 10);
+                    HeroStats.Gold += mon;
+                    StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MoneyGained(mon));
+                }
+                else
+                {
+                    HeroStats.Gold += moneyamount;
+                    StartCoroutine(GameObject.FindGameObjectWithTag("GameManager").GetComponent<UIManager>().MoneyGained(moneyamount));
+                }
             }
             if (Random.Range(0, 100) <= itemprobability)
             {

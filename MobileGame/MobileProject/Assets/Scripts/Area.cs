@@ -17,6 +17,7 @@ public class Area : MonoBehaviour
     //Animationen
     public Animator HeroAnimation;
     public Animator MonsterAnimation;
+    public float AnimationSpeed;
 
     //Area Influence on Hero
     public int Heal, Experience = 0;
@@ -174,12 +175,6 @@ public class Area : MonoBehaviour
         }
 
 
-
-    }
-
-    public IEnumerator Fight(Hero HeroStats)
-    {
-        float AnimationSpeed;
         if (Spe < 10)
         {
             AnimationSpeed = Spe;
@@ -190,6 +185,13 @@ public class Area : MonoBehaviour
         {
             AnimationSpeed = 10;
         }
+        MonsterAnimation.speed = AnimationSpeed;
+
+    }
+
+    public IEnumerator Fight(Hero HeroStats)
+    {
+
 
         if (Hero.CurrentHero.Spe < 10)
         {
@@ -405,16 +407,8 @@ public class Area : MonoBehaviour
     {
         if (GetComponentsInChildren<Animator>().Length > 0)
         {
-            if (Spe < 10)
-            {
-                MonsterAnimation.speed = Spe;
-                if (Spe < 1.2f)
-                { MonsterAnimation.speed = 1.2f; }
-            }
-            else
-            {
-                MonsterAnimation.speed = 10;
-            }
+
+                MonsterAnimation.speed = AnimationSpeed;
 
 
             switch (Animation)

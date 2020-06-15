@@ -414,16 +414,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336dcec62f1f1c040828fa3d6e508247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AreaType: 6
+  AreaType: 4
   ID: 11
   Probability: 2
   Weight: 0
   HeroAnimation: {fileID: 0}
   MonsterAnimation: {fileID: 0}
+  AnimationSpeed: 0
   Heal: 0
   Experience: 0
+  MaxHeal: 0
+  MinHeal: 0
   itemprobability: 0
   moneyprobability: 0
+  moneyamount: 0
+  Minlvl: 0
+  Maxlvl: 0
   Level: 0
   Hp: 0
   Str: 0
@@ -431,6 +437,8 @@ MonoBehaviour:
   Dex: 0
   Spe: 0
   Tax: 0
+  minStoreItems: 4
+  maxStoreItems: 7
   StoreInventoryCount: 0
   MarketStore: []
 --- !u!1001 &1508037796489714020

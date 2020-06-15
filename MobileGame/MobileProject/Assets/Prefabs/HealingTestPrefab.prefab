@@ -9723,10 +9723,16 @@ MonoBehaviour:
   Weight: 0
   HeroAnimation: {fileID: 0}
   MonsterAnimation: {fileID: 0}
+  AnimationSpeed: 0
   Heal: 0
   Experience: 0
+  MaxHeal: 0.81362003
+  MinHeal: 0.3046595
   itemprobability: 0
   moneyprobability: 0
+  moneyamount: 0
+  Minlvl: 0
+  Maxlvl: 0
   Level: 0
   Hp: 0
   Str: 0
@@ -9734,6 +9740,8 @@ MonoBehaviour:
   Dex: 0
   Spe: 0
   Tax: 0
+  minStoreItems: 0
+  maxStoreItems: 0
   StoreInventoryCount: 0
   MarketStore: []
 --- !u!1 &8770124311900798234

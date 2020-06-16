@@ -174,18 +174,20 @@ public class Area : MonoBehaviour
             Experience /= 3;
         }
 
-
-        if (Spe < 10)
+        if (GetComponentsInChildren<Animator>().Length > 0)
         {
-            AnimationSpeed = Spe;
-            if (Spe < 1.2f)
-            { AnimationSpeed = 1.2f; }
+            if (Spe < 7)
+            {
+                AnimationSpeed = Spe;
+                if (Spe < 1.2f)
+                { AnimationSpeed = 1.2f; }
+            }
+            else
+            {
+                AnimationSpeed = 7;
+            }
+            MonsterAnimation.speed = AnimationSpeed;
         }
-        else
-        {
-            AnimationSpeed = 10;
-        }
-        MonsterAnimation.speed = AnimationSpeed;
 
     }
 

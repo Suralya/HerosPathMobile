@@ -35,7 +35,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: Probability
-    value: 10
+    value: 8
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: Weight

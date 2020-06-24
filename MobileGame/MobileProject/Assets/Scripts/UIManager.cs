@@ -27,7 +27,9 @@ public class UIManager : MonoBehaviour
 
     //GameUI
     public Text HeroName, HeroMony, HeroLvl;
+
     public Canvas DeathScreen;
+    public Text DeathStats;
 
     private float height = 0f;
 
@@ -35,6 +37,7 @@ public class UIManager : MonoBehaviour
     public Canvas ScorePanel;
     public RectTransform content;
     public GameObject Entry;
+    [HideInInspector]
     public List<GameObject> TableContent;
     public Transform SpawnPoint = null;
 
@@ -44,6 +47,7 @@ public class UIManager : MonoBehaviour
     public Canvas InventoryAndStatsPanel;
     public RectTransform EquipmentContent, BagContent;
     public GameObject EquipedItem,BagItem;
+    [HideInInspector]
     public List<GameObject> TableEquipment, TableBag;
     public Transform EquipedSpawn,BagSpawn;
 
@@ -51,6 +55,7 @@ public class UIManager : MonoBehaviour
     public Canvas MarketArea, Marketplace;
     public RectTransform BagList, MarketInventoryList;
     public GameObject ShopItem,MarketBagItem;
+    [HideInInspector]
     public List<GameObject> BagItems, ShopItems;
     public Transform ShopBagSpawn, ShopInventorySpawn;
 
@@ -58,6 +63,7 @@ public class UIManager : MonoBehaviour
 
     public Canvas SafetyQuestionShopping;
     public Text EquiToBuy, EquiWorn, Price;
+    [HideInInspector]
     public Items ItemOfChoice;
 
     //PopUp on New Aquired Gold/Item
@@ -96,6 +102,7 @@ public class UIManager : MonoBehaviour
             if (!DeathScreen.enabled)
             {
                 ScoreList.Score.AddEntry(new Entry(Hero.CurrentHero.Name, Hero.CurrentHero.Lvl, Hero.CurrentHero.MonsterCounter, Hero.CurrentHero.StageCounter));
+                DeathStats.text = "Level: "+Hero.CurrentHero.Lvl+"\nMonsters killed: "+(Hero.CurrentHero.MonsterCounter-1)+"\nAreas passed: "+(Hero.CurrentHero.StageCounter-1);
                 Hero.CurrentHero.Lvl = 0;
                 GM.SafeCurrentGame();
                 ScoreList.Score.ShowList();
@@ -268,93 +275,11 @@ public class UIManager : MonoBehaviour
         else
         {
             InventoryAndStatsPanel.enabled = true;
-
-            //HeroStatusPanel
-            HeroStats.text = 
-                "HP: "+ Hero.CurrentHero.CurrentHp+ "/" + Hero.CurrentHero.Hp+
-                "\nStr: " + Hero.CurrentHero.Str +
-                "\nDef: "+ Hero.CurrentHero.Def +
-                "\nDex: "+ Hero.CurrentHero.Dex +
-                "\nSpe: "+ (Math.Truncate(100*Hero.CurrentHero.Spe)/100);
-
-            //Hero Equpped List
-            height = EquipmentContent.GetComponent<RectTransform>().rect.width;
-            EquipedSpawn.localPosition = new Vector3(0, 0 - (height / EquipedItem.GetComponent<AspectRatioFitter>().aspectRatio / 2), 0);
-            EquipmentContent.sizeDelta = new Vector2(0,3+ Hero.CurrentHero.Wearing.Count() * height / EquipedItem.GetComponent<AspectRatioFitter>().aspectRatio);
-            
-
-            for (int i = 0; i < Hero.CurrentHero.Wearing.Count(); i++)
-            {
-                float spawnY = (i * height +3) - EquipedSpawn.localPosition.y;
-                Vector3 pos = new Vector3(EquipedSpawn.localPosition.x, -spawnY, EquipedSpawn.position.z);
-                TableEquipment.Add(Instantiate(EquipedItem, pos, EquipedSpawn.rotation));
-                TableEquipment[i].transform.SetParent(EquipmentContent, false);
-                TableEquipment[i].GetComponent<ItemEntrys>().ItemLvl.text = "Lvl." + Hero.CurrentHero.Wearing[i].lvl;
-                    switch (Hero.CurrentHero.Wearing[i].Type)
-                    {
-                        case Items.ItemType.Weapon:
-                        TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Weapon";
-                        break;
-                        case Items.ItemType.Armor:
-                        TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Armor";
-                        break;
-                        case Items.ItemType.Shoes:
-                        TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Shoes";
-                        break;
-                        case Items.ItemType.Gloves:
-                        TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Gloves";
-                        break;
-                        case Items.ItemType.Accessory:
-                        TableEquipment[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
-                        break;
-                    }
-                TableEquipment[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Wearing[i].worth) / 100);
-                TableEquipment[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Wearing[i];
-                height = TableEquipment[0].GetComponent<RectTransform>().rect.height;
-
-            }
-
-
-            //Hero Bag List
-            height = BagContent.GetComponent<RectTransform>().rect.width;
-            BagSpawn.localPosition = new Vector3(0, 0 - (height / BagItem.GetComponent<AspectRatioFitter>().aspectRatio / 2), 0);
-            BagContent.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * height / BagItem.GetComponent<AspectRatioFitter>().aspectRatio);
-
-            for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
-            {
-                float spawnY = (i * height) - BagSpawn.localPosition.y;
-                Vector3 pos = new Vector3(BagSpawn.localPosition.x, -spawnY, BagSpawn.position.z);
-                TableBag.Add(Instantiate(BagItem, pos, BagSpawn.rotation));
-                TableBag[i].transform.SetParent(BagContent, false);
-                TableBag[i].GetComponent<ItemEntrys>().ItemLvl.text = "Lvl." + Hero.CurrentHero.Bag[i].lvl;
-                switch (Hero.CurrentHero.Bag[i].Type)
-                {
-                    case Items.ItemType.Weapon:
-                        TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Weapon";
-                        break;
-                    case Items.ItemType.Armor:
-                        TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Armor";
-                        break;
-                    case Items.ItemType.Shoes:
-                        TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Shoes";
-                        break;
-                    case Items.ItemType.Gloves:
-                        TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Gloves";
-                        break;
-                    case Items.ItemType.Accessory:
-                        TableBag[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
-                        break;
-                }
-                TableBag[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].worth) / 100);
-                TableBag[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
-                height = TableBag[0].GetComponent<RectTransform>().rect.height ;
-
-            }
-
+            UpdateInventoryTables();
 
         }
 
-    }
+        }
 
     //Enables or Disables Scorlist/InvoentoryandStats Menu
     public void EnableDisableSideMenu()
@@ -513,93 +438,7 @@ public class UIManager : MonoBehaviour
 
             GM.InMenu = true;
             Marketplace.enabled = true;
-
-            //BagItemsforShop
-            height = BagList.GetComponent<RectTransform>().rect.width;
-            ShopBagSpawn.localPosition = new Vector3(0, 0 - (height / MarketBagItem.GetComponent<AspectRatioFitter>().aspectRatio / 2 ), 0);
-            BagList.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * height / MarketBagItem.GetComponent<AspectRatioFitter>().aspectRatio);
-
-            for (int i = 0; i < Hero.CurrentHero.Bag.Count(); i++)
-            {
-            float spawnY = (i * height) - ShopBagSpawn.localPosition.y;
-            Vector3 pos = new Vector3(ShopBagSpawn.localPosition.x, -spawnY, ShopBagSpawn.position.z);
-            BagItems.Add(Instantiate(MarketBagItem, pos, ShopBagSpawn.rotation));
-            BagItems[i].transform.SetParent(BagList, false);
-            BagItems[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + Hero.CurrentHero.Bag[i].lvl;
-            switch (Hero.CurrentHero.Bag[i].Type)
-            {
-                case Items.ItemType.Weapon:
-                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Weapon";
-                    break;
-                case Items.ItemType.Armor:
-                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Armor";
-                    break;
-                case Items.ItemType.Shoes:
-                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Shoes";
-                    break;
-                case Items.ItemType.Gloves:
-                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Gloves";
-                    break;
-                case Items.ItemType.Accessory:
-                    BagItems[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
-                    break;
-            }
-            
-            BagItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * Hero.CurrentHero.Bag[i].worth) / 100);
-            Hero.CurrentHero.Bag[i].price = Hero.CurrentHero.Bag[i].lvl * Hero.CurrentHero.Bag[i].rarity * 6;
-            BagItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + Hero.CurrentHero.Bag[i].price;
-            BagItems[i].GetComponent<ItemEntrys>().LinkedItem = Hero.CurrentHero.Bag[i];
-            height = BagItems[0].GetComponent<RectTransform>().rect.height;
-
-            }
-
-            //ShopInventory
-            height = MarketInventoryList.GetComponent<RectTransform>().rect.width;
-            ShopInventorySpawn.localPosition = new Vector3(0, 0 - (height / ShopItem.GetComponent<AspectRatioFitter>().aspectRatio / 2), 0);
-            MarketInventoryList.sizeDelta = new Vector2(0, Hero.CurrentHero.Bag.Count() * height / ShopItem.GetComponent<AspectRatioFitter>().aspectRatio);
-
-            for (int i = 0; i < GM.areasInUseArray[1].GetComponent<Area>().MarketStore.Count(); i++)
-            {
-                float spawnY = (i * height) - ShopInventorySpawn.localPosition.y;
-                Vector3 pos = new Vector3(ShopInventorySpawn.localPosition.x, -spawnY, ShopInventorySpawn.position.z);
-                ShopItems.Add(Instantiate(ShopItem, pos, ShopInventorySpawn.rotation));
-                ShopItems[i].transform.SetParent(MarketInventoryList, false);
-                ShopItems[i].GetComponent<ItemEntrys>().ItemLvl.text = "Level." + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl;
-                switch (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].Type)
-                {
-                    case Items.ItemType.Weapon:
-                        ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Weapon";
-                        break;
-                    case Items.ItemType.Armor:
-                        ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Armor";
-                        break;
-                    case Items.ItemType.Shoes:
-                        ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Shoes";
-                        break;
-                    case Items.ItemType.Gloves:
-                        ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Gloves";
-                        break;
-                    case Items.ItemType.Accessory:
-                        ShopItems[i].GetComponent<ItemEntrys>().ItemType.text = "Accessory";
-                        break;
-                }
-
-                ShopItems[i].GetComponent<ItemEntrys>().ItemStrength.text = "Worth: " + (Math.Truncate(100 * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].worth) / 100);
-                GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int) (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl*(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl /2)* GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10* GM.areasInUseArray[1].GetComponent<Area>().Tax);
-                if (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl == 1)
-                {
-                    GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
-                }
-                else if (GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl % 2 != 0)
-                {
-                    GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price = (int)(GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl * ((GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].lvl / 2) + 0.5) * GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].rarity * 10 * GM.areasInUseArray[1].GetComponent<Area>().Tax);
-                }
-                ShopItems[i].GetComponent<ItemEntrys>().Price.text = "$: " + GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i].price;
-                ShopItems[i].GetComponent<ItemEntrys>().LinkedItem = GM.areasInUseArray[1].GetComponent<Area>().MarketStore[i];
-                height = ShopItems[0].GetComponent<RectTransform>().rect.height;
-
-
-            }
+            UpdateMarketplace();
 
         }
     }
@@ -762,11 +601,11 @@ public class UIManager : MonoBehaviour
 
 
     }
+
     public void SafeShoppingNo()
     {
         SafetyQuestionShopping.enabled = false;
     }
-
     public void SafeShoppingYes()
     {
         SafetyQuestionShopping.enabled = false;

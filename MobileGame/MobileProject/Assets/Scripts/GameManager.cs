@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     //Areas Currently seen in the Game
     private Queue<GameObject> areasInUse = new Queue<GameObject>();
-    [HideInInspector]
+
     public GameObject[] areasInUseArray = new GameObject[3];
 
     public Position Pos1, Pos2, Pos3, PosEnd;
@@ -258,6 +258,10 @@ public class GameManager : MonoBehaviour
         Hero.CurrentHero.HeroSetup();
         Hero.CurrentHero.StageCounter++;
 
+        //Called to Name The Hero manually
+        GameUI.EnableHeroNaming();
+
+
         GameObject Temp = Instantiate(StartingArea, Pos2.Pos, Quaternion.identity);
         Temp.GetComponent<Area>().CurrentPos = Pos2;
         areasInUse.Enqueue(Temp);
@@ -270,8 +274,10 @@ public class GameManager : MonoBehaviour
         Temp.GetComponent<Area>().CurrentPos = Pos3;
         areasInUse.Enqueue(Temp);
         areasInUseArray = areasInUse.ToArray();
-        MoveAreas();
-        Invoke("ArrangeAreaChoice", 1);
+        areasInUseArray[1].transform.localScale = new Vector3(0, 0, 0);
+
+
+
 
     }
     public void LoadGame()
@@ -314,6 +320,14 @@ public class GameManager : MonoBehaviour
             StartCoroutine(AnimateArea(Areal));
         }
 
+    }
+
+    public void FinishGameStart()
+    {
+
+        areasInUseArray[1].transform.localScale = new Vector3(1, 1, 1);
+        MoveAreas();
+        Invoke("ArrangeAreaChoice", 1);
     }
 }
 

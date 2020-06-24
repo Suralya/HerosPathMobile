@@ -28,9 +28,16 @@ public class UIManager : MonoBehaviour
     //GameUI
     public Text HeroName, HeroMony, HeroLvl;
 
+    //DeathScreen
     public Canvas DeathScreen;
     public Text DeathStats;
 
+    //NamingScreen
+    public Canvas HeroNamingScreen;
+    public InputField HeroNameTextImput;
+    public Text HeroNamePlaceholder;
+
+    //ListVariabls
     private float height = 0f;
 
     //ScoreListUI
@@ -72,7 +79,7 @@ public class UIManager : MonoBehaviour
     public GameObject MovingPointNewItem,MovingPointNewMoney;
     public float FadeDuration=2;
 
-    void Start()
+    private void Awake()
     {
         InventoryAndStatsPanel.enabled = false;
         ScorePanel.enabled = false;
@@ -82,6 +89,12 @@ public class UIManager : MonoBehaviour
         ShoppingError.enabled = false;
         SafetyQuestionShopping.enabled = false;
         EnemyEncounter.enabled = false;
+        HeroNamingScreen.enabled = false;
+    }
+
+    void Start()
+    {
+
 
         NewItem.GetComponent<Text>().text = "";
         NewMoney.GetComponent<Text>().text = "";
@@ -90,7 +103,6 @@ public class UIManager : MonoBehaviour
 
         HeroName.text = Hero.CurrentHero.Name;
         UpdateHeroUI();
-
     }
 
     void FixedUpdate()
@@ -688,4 +700,34 @@ public class UIManager : MonoBehaviour
         Destroy(Text);
     }
 
+
+    //HeroNaming
+    public void EnableHeroNaming()
+    {
+        GM.InMenu = true;
+        HeroNamingScreen.enabled = true;
+        HeroNamePlaceholder.text = Hero.CurrentHero.Name;
+    }
+
+    public void EnterGame()
+    {
+        HeroNamingScreen.enabled = false;
+        GM.InMenu = false;
+        GM.FinishGameStart();
+    }
+
+    public void RandomizeName()
+    {
+        HeroNamePlaceholder.text = "";
+        Hero.CurrentHero.Name = Hero.CurrentHero.GetName();
+        HeroNameTextImput.text = Hero.CurrentHero.Name;
+        HeroName.text = Hero.CurrentHero.Name;
+    }
+
+    public void AdjustName()
+    {
+        Hero.CurrentHero.Name = HeroNameTextImput.text;
+        HeroName.text = Hero.CurrentHero.Name;
+
+    }
 }
